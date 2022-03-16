@@ -1,0 +1,207 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>
+
+<div class="col-12 main-container">
+
+  <div *ngIf="!mobile" class="row col-12 submain-container">
+
+    <app-nav-bar></app-nav-bar>
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-tabs card-header-primary">
+          <h4 class="card-title">EXTRATO SINTÉTICO</h4>
+        </div>
+
+        <br />
+        <form>
+
+          <div class="divtabextrato cardinterno">
+            <div class="form-row">
+
+              <div style="padding-top: 45px; padding-left: 20px;"><label><b>Busca p/ data de lançamento: </b></label>
+              </div>&nbsp;
+
+              <!-- <div class="form-group form-row col-md-6" style="padding-left: 50px;"> 
+              <div style="padding-right: 20px;"><input type="text" autocomplete="on" class="form-control" name="tipodamodalidade" id="tipodamodalidade" placeholder="Ex: LFAC, DUPL.." (input)="buscarTipoModalidade();"></div>
+              <div><button (click)="refresh();" class="btn btn-primary"><i class="fas fa-sync-alt"></i></button></div>
+            </div> -->
+
+              <div class="form-group col-md-3">
+                <label><b>De</b></label>
+                <input type="date" class="form-control" name="de" id="de" [(ngModel)]="de" />
+
+              </div>
+
+              <div class="form-group col-md-3">
+                <label><b>Até</b></label>
+                <input type="date" class="form-control" name="ate" id="ate" [(ngModel)]="ate" />
+
+              </div>
+              <div class="form-group col-md-3" style="padding-top: 30px;">
+                <button (click)="filtraExtrato();" class="btn btn-primary"><i class="fas fa-filter"></i>
+                  Filtrar</button>
+              </div>
+
+              <table class="table table-hover">
+                <thead class="text-warning" style="text-align: center;">
+                  <th>Nome do vendedor</th>
+                  <th>Total vendido</th>
+                  <th>Valor declarado</th>
+                  <th>De</th>
+                  <th>Até</th>
+                  <th>Quitar débitos</th>
+                </thead>
+                <tbody style="text-align: center;">
+                  <tr *ngFor="let item of prestacontas; index as i">
+                    <td>{{item[0]}}</td>
+                    <td>{{visualizaValor(item[1])}}</td>
+                    <td>{{visualizaValor(item[2])}}</td>
+                    <td *ngIf="i == 0">{{item[5]}}</td>
+                    <td *ngIf="i != 0">{{item[5].substring(8)+"/"+item[5].substring(5,7)+"/"+item[5].substring(0,4)}}
+                    </td>
+                    <td>{{item[3].substring(8)+"/"+item[3].substring(5,7)+"/"+item[3].substring(0,4)}}</td>
+                    <td *ngIf="item[1] - item[2] > 0" class="form-row">
+                      <div>
+                        <input type="text" class="form-control" onkeyup="k(this);" name="valorpago{{i}}"
+                          id="valorpago{{i}}" placeholder="{{visualizaValor((item[1] - item[2]))}}"
+                          style="margin-left: 50px;  width: 140px;" [(ngModel)]=this.valorNovo[i] />
+
+                      </div>
+                      &nbsp;<button (click)="atualizaValorPago(item[4],i);" class="btn btn-primary"><i
+                          class="far fa-handshake"></i></button>
+                    </td>
+                    <td *ngIf="item[1] - item[2] <= 0">
+                      <label style="color: rgb(0, 177, 0)"><i class="fas fa-check"></i><b>Quitado</b></label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div id="divsuccess" class="fade-out col-xs-12">
+                <h3>Dados gravados com sucesso</h3>
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="mobile">
+
+    <div class="divtitulo">
+      <h4 class="card-title">EXTRATO SINTÉTICO</h4>
+    </div>
+
+    <div class="row col-12 submain-container">
+
+      <div *ngIf="(nave == 'true')">
+        <app-nav-bar></app-nav-bar>
+      </div>
+
+      <div class="col-12" style="margin-bottom: 100px;">
+        <div class="card">
+
+          <form>
+
+            <div class="divtabextrato cardinterno">
+              <div class="form-row">
+
+                <div style="padding-top: 45px; padding-left: 20px;"><label><b>Busca p/ data de lançamento: </b></label>
+                </div>&nbsp;
+
+                <!-- <div class="form-group form-row col-md-6" style="padding-left: 50px;"> 
+                <div style="padding-right: 20px;"><input type="text" autocomplete="on" class="form-control" name="tipodamodalidade" id="tipodamodalidade" placeholder="Ex: LFAC, DUPL.." (input)="buscarTipoModalidade();"></div>
+                <div><button (click)="refresh();" class="btn btn-primary"><i class="fas fa-sync-alt"></i></button></div>
+              </div> -->
+
+                <div class="form-group col-12" style="padding-right:20px; padding-left: 20px; padding-top: 20px;">
+                  <label><b>De</b></label>
+                  <input type="text" onkeypress="$(this).mask('00/00/0000')" class="form-control" name="de" id="de"
+                    [(ngModel)]="de" />
+
+                </div>
+
+                <div class="form-group col-12" style="padding-right:20px; padding-left: 20px;">
+                  <label><b>Até</b></label>
+                  <input type="text" onkeypress="$(this).mask('00/00/0000')" class="form-control" name="ate" id="ate"
+                    [(ngModel)]="ate" />
+
+                </div>
+                <div class="form-group col-12" style="padding-top: 30px; padding-right:20px; padding-left: 20px;">
+                  <button (click)="filtraExtrato();" class="btn btn-primary"><i class="fas fa-filter"></i>
+                    Filtrar</button>
+                </div>
+
+                <table class="table table-hover" style="display: block;max-width: auto; width:320px; overflow: scroll;">
+                  <thead class="text-warning" style="text-align: center;">
+                    <th>Nome do vendedor</th>
+                    <th>Total vendido</th>
+                    <th>Valor declarado</th>
+                    <th>De</th>
+                    <th>Até</th>
+                    <th>Quitar débitos</th>
+                  </thead>
+                  <tbody style="text-align: center;">
+                    <tr *ngFor="let item of prestacontas; index as i">
+                      <td>{{item[0]}}</td>
+                      <td>{{visualizaValor(item[1])}}</td>
+                      <td>{{visualizaValor(item[2])}}</td>
+                      <td *ngIf="i == 0">{{item[5]}}</td>
+                      <td *ngIf="i != 0">{{item[5].substring(8)+"/"+item[5].substring(5,7)+"/"+item[5].substring(0,4)}}
+                      </td>
+                      <td>{{item[3].substring(8)+"/"+item[3].substring(5,7)+"/"+item[3].substring(0,4)}}</td>
+                      <td *ngIf="item[1] - item[2] > 0" class="form-row">
+                        <div>
+                          <input type="text" class="form-control" placeholder="{{visualizaValor((item[1] - item[2]))}}"
+                            onkeyup="k(this);" name="valorpago{{i}}" id="valorpago{{i}}"
+                            style="margin-left: 50px;  width: 140px;" [(ngModel)]=this.valorNovo[i] />
+                        </div>
+                        &nbsp;<button (click)="atualizaValorPago(item[4],i);" class="btn btn-primary"><i
+                            class="far fa-handshake"></i></button>
+                      </td>
+                      <td *ngIf="item[1] - item[2] <= 0">
+                        <label style="color: rgb(0, 177, 0)"><i class="fas fa-check"></i><b>Quitado</b></label>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div id="divsuccess" class="fade-out col-xs-12">
+                  <h3>Dados gravados com sucesso</h3>
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+
+          <br /><br />
+
+        </div>
+      </div>
+
+      <div style="
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: gray;
+      color: white;
+      text-align: center;">
+        <app-tab-bar></app-tab-bar>
+      </div>
+
+    </div>
+  </div>
+
+</div>

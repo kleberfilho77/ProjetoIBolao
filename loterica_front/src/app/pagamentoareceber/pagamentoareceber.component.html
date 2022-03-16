@@ -1,0 +1,357 @@
+<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+<script type="text/javascript">
+    jQuery(window).load(function ($) {
+        atualizaRelogio();
+    });
+
+</script>
+
+<div *ngIf="mobile">
+
+    <app-top-bar></app-top-bar>
+
+</div>
+
+
+<div class="col-12 main-container">
+
+    <div class="row col-12 submain-container">
+
+
+
+        <div *ngIf="!mobile" class="container-fluid">
+
+            <app-nav-bar></app-nav-bar>
+
+            <form>
+
+                <div class="divtabextrato card">
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <h4 class="divtitformapagto card-title"><b>Pagamentos Pendentes</b></h4>
+                            <br/>
+                        </div>
+                        
+
+                        <div style="padding-left: 20px" class="form-group col-md-3">
+                            <label><b>Filtro</b></label>
+                            <select class="form-control" name="selected1" [(ngModel)]="selected1">
+                                <option disabled></option>
+                                <option value="periodo">PERIODO</option>
+                                <option value="cliente">CLIENTE</option>
+                            </select>
+                        </div>
+
+                        <div *ngIf="selected1 == 'periodo'" class=" form-group col-md-3">
+                            <label><b>De</b></label>
+                            <input type="date" class="form-control" name="de" id="de" [(ngModel)]="de" />
+                            
+                        </div>
+                
+                        <div *ngIf="selected1 == 'periodo'" class="form-group col-md-3">
+                            <label><b>Até</b></label>
+                            <input type="date" class="form-control" name="ate" id="ate" [(ngModel)]="ate" />
+                            
+                        </div>
+
+                        <div *ngIf="selected1 == 'cliente'" class="form-group col-md-3">
+                            <label>Nome</label>
+                            <input class="form-control" name="filtrocli" [(ngModel)]="filtroCliente" />
+                        </div>
+
+                        <div *ngIf="selected1 == 'periodo' || selected1 == 'cliente'" class="form-group col-md-1" style="padding-top:7px;">
+                            <br/>
+                            <button (click)="listar();" class="btn btn-primary">Filtrar</button>
+                        </div>
+
+                        <div class="form-group col-md-2" style="padding-top: 7px;">
+                            <br/>
+                            <button (click)="linkspendentes();" class="btn btn-primary">Links Pendentes</button>
+                        </div>
+
+                        <div id="divsuccess" class="fade-out col-md-12">
+                            <h3>Dados gravados com sucesso</h3>
+                        </div>
+
+                        <div class="col-md-12">
+                            <table *ngIf="perfil == 'VENDEDOR'" class="table table-hover">
+                                <thead class="text-warning">
+                                    <th>Cliente</th>
+                                    <th>Data</th>
+                                    <th>A Pagar</th>
+                                    <th>Detalhes</th>
+                                    <th>Forma de Pgto</th>
+                                    <th>Valor</th>
+                                    <th>Pagar</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ls of listaMovimentacao; index as i">
+                                        <td>{{ls[0]}}</td>
+                                        <td>{{ls[1].substring(8)+"/"+ls[1].substring(5,7)+"/"+ls[1].substring(0,4)}}</td>
+                                        <td>{{visualizaValor(ls[2])}}</td>
+                                        <td>{{ls[3]}}</td>
+                                        <td *ngIf="linkGerado[i] == undefined">
+                                            <select class="form-control" name="formapagto{{i}}" id="formapagto{{i}}" (change)="ativaBotao(i)" [(ngModel)]="formapag[i]">
+                                                <option disabled></option>
+                                                <option>DINHEIRO</option>
+                                                <option>CARTAO</option>
+                                                <option>PIX</option>
+                                                <option>OUTROS</option>
+                                                <option>LINK ONLINE</option>
+                                            </select>
+                                        </td>
+                                        <td *ngIf="formapag[i] == 'LINK ONLINE' && linkGerado[i] != undefined"> 
+                                            <input type="text" id="linkpagto{{i}}" name="linkpagto{{i}}" [(ngModel)]="this.linkGerado[i]"/>
+                                            <!-- <label #userinput > {{linkGerado[i]}} </label> -->
+                                        </td>
+                                        <td *ngIf="formapag[i] == 'LINK ONLINE' && linkGerado[i] != undefined">
+                                            <button id="btnlinkpagto{{i}}" name="btnlinkpagto{{i}}" (click)="copiarLink(i)"
+                                            class="btn btn-primary"><i class="far fa-clone"></i> Copiar</button> 
+                                        </td>
+                                        <td> 
+                                            <input type="text" onkeyup="k(this);" class="form-control" style="width: 150px;" name="pagar" id="pagar" (change)="checaValor(i)" [(ngModel)]="pagando[i]" />   
+                                        </td>                   
+                                        <td *ngIf="linkGerado[i] == undefined">
+                                            <button class="btn btn-primary" id="botaopag{{i}}" (click)="pagar(i)" disabled> 
+                                                <i class="fas fa-cash-register"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+    
+                                </tbody>
+                            </table>
+    
+                            <table *ngIf="perfil != 'VENDEDOR'" class="table table-hover">
+                                <thead class="text-warning">
+                                    <th>Cliente</th>
+                                    <th>Data</th>
+                                    <th>A Pagar</th>
+                                    <th>Detalhes</th>
+                                    <th>Vendedor</th>
+                                    <th>Forma de Pgto</th>
+                                    <th>Valor</th>
+                                    <th>Pagar</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ls of listaMovimentacao; index as i">
+                                        <td>{{ls[0]}}</td>
+                                        <td>{{ls[1].substring(8)+"/"+ls[1].substring(5,7)+"/"+ls[1].substring(0,4)}}</td>
+                                        <td>{{visualizaValor(ls[2])}}</td>
+                                        <td>{{ls[3]}}</td>
+                                        <td>{{ls[7]}}</td>
+                                        <td *ngIf="linkGerado[i] == undefined">
+                                            <select class="form-control" name="formapagto{{i}}" id="formapagto{{i}}" (change)="ativaBotao(i)" [(ngModel)]="formapag[i]">
+                                                <option disabled></option>
+                                                <option>DINHEIRO</option>
+                                                <option>CARTAO</option>
+                                                <option>PIX</option>
+                                                <option>OUTROS</option>
+                                                <option>LINK ONLINE</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" onkeyup="k(this);" class="form-control" style="width: 150px;" name="pagar" id="pagar" (change)="checaValor(i)" [(ngModel)]="pagando[i]"/>     
+                                        </td>
+                                        <td *ngIf="formapag[i] == 'LINK ONLINE'"> <label> {{linkGerado[i]}} </label> </td>
+                                        <td *ngIf="linkGerado[i] == undefined">
+                                            <button class="btn btn-primary" id="botaopag{{i}}" (click)="pagar(i)" disabled> 
+                                                <i class="fas fa-cash-register"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br />
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+    <div class="row col-12 submain-container">
+
+        <div *ngIf="mobile" class="container-fluid">
+            
+
+            <div *ngIf="(nave == 'true')">
+                
+                <app-nav-bar></app-nav-bar>
+
+            </div>
+
+            <form>
+
+                <div class="divtabextrato card" style="margin-top:100px;">
+                    <div class="form-row">
+                        <div class="col-12">
+                            <h4 class="divtitformapagto card-title"><b>Pagamentos Pendentes</b></h4>
+                            <br/>
+                        </div>
+                        
+
+                        <div style="padding-left: 20px; padding-right: 20px" class="form-group col-12">
+                            <label><b>Filtro</b></label>
+                            <select class="form-control" name="selected1" [(ngModel)]="selected1">
+                                <option disabled></option>
+                                <option value="periodo">PERIODO</option>
+                                <option value="cliente">CLIENTE</option>
+                            </select>
+                        </div>
+
+                        <div *ngIf="selected1 == 'periodo'" class=" form-group col-md-3" style="padding-left: 20px; padding-right: 20px">
+                            <label><b>De</b></label>
+                            <input type="text" onkeypress="$(this).mask('00/00/0000')" class="form-control" name="de" id="de" [(ngModel)]="de" />
+                            
+                        </div>
+                
+                        <div *ngIf="selected1 == 'periodo'" class="form-group col-md-3" style="padding-left: 20px; padding-right: 20px">
+                            <label><b>Até</b></label>
+                            <input type="text" onkeypress="$(this).mask('00/00/0000')" class="form-control" name="ate" id="ate" [(ngModel)]="ate" />
+                            
+                        </div>
+
+
+                        <div *ngIf="selected1 == 'cliente'" class="form-group col-md-3" style="padding-left: 20px; padding-right: 20px">
+                            <label>Nome</label>
+                            <input class="form-control" name="filtrocli" [(ngModel)]="filtroCliente" />
+                        </div>
+
+                        <div *ngIf="selected1 == 'periodo' || selected1 == 'cliente'" class="form-group col-md-1" style="padding-top:7px; padding-left: 20px; padding-right: 20px">
+                            <br/>
+                            <button (click)="listar();" class="btn btn-primary">Filtrar</button>
+                        </div>
+
+                        <div class="form-group col-md-2" style="padding-top:7px; padding-left: 20px; padding-right: 20px">
+                            <br/>
+                            <button (click)="linkspendentes();" class="btn btn-primary">Links Pendentes</button>
+                        </div>
+
+                        <div id="divsuccess" class="fade-out col-12">
+                            <h3>Dados gravados com sucesso</h3>
+                        </div>
+
+                        <div class="col-12">
+                            <table *ngIf="perfil == 'VENDEDOR'" class="table table-hover" style="display: block;max-width: auto; width:320px; overflow: scroll;">
+                                <thead class="text-warning">
+                                    <th>Cliente</th>
+                                    <th>Data</th>
+                                    <th>A Pagar</th>
+                                    <th>Valor</th>
+                                    <th>Detalhes</th>
+                                    <th>Forma de Pgto</th>
+                                    <th>Pagar</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ls of listaMovimentacao; index as i">
+                                        <td>{{ls[0]}}</td>
+                                        <td>{{ls[1].substring(8)+"/"+ls[1].substring(5,7)+"/"+ls[1].substring(0,4)}}</td>
+                                        <td>{{visualizaValor(ls[2])}}</td>
+                                        <td>{{ls[3]}}</td>
+                                        <td *ngIf="linkGerado[i] == undefined">
+                                            <select class="form-control" name="formapagto{{i}}" id="formapagto{{i}}" (change)="ativaBotao(i)" [(ngModel)]="formapag[i]">
+                                                <option disabled></option>
+                                                <option>DINHEIRO</option>
+                                                <option>CARTAO</option>
+                                                <option>PIX</option>
+                                                <option>OUTROS</option>
+                                                <option>LINK ONLINE</option>
+                                            </select>
+                                        </td>
+                                        
+                                        <td *ngIf="formapag[i] == 'LINK ONLINE' && linkGerado[i] != undefined"> 
+                                            <input type="text" id="linkpagto{{i}}" name="linkpagto{{i}}" [(ngModel)]="this.linkGerado[i]"/>
+                                            <!-- <label #userinput > {{linkGerado[i]}} </label> -->
+                                        </td>
+                                        <td *ngIf="formapag[i] == 'LINK ONLINE' && linkGerado[i] != undefined">
+                                            <button id="btnlinkpagto{{i}}" name="btnlinkpagto{{i}}" (click)="copiarLink(i)"
+                                            class="btn btn-primary"><i class="far fa-clone"></i> Copiar</button> 
+                                        </td>
+                                        <td>
+                                            <input type="text" onkeyup="k(this);" class="form-control" style="width: 150px;" name="pagar" id="pagar" (change)="checaValor(i)" [(ngModel)]="pagando[i]" />
+                                        </td>
+                                        <td *ngIf="linkGerado[i] == undefined">
+                                            <button class="btn btn-primary" id="botaopag{{i}}" (click)="pagar(i)" disabled> 
+                                                <i class="fas fa-cash-register"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+    
+                                </tbody>
+                            </table>
+    
+                            <table *ngIf="perfil != 'VENDEDOR'" class="table table-hover" style="display: block;max-width: auto; width:320px; overflow: scroll;">
+                                <thead class="text-warning">
+                                    <th>Cliente</th>
+                                    <th>Data</th>
+                                    <th>A Pagar</th>
+                                    <th>Detalhes</th>
+                                    <th>Vendedor</th>
+                                    <th>Forma de Pgto</th>
+                                    <th>Valor</th>
+                                    <th>Pagar</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ls of listaMovimentacao; index as i">
+                                        <td>{{ls[0]}}</td>
+                                        <td>{{ls[1].substring(8)+"/"+ls[1].substring(5,7)+"/"+ls[1].substring(0,4)}}</td>
+                                        <td>{{visualizaValor(ls[2])}}</td>
+                                        <td>{{ls[3]}}</td>
+                                        <td>{{ls[7]}}</td>
+                                        <td>
+                                            <select class="form-control" name="formapagto{{i}}" id="formapagto{{i}}" (change)="ativaBotao(i)" [(ngModel)]="formapag[i]">
+                                                <option disabled></option>
+                                                <option>DINHEIRO</option>
+                                                <option>CARTAO</option>
+                                                <option>PIX</option>
+                                                <option>OUTROS</option>
+                                                <option>LINK ONLINE</option>
+                                            </select>
+                                        </td>  
+                                        <td *ngIf="formapag[i] == 'LINK ONLINE'"> <label> {{linkGerado[i]}} </label> </td>
+                                         
+                                        <td>
+                                            <input type="text" onkeyup="k(this);" class="form-control" style="width: 150px;" name="pagar" id="pagar" (change)="checaValor(i)" [(ngModel)]="pagando[i]"/>   
+                                        </td>    
+                                        <td>
+                                            <button class="btn btn-primary" id="botaopag{{i}}" (click)="pagar(i)" disabled> 
+                                                <i class="fas fa-cash-register"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br />
+
+            </form>
+
+            <br /><br />
+
+
+            <div style="
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: gray;
+                color: white;
+                text-align: center;">
+                <app-tab-bar></app-tab-bar>
+            </div>
+
+        </div>
+    </div>
+    
+</div>

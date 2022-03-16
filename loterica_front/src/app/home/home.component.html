@@ -1,0 +1,512 @@
+<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+<script type="text/javascript">
+  jQuery(window).load(function ($) {
+    atualizaRelogio();
+  });
+
+</script>
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>
+
+
+<div class="col-12 main-container">
+
+  <div class="row col-12 submain-container">
+
+
+
+    <div *ngIf="!mobile" class="container-fluid">
+
+
+      <app-nav-bar></app-nav-bar>
+
+
+      <!-- <div class="form-row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <div class="card card-chart">
+                
+                  <div class="ct-chart" id="dailySalesChart"></div>
+               
+                <div class=" card-header-tabs card-header-metas">
+                  <h4 class="card-title">Venda Acumulada</h4>
+                </div>
+                <div class="card-body">
+                  <div style="display: block">
+                    <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
+                      [colors]="chartColors" [options]="chartOptions" [legend]="false" (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div class="col-md-3"></div>
+        <br/><br/>
+          </div> -->
+
+      <div class="row">
+
+        <div class="col-lg-6 col-md-12" style="max-height: 300px; overflow-y: auto;">
+          <div class="card">
+            <div class="card-header card-header-tabs card-header-primary">
+              <h4 class="card-title">Resumo de Cotas</h4>
+            </div>
+            <div class="card-body table-responsive">
+              <table class="table table-hover">
+                <thead class="text-warning">
+                  <th>Modalidade</th>
+                  <th>Valor Cota</th>
+                  <th>Cotas à Vender</th>
+                  <th *ngIf="perfil != 'VENDEDOR'">Vendedor</th>
+                  <th>Prioridade</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of cotas; index as i">
+                    <td>{{item.tipoModalidade}}</td>
+                    <td>{{preparaValor(item.valorCota)}}</td>
+                    <td>{{item.quantidadeCotaVendedor}}</td>
+                    <td  *ngIf="perfil != 'VENDEDOR'">{{this.nomeVendedor[i]}}</td>
+                    <td>{{i+1}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12" style="max-height: 300px; overflow-y: auto;">
+          <div class="card">
+            <div class="card-header card-header-warning">
+              <h4 class="card-title">Vendas confirmadas</h4>
+            </div>
+            <div class="card-body table-responsive">
+              <table class="table table-hover">
+                <thead class="text-warning">
+                  <th>Descriçao</th>
+                  <th>Valor da Venda</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of vendas; index as i">
+                    <td>{{item[0]}}</td>
+                    <td>{{preparaValor(item[1])}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" >
+          <div class="card card-stats" style="padding-right: 20px; padding-bottom: 5px;">
+            <div class="card-header card-header-warning card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">$</i>
+              </div>
+              <p class="card-category" style="font-size: 22px;">Resumo Financeiro</p><br />
+              <br/>
+            <div class="conteudofinanceiro" style="float:right; padding-left:3px;" >
+              <div class="form-row">
+                <div>
+                  <label class="titresumofinanc">Dinheiro:</label>&nbsp;
+                </div>
+                <div>
+                  <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[2])}}</label><br />
+                </div>
+                <div>
+                  <label
+                    *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[2])}}</label><br />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div>
+                  <label class="titresumofinanc">Débito:</label>&nbsp;
+                </div>
+                <div>
+                  <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[1])}}</label><br />
+                </div>
+                <div>
+                  <label
+                    *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[1])}}</label><br />
+                </div>
+              </div>
+              <div class="form-row">
+                <div>
+                  <label class="titresumofinanc">Crédito:</label>&nbsp;
+                </div>
+                <div>
+                  <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[0])}}</label><br />
+                </div>
+                <div>
+                  <label
+                    *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[0])}}</label><br />
+                </div>
+              </div>
+              <div class="form-row">
+                <div>
+                  <label class="titresumofinanc">Pix:</label>&nbsp;
+                </div>
+                <div>
+                  <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[4])}}</label><br />
+                </div>
+                <div>
+                  <label
+                    *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[4])}}</label><br />
+                </div>
+              </div>
+              <div class="form-row">
+                <div>
+                  <label class="titresumofinanc">Outras formas:</label>&nbsp;
+                </div>
+                <div>
+                  <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[3])}}</label><br />
+                </div>
+                <div>
+                  <label
+                    *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[3])}}</label><br />
+                </div>
+              </div>
+              <div class="form-row">
+                <div>
+                  <label><b>Total:</b></label>&nbsp;
+                </div>
+                <div>
+                  <label *ngIf="perfil == 'VENDEDOR'"
+                    ngstyle="font-size: 16px;"><b>{{visualizaValor(this.movimentacaoVendedor[0]+this.movimentacaoVendedor[1]+this.movimentacaoVendedor[2]+this.movimentacaoVendedor[3]+this.movimentacaoVendedor[4])}}</b></label><br />
+                </div>
+                <div>
+                  <label *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'"
+                    ngstyle="font-size: 16px;"><b>{{visualizaValor(this.movimentacao[0]+this.movimentacao[1]+this.movimentacao[2]+this.movimentacao[3]+this.movimentacao[4])}}</b></label><br />
+                </div>
+              </div>
+              <div class="form-row">
+                <div>
+                  <label class="titresumofinanc"><b>A receber:</b></label>&nbsp;
+                </div>
+                <div>
+                  <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[5])}}</label><br />
+                </div>
+                <div>
+                  <label
+                    *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[5])}}</label><br />
+                </div>
+              </div><br/>
+              <div class="form-row" style="justify-content: flex-end;">
+                <div>
+                  <a (click)="redirecionaAreceber();" style="color: blue; font-size: 18px;"><b><u>Ver valores a receber</u></b></a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <!-- <div class="card card-chart">
+                                <div class="card-header card-header-danger">
+                                  <div class="ct-chart" id="completedTasksChart"></div>
+                                </div>
+                                <div class="card-body">
+                                  <h4 class="card-title">Bolões Disponíveis</h4><br/>
+                                  <label style="color: #58B05C;">SUP7:</label>&nbsp;
+                                  <label>56,70</label><br/>
+                                  <label style="color: #9830B0;">LFAC:</label>&nbsp;
+                                  <label>20,01</label><br/>
+                                  <label style="color: #9830B0;">LFAC:</label>&nbsp;
+                                  <label>10,00</label><br/>
+                                  <label style="color: #FC960E;">MEGA:</label>&nbsp;
+                                  <label>10,00</label><br/>
+                                  <label style="color: #FC960E;">MEGA:</label>&nbsp;
+                                  <label>10,00</label><br/>
+                                  
+                                </div>
+                                <div class="card-footer">
+                                  <div class="stats">
+                                        Atualizado há 4 minutos ...
+                                  </div>
+                                </div>
+                        </div> -->
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <div *ngIf="mobile" class="container-fluid">
+
+
+    <div *ngIf="(nave == 'true')">
+      <app-nav-bar></app-nav-bar>
+    </div>
+
+
+    <!-- <div class="form-row">
+            <div class="col-md-12">
+              <div class="card card-chart">
+                
+                  <div class="ct-chart" id="dailySalesChart"></div>
+                
+                <div class=" card-header-tabs card-header-metas">
+                  <h4 class="card-title">Venda Acumulada</h4>
+                </div>
+                <div class="card-body">
+                  
+                  <div style="display: block">
+                    <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
+                      [colors]="chartColors" [options]="chartOptions" [legend]="false" (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+          </div> -->
+
+    <div class="row">
+
+      <div class="col-lg-6 col-md-12" style="max-height: 250px; overflow-y: auto;">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <h4 class="card-title">Resumo de Cotas</h4>
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table table-hover">
+              <thead class="text-warning">
+                <th>Modalidade</th>
+                <th>Valor Cota</th>
+                <th>Cotas à Vender</th>
+                <th *ngIf="perfil != 'VENDEDOR'">Vendedor</th>
+                <th>Prioridade</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of cotas; index as i">
+                  <td>{{item.tipoModalidade}}</td>
+                  <td>{{preparaValor(item.valorCota)}}</td>
+                  <td>{{item.quantidadeCotaVendedor}}</td>
+                  <td *ngIf="perfil != 'VENDEDOR'">{{this.nomeVendedor[i]}}</td>
+                  <td>{{i+1}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-6 col-md-12" style="max-height: 250px; overflow-y: auto; margin-top: 50px;">
+        <div class="card">
+          <div class="card-header card-header-warning">
+            <h4 class="card-title">Vendas confirmadas</h4>
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table table-hover">
+              <thead class="text-warning">
+                <th>Descriçao</th>
+                <th>Valor da venda</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of vendas; index as i">
+                  <td>{{item[0]}}</td>
+                  <td>{{preparaValor(item[1])}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 50px; margin-bottom: 80px;">
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">$</i>
+            </div>
+            <p class="card-category" style="font-size: 22px;">Resumo Financeiro</p><br />
+            <br/>
+          <div class="conteudofinanceiro" style="float:right; padding-left:3px;" >
+            <div class="form-row">
+              <div>
+                <label class="titresumofinanc">Dinheiro:</label>&nbsp;
+              </div>
+              <div>
+                <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[2])}}</label><br />
+              </div>
+              <div>
+                <label
+                  *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[2])}}</label><br />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div>
+                <label class="titresumofinanc">Débito:</label>&nbsp;
+              </div>
+              <div>
+                <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[1])}}</label><br />
+              </div>
+              <div>
+                <label
+                  *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[1])}}</label><br />
+              </div>
+            </div>
+            <div class="form-row">
+              <div>
+                <label class="titresumofinanc">Crédito:</label>&nbsp;
+              </div>
+              <div>
+                <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[0])}}</label><br />
+              </div>
+              <div>
+                <label
+                  *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[0])}}</label><br />
+              </div>
+            </div>
+            <div class="form-row">
+              <div>
+                <label class="titresumofinanc">Pix:</label>&nbsp;
+              </div>
+              <div>
+                <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[4])}}</label><br />
+              </div>
+              <div>
+                <label
+                  *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[4])}}</label><br />
+              </div>
+            </div>
+            <div class="form-row">
+              <div>
+                <label class="titresumofinanc">Outras formas:</label>&nbsp;
+              </div>
+              <div>
+                <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[3])}}</label><br />
+              </div>
+              <div>
+                <label
+                  *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[3])}}</label><br />
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div>
+                <label><b>Total:</b></label>&nbsp;
+              </div>
+              <div>
+                <label *ngIf="perfil == 'VENDEDOR'"
+                  ngstyle="font-size: 16px;"><b>{{visualizaValor(this.movimentacaoVendedor[0]+this.movimentacaoVendedor[1]+this.movimentacaoVendedor[2]+this.movimentacaoVendedor[3]+this.movimentacaoVendedor[4])}}</b></label><br />
+              </div>
+              <div>
+                <label *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'"
+                  ngstyle="font-size: 16px;"><b>{{visualizaValor(this.movimentacao[0]+this.movimentacao[1]+this.movimentacao[2]+this.movimentacao[3]+this.movimentacao[4])}}</b></label><br />
+              </div>
+            </div>
+            <div class="form-row">
+              <div>
+                <label class="titresumofinanc"><b>A receber:</b></label>&nbsp;
+              </div>
+              <div>
+                <label *ngIf="perfil == 'VENDEDOR'">{{visualizaValor(this.movimentacaoVendedor[5])}}</label><br />
+              </div>
+              <div>
+                <label
+                  *ngIf="perfil == 'ADMINISTRADOR' || perfil == 'LOTERICA'">{{visualizaValor(this.movimentacao[5])}}</label><br />
+              </div>
+            </div><br/>
+            <div class="form-row" style="justify-content: flex-end;">
+              <div>
+                <a (click)="redirecionaAreceber();" style="color: blue; font-size: 18px;"><b><u>Ver valores a receber</u></b></a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+          <!-- <div class="card-footer">
+                  <div class="stats">
+                    Atualizado há 33 minutos ...
+                  </div>
+                </div> -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- <div class="card card-chart">
+                <div class="card-header card-header-success">
+                  <div class="ct-chart" id="dailySalesChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Venda Acumulada</h4><br />
+                  <p class="card-category">
+                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> R$ 11.500,00 </span> &nbsp; <a><u>Clique para
+                        ver detalhes</u></a>
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    Atualizado há 4 minutos ...
+                  </div>
+                </div>
+              </div> -->
+      </div>
+      <!-- <div class="col-sm-6">
+              <div class="card card-chart">
+                <div class="card-header card-header-danger">
+                  <div class="ct-chart" id="completedTasksChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Bolões Disponíveis</h4><br />
+                  <label style="color: #58B05C;">SUP7:</label>&nbsp;
+                  <label>56,70</label><br />
+                  <label style="color: #9830B0;">LFAC:</label>&nbsp;
+                  <label>20,01</label><br />
+                  <label style="color: #9830B0;">LFAC:</label>&nbsp;
+                  <label>10,00</label><br />
+                  <label style="color: #FC960E;">MEGA:</label>&nbsp;
+                  <label>10,00</label><br />
+                  <label style="color: #FC960E;">MEGA:</label>&nbsp;
+                  <label>10,00</label><br />
+                  
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    Atualizado há 4 minutos ...
+                  </div>
+                </div>
+              </div>
+            </div> -->
+    </div>
+
+
+    <br />
+    <div style="
+    z-index: 999;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: gray;
+            color: white;
+            text-align: center;">
+        <app-tab-bar></app-tab-bar>
+      </div>
+    
+
+  </div>
+  <br /><br />
+
+  
+
+</div>
+
+</div>

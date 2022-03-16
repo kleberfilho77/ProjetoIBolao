@@ -1,0 +1,143 @@
+<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+<script type="text/javascript">
+  jQuery(window).load(function ($) {
+    atualizaRelogio();
+  });
+
+</script>
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>
+
+
+<div class="col-12 main-container">
+
+  <div class="row col-12 submain-container">
+
+
+
+    <div *ngIf="!mobile" class="container-fluid">
+
+
+      <app-nav-bar></app-nav-bar>
+
+      <div class="container">
+        <div class="col-md-12 mx-auto text-center">
+          <div class="header-title">
+            <h1 class="wv-heading--title">
+
+
+              <br /><br />Bem vindo ao iBOLÃO
+            </h1>
+            <br /><br />
+          </div>
+        </div>
+        <div class="col-12 mx-auto text-center" style="justify-content: center;">
+          <p style="text-align: justify;" id="texto">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Este é seu primeiro acesso ao iBolão, o site que nasceu para ajudar os Lotéricos a melhorar os seus
+            processos de controle e de venda dos bolões emitidos em sua casa lotérica.
+            Para começar você precisará fazer o cadastro de, pelo menos, um Administrador (pessoa que terá a gestão de
+            sua conta, fará o cadastro dos vendedores, cadastro dos bolões e cadastro dos clientes para que você possa
+            acelerar suas vendas de bolões.<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Acesse o menu ao lado e faça o cadastro do(s) administrador(es) para começar a experimentar todas as
+            funcionalidades que você terá no iBolão.
+            Você poderá controlar a comissão da venda, administrar a performance de cada vendedor, controlar a prestação
+            de contas, adotar a venda através de cartão de crédito para seus clientes, entro várias funcionalidades
+            IMPORTANTE: O iBolão NÃO É E-COMMERCE e não irá promover nenhuma venda online de bolões. Apenas irá ajudar
+            você a vender os bolões impressos de sua lotérica, através de ferramentas de envio de mensagens automáticas
+            e controle de todas as cotas dos bolões emitidos em sua lotérica.
+            E tudo isso de forma muito simples de operar.<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Então, vamos começar. Acesse agora o item CADASTRO do MENU e depois clique em CADASTRAR USUÁRIO – EQUIPE –
+            ADMINISTRADOR.
+            Recomendamos que tanto o dono da lotérica quanto o gerente (caso houver) sejam cadastrados como
+            administradores. Assim haverá uma maior flexibilidade.
+            Após cadastrar o ADMINISTRADOR é necessário cadastrar TODOS(AS) os(as) vendedores(as), inclusive as que
+            operam a venda de bolões no balcão.
+            Em caso de dúvida clique em TUTORIAL e você verá pequenos vídeos explicativos sobre cada item do MENU.
+
+          </p>
+        </div>
+        <br />
+        <div class="col-12 form-row">
+          <div class="col-4"></div>
+          <div class="col-4" style="justify-content: center; display:flex;">
+            <h2 class="card-title">TUTORIAL</h2><br />
+          </div><br /><br />
+          <div class="col-4"></div>
+        </div>
+        <div class="col-12 form-row">
+          <div class="col-4"></div>
+          <div class="col-4">
+            <img src="../assets/video-tutorial-image.jpg" height="300px" width="350px">
+          </div>
+          <div class="col-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="mobile" class="container-fluid">
+
+    <div *ngIf="(nave == 'true')">
+      <app-nav-bar></app-nav-bar>
+    </div>
+
+    <div class="divtitulo" style="text-align: center;">
+
+      <h4 class="card-title"><b>
+          <h3>BEM VINDO AO iBOLÃO</h3>
+        </b></h4>
+    </div>
+
+    <div class="row col-12">
+      <div class="submain-container"
+        style="padding-top:20px; padding-left:30px; text-align: center; padding-bottom: 50px;">
+        <p style="text-align: justify;" id="texto"><b>
+            &nbsp;&nbsp;&nbsp;Este é seu primeiro acesso ao iBolão, o site que nasceu para ajudar os Lotéricos a melhorar os seus
+            processos de controle e de venda dos bolões emitidos em sua casa lotérica.
+            Para começar você precisará fazer o cadastro de, pelo menos, um Administrador (pessoa que terá a gestão de
+            sua conta, fará o cadastro dos vendedores, cadastro dos bolões e cadastro dos clientes para que você possa
+            acelerar suas vendas de bolões.<br/>
+            &nbsp;&nbsp;&nbsp;Acesse o menu ao lado e faça o cadastro do(s) administrador(es) para começar a experimentar todas as
+            funcionalidades que você terá no iBolão.
+            Você poderá controlar a comissão da venda, administrar a performance de cada vendedor, controlar a prestação
+            de contas, adotar a venda através de cartão de crédito para seus clientes, entro várias funcionalidades
+            IMPORTANTE: O iBolão NÃO É E-COMMERCE e não irá promover nenhuma venda online de bolões. Apenas irá ajudar
+            você a vender os bolões impressos de sua lotérica, através de ferramentas de envio de mensagens automáticas
+            e controle de todas as cotas dos bolões emitidos em sua lotérica.
+            E tudo isso de forma muito simples de operar.<br/>
+            &nbsp;&nbsp;Então, vamos começar. Acesse agora o item CADASTRO do MENU e depois clique em CADASTRAR USUÁRIO – EQUIPE –
+            ADMINISTRADOR.
+            Recomendamos que tanto o dono da lotérica quanto o gerente (caso houver) sejam cadastrados como
+            administradores. Assim haverá uma maior flexibilidade.
+            Após cadastrar o ADMINISTRADOR é necessário cadastrar TODOS(AS) os(as) vendedores(as), inclusive as que
+            operam a venda de bolões no balcão.
+            Em caso de dúvida clique em TUTORIAL e você verá pequenos vídeos explicativos sobre cada item do MENU.
+          </b></p>
+
+      </div>
+
+
+      <div class="col-12" style="text-align: center; padding-left: 50px;">
+        <h2>TUTORIAL</h2><br />
+      </div><br /><br />
+
+      <div class="col-12" style="padding-bottom: 150px; padding-left: 30px;">
+        <img src="../assets/video-tutorial-image.jpg" height="200px" width="250px">
+      </div>
+    </div>
+
+    <div style="
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          background-color: gray;
+          color: white;
+          text-align: center;">
+      <app-tab-bar></app-tab-bar>
+    </div>
+  </div>
+</div>

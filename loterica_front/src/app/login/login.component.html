@@ -1,0 +1,272 @@
+
+<div class="background-image"></div>
+
+<div *ngIf="mobile" class="row col-md-12 container" style="padding-left: 0px; padding-right: 0px;">
+    <div class="col-md-4"></div>
+    <div  class="col-md-4 maincard" style="padding-left: 30px; padding-right: 0px;">
+      
+        <div class=" shadow wow animated fadeInDown border-light">
+            
+            <div class="card-header text-center">
+                <img src="../assets/logobolao.png" width="200" height="112">
+            </div>
+            <div class="card-body">
+                <form method="post" action="#">
+
+                    <!-- <div class="form-row" style="align-items: center; justify-content: center; display: flex;">
+
+                        <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault1"
+                              (change)="perfiladmin();"
+                            />
+                            <label class="form-check-label" for="flexRadioDefault1"> Administrador</label>
+                          </div>&nbsp;&nbsp;&nbsp;
+              
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault2"
+                              checked = "true"
+                              (change)="perfilvend();"
+                            />
+                            <label class="form-check-label" for="flexRadioDefault2"> Vendedor </label>
+                          </div>&nbsp;&nbsp;&nbsp;
+            
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault2"
+                              (change)="perfilundlot();"
+                            />
+                            <label class="form-check-label" for="flexRadioDefault2"> Unidade Lotérica </label>
+                          </div>
+                          <br/><br/>
+
+                    </div> -->
+
+                    <div class="input-group form-group" style="padding-bottom: 8px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </div>
+                        <input type="text" name="email" id="email" class="form-control" required="required"
+                            placeholder="Email" [(ngModel)]="autenticacao.email" />
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-key"></i>
+                            </span>
+                        </div>
+                        <input type="password" name="senha" id="senha" class="form-control" required="required"
+                            placeholder="Senha" [(ngModel)]="autenticacao.senha" />
+                    </div>
+                    <div class="input-group form-group form-row" style="padding-left: 5px;" >
+                        <div><input type="checkbox" (change)="showpass();"/></div>
+                        <div style="color: white;">&nbsp; Mostrar senha</div>
+                    </div>
+
+                    <div class="row">
+                        <div style="width:50%; padding-left:8px;">
+                            <button (click)="logar();" class="btn btn-outline-light btn-block mt-2">
+                                Logar &nbsp;<i class="fas fa-sign-in-alt"></i>
+                            </button>
+                        </div>
+                        <div style="width:50%; padding-left:5px; padding-right: 8px;">
+                            <button  (click)="redirecionar();" class="btn btn-outline-light btn-block mt-2">
+                                Cadastrar &nbsp;<i class="fas fa-user-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-row link">
+                        <p style="color: white;">Esqueceu a senha?&nbsp; </p><a (click)="navegar();"><u style="color: white;"><b><p style="color: white;">clique aqui</p></b></u></a>
+                    </div>
+                    <!-- <div><hr style="color:white; background-color: white;"/></div> -->
+                    <!-- <div class="form-row link">    
+                        <p style="color: white;">Ao continuar, declaro que estou ciente das <a  (click)="navegarpol();"><u style="color: white;"><b>Políticas de Privacidade.</b></u></a> Quer saber mais sobre nós?&nbsp;<a  (click)="navegarinst();"><u style="color: white;"><b>clique aqui</b></u></a> </p>
+                    </div> -->
+                    
+                </form>
+            </div>
+            <!-- <div class="card-footer col-xs-12" style="background-color: rgb(223, 213, 213); align-items: center; justify-content: center; display: flex;">
+               
+                <div class="col-xs-4" style="align-items: center; justify-content: center;">
+                    <div style="align-items: center; justify-content: center; display: flex;"><a (click)="navegarinst();"> <img src="../assets/icone1.jpg" height="40px;" width="45px"/><br/></a></div>
+                    <div style="text-align: center;"> <label>Quem Somos</label></div>
+                    
+                </div>
+                <div class="col-xs-4" style="width:50px;"></div>
+            
+                <div class="col-xs-4" style="align-items: center; justify-content: center;">
+                    <div style="align-items: center; justify-content: center; display: flex;"><a (click)="navegarpol();"><img src="../assets/icone2.jpg" height="40px;" width="45px"/><br/></a></div>
+                    <div style="text-align: center;"><label>Política de Privacidade</label></div>
+                </div>
+            </div> -->
+
+        </div>
+        <div style="position: fixed;
+                  left: 0;
+                  bottom: 0;
+                  width: 100%;
+                  z-index:999;
+                  text-align: center;">
+                <div class="card-footer col-md-12" style="background-color: #DFD5D5; align-items: center; justify-content: center; display: flex; padding-bottom: 0;">
+                    
+                    <div class="col-md-4" style="align-items: center; justify-content: center;">
+                        <div style="align-items: center; justify-content: center; display: flex;"><a (click)="navegarinst();"> <img src="../assets/icone1.jpg" height="40px;" width="45px"/><br/></a></div>
+                        <div style="text-align: center;"> <label>Quem Somos</label></div>
+                        
+                    </div>
+                    <div class="col-md-4" style="align-items: center; justify-content: center;">
+                        <div style="align-items: center; justify-content: center; display: flex;"><a (click)="navegartu();"> <img src="../assets/icone3.jpg" height="40px;" width="45px"/><br/></a></div>
+                        <div style="text-align: center;"> <label>Termos de Uso</label></div>
+                        
+                    </div>
+                
+                    <div class="col-md-4" style="align-items: center; justify-content: center;">
+                        <div style="align-items: center; justify-content: center; display: flex;"><a (click)="navegarpol();"><img src="../assets/icone2.jpg" height="40px;" width="45px"/><br/></a></div>
+                        <div style="text-align: center;"><label>Política de Privacidade</label></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+
+</div>
+
+
+<div *ngIf="!mobile" class="row col-md-12 container">
+    <div class="col-md-4"></div>
+    <div  class="col-md-4 maincard">
+        <div class=" shadow wow animated fadeInDown border-light">
+            
+            <div class="card-header text-center">
+                <img src="../assets/logobolao.png" width="200" height="112">
+            </div>
+            <div class="card-body">
+                <form method="post" action="#">
+
+                    <!-- <div class="form-row" style="align-items: center; justify-content: center; display: flex;">
+
+                        <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault1"
+                              (change)="perfiladmin();"
+                            />
+                            <label class="form-check-label" for="flexRadioDefault1"> Administrador</label>
+                          </div>&nbsp;&nbsp;&nbsp;
+              
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault2"
+                              checked="true"
+                              (change)="perfilvend();"
+                            />
+                            <label class="form-check-label" for="flexRadioDefault2"> Vendedor </label>
+                          </div>&nbsp;&nbsp;&nbsp;
+            
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault2"
+                              (change)="perfilundlot();"
+                            />
+                            <label class="form-check-label" for="flexRadioDefault2"> Unidade Lotérica </label>
+                          </div>
+                          <br/><br/>
+
+                    </div> -->
+
+                    <div class="input-group form-group" style="padding-bottom: 8px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </div>
+                        
+                        <input type="text" name="email" id="email" class="form-control" required="required"
+                            placeholder="Email" [(ngModel)]="autenticacao.email" />
+                    </div>
+
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-key"></i>
+                            </span>
+                        </div>
+                        <input type="password" name="senha" id="senha" class="form-control" required="required"
+                            placeholder="Senha" [(ngModel)]="autenticacao.senha" />
+                    </div>
+                    <div class="input-group form-group form-row" style="padding-left: 5px;" >
+                        <div><input type="checkbox" (change)="showpass();"/></div>
+                        <div style="color: white;">&nbsp; Mostrar senha</div>
+                    </div>
+
+                    <div class="row">
+                        <div style="width:50%; padding-left:14px;">
+                            <button (click)="logar();" class="btn btn-outline-light btn-block mt-2">
+                                Logar &nbsp;<i class="fas fa-sign-in-alt"></i>
+                            </button>
+                        </div>
+                        <div style="width:50%; padding-left:5px; padding-right: 14px;">
+                            <button  (click)="redirecionar();" class="btn btn-outline-light btn-block mt-2">
+                                Cadastrar &nbsp;<i class="fas fa-user-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-row link">
+                        <p style="color: white;">Esqueceu a senha?&nbsp; </p><a (click)="navegar();"><u style="color: white;"><b><p style="color: white;">clique aqui</p></b></u></a>
+                    </div>
+                    <!-- <div><hr style="color:white; background-color: white;"/></div> -->
+                    <!-- <div class="form-row link">    
+                        <p style="color: white;">Ao continuar, declaro que estou ciente das <a  (click)="navegarpol();"><u style="color: white;"><b>Políticas de Privacidade.</b></u></a> Quer saber mais sobre nós?&nbsp;<a  (click)="navegarinst();"><u style="color: white;"><b>clique aqui</b></u></a> </p>
+                    </div> -->
+                    
+                </form>
+            </div>
+            <!-- <div class="card-footer" style="background-color: rgb(223, 213, 213); align-items: center; justify-content: center; display: block;">
+                <div style="align-items: center; justify-content: center; display: flex;"><i class="fas fa-users"></i><button (click)="navegarinst();" class="btn btn-quemsomos"> Quem Somos</button></div>
+                <div style="align-items: center; justify-content: center; display: flex;"><i class="fas fa-file-alt"></i><button (click)="navegarpol();" class="btn btn-politica"> Política de Privacidade</button></div>
+            -->
+                <div class="card-footer col-md-12" style="background-color: rgb(223, 213, 213); align-items: center; justify-content: center; display: flex;">
+                    
+                    <div class="col-md-4" style="align-items: center; justify-content: center;">
+                        <div style="align-items: center; justify-content: center; display: flex;"><a (click)="navegarinst();"> <img src="../assets/icone1.jpg" height="40px;" width="45px"/><br/></a></div>
+                        <div style="text-align: center;"> <label>Quem<br/> Somos</label></div>
+                        
+                    </div>
+                    <div class="col-md-4" style="align-items: center; justify-content: center;">
+                        <div style="align-items: center; justify-content: center; display: flex;"><a (click)="navegartu();"> <img src="../assets/icone3.jpg" height="40px;" width="45px"/><br/></a></div>
+                        <div style="text-align: center;"> <label>Termos<br/> de Uso</label></div>
+                        
+                    </div>
+                
+                    <div class="col-md-4" style="align-items: center; justify-content: center;">
+                        <div style="align-items: center; justify-content: center; display: flex;"><a (click)="navegarpol();"><img src="../assets/icone2.jpg" height="40px;" width="45px"/><br/></a></div>
+                        <div style="text-align: center;"><label>Política de Privacidade</label></div>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+
+</div>

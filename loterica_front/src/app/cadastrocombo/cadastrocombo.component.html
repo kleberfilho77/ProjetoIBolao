@@ -1,0 +1,879 @@
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>
+
+<div class="col-12 main-container">
+
+  <div *ngIf="!mobile" class="row col-12 submain-container">
+
+    <app-nav-bar></app-nav-bar>
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-tabs card-header-primary">
+          <h4 class="card-title">COMBO DE BOLÕES</h4>
+        </div>
+
+        <br /><br />
+        <form>
+
+          <div class="card">
+            <div class="form-row">
+
+              <div class="divbar1 col-md-12">
+                <h4 class="titlemodalidade" style="background-color: transparent; color: white">
+                  <b>Escolha a modalidade</b>
+                </h4>
+              </div>
+
+              <div class="divbuttons col-md-12 form-row" style="padding-top: 10px;">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+
+                  <button (click)="addLfac();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#912690; border: 0px;">
+                    <b>LOTOFÁCIL</b> <label class="showInputField7" id="showInputField7"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addMega();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#00AB69; border: 0px;">
+                    <b>MEGA - SENA</b><label class="showInputField1" id="showInputField1"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addQuin();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#015EA1; border: 0px;">
+                    <b> QUINA </b><label class="showInputField2" id="showInputField2"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                </div>
+                <div class="form-group col-md-1"></div>
+              </div>
+              <br /><br /><br />
+              <div class="divbuttons col-md-12 form-row">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addDupl();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#A52E54; border: 0px;">
+                    <b> DUPLA SENA </b><label class="showInputField4" id="showInputField4"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addLtma();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#ec7e00; border: 0px;">
+                    <b>LOTOMANIA </b><label class="showInputField3" id="showInputField8"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+
+                  <button (click)="addTime();" class="btn btn-primary" id="time"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#FFDB30; border: 0px; color:green">
+                    <b>TIMEMANIA </b><label class="showInputField10" id="showInputField10"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                </div>
+                <div class="form-group col-md-1"></div>
+              </div>
+              <br /><br /><br />
+              <div class="divbuttons col-md-12 form-row">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+
+                  <button (click)="addDias();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#FFAD44; border: 0px;"><b>DIA
+                      SORTE</b>
+                    <label class="showInputField5" id="showInputField5"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+
+
+                  <button (click)="addSup7();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#ACCE76;; border: 0px;">
+                    <b> SUPER7 </b><label class="showInputField11" id="showInputField11"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+
+                  <button (click)="addLote();" class="btn btn-primary" id="ltma"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#EC2230; border: 0px;">
+                    <b> LOTECA </b><label class="showInputField8" id="showInputField3"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+
+                </div>
+                <div class="form-group col-md-1"></div>
+              </div>
+              <br /><br /><br />
+              <div class="divbuttons col-md-12 form-row">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                  <!-- <button (click)="addTime();" class="btn btn-primary" id="time" style="text-align: center; width:200px; height:80px; margin:auto; background-color:#FFF100; border: 0px;"> TIME</button><label class="showInputField10"></label> -->
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+
+                  <button (click)="addBilh();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#6dcae4; border: 0px;">
+                    <b>FEDERAL </b><label class="showInputField6" id="showInputField6"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                </div>
+                <div class="form-group col-md-1"></div>
+              </div>
+              <br /><br /><br />
+            </div>
+
+          </div>
+
+          <br />
+          <table class="table table-bordered">
+            <tbody>
+              <tr id="trmega" style="display: none;" class="col-md-12">
+
+                <div id="divmega" style="display:none;" class="col-md-12">
+                  <div class="form-row col-md-12" style=" padding-left:80px; width:100%">
+                    <div *ngFor="let item of boloesMega" class="form-check"
+                      style="padding-right:300px; display:flex; align-items: flex-start; width: 190px;">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item)" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                        <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </tr>
+              <tr id="trquina" style="display: none;" class="col-md-12">
+                <hr>
+                <div id="divquina" style="display:none;" class="col-md-12">
+                  <div class="form-row col-md-12" style=" padding-left:80px; width:100%">
+                    <div *ngFor="let item of boloesQuina" class="form-check"
+                      style="padding-right:300px; display:flex; align-items: flex-start; width: 190px;">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item)" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                        <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </tr>
+              <tr id="trlote" style="display: none;" class="col-md-12">
+                <hr>
+                <div id="divlote" style="display:none;" class="col-md-12">
+                  <div class="form-row col-md-12" style=" padding-left:80px; width:100%">
+                    <div *ngFor="let item of boloesLote" class="form-check"
+                      style="padding-right:300px; display:flex; align-items: flex-start; width: 190px;">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item)" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                        <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </tr>
+              <tr id="trdupl" style="display: none;" class="col-md-12">
+                <hr>
+                <div id="divdupl" style="display:none;" class="col-md-12">
+                  <div class="form-row col-md-12" style=" padding-left:80px; width:100%">
+                    <div *ngFor="let item of boloesDupl" class="form-check"
+                      style="padding-right:300px; display:flex; align-items: flex-start; width: 190px;">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item)" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                        <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </tr>
+              <tr id="trdias" style="display: none;" class="col-md-12">
+                <hr>
+                <div id="divdias" style="display:none;" class="col-md-12">
+                  <div class="form-row col-md-12" style=" padding-left:80px; width:100%">
+                    <div *ngFor="let item of boloesDias" class="form-check"
+                      style="padding-right:300px; display:flex; align-items: flex-start; width: 190px;">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item)" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                        <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </tr>
+              <tr id="trbilh" style="display: none;" class="col-md-12">
+                <hr>
+                <div id="divbilh" style="display:none;" class="col-md-12">
+                  <div class="form-row col-md-12" style=" padding-left:80px; width:100%">
+                    <div *ngFor="let item of boloesBilh" class="form-check"
+                      style="padding-right:300px; display:flex; align-items: flex-start; width: 190px;">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item)" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                        <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </tr>
+              <tr id="trlfac" style="display: none;" class="col-md-12">
+                <hr>
+                <div id="divlfac" style="display:none;" class="col-md-12">
+                  <div class="form-row col-md-12" style=" padding-left:80px; width:100%">
+                    <div *ngFor="let item of boloesLfac" class="form-check"
+                      style="padding-right:300px; display:flex; align-items: flex-start; width: 190px;">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item)" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                        <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </tr>
+              <tr id="trltma" style="display: none;" class="col-md-12">
+                <hr>
+                <div id="divltma" style="display:none;" class="col-md-12">
+                  <div class="form-row col-md-12" style=" padding-left:80px; width:100%">
+                    <div *ngFor="let item of boloesLtma" class="form-check"
+                      style="padding-right:300px; display:flex; align-items: flex-start; width: 190px;">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item)" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                        <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </tr>
+              <tr id="trtime" style="display: none;" class="col-md-12">
+                <hr>
+                <div id="divtime" style="display:none;" class="col-md-12">
+                  <div class="form-row col-md-12" style=" padding-left:80px; width:100%">
+                    <div *ngFor="let item of boloesTime" class="form-check"
+                      style="padding-right:300px; display:flex; align-items: flex-start; width: 190px;">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item)" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                        <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </tr>
+              <tr id="trsup7" style="display: none;" class="col-md-12">
+                <hr>
+                <div id="divsup7" style="display:none;" class="col-md-12">
+                  <div class="form-row col-md-12" style=" padding-left:80px; width:100%">
+                    <div *ngFor="let item of boloesSup7" class="form-check"
+                      style="padding-right:300px; display:flex; align-items: flex-start; width: 190px;">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item)" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                        <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+
+          <br />
+
+          <br />
+          <div class="salvacombo">
+            <button (click)="subtotal();" class="btn btn-primary"><i class="fas fa-save"></i> Selecionar bolões</button>
+          </div>
+          <br />
+
+
+          <br />
+
+          <div id="efg" class="divresumocombo card" style="text-align: center;">
+            <h4 class="card-title"><b>Resumo do Combo</b></h4>
+            <br />
+
+            <div class="form-row" style="align-items: center; display: flex; justify-content: center;">
+
+              <div id="resumotable" class="resumoCombo col-md-8" style="display: none;">
+
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <!-- <th scope="col">Modalidade</th> -->
+                      <th scope="col">Bolão</th>
+                      <th scope="col">Cota</th>
+                      <th scope="col">Valor Cota</th>
+                      <th scope="col">SubTotal</th>
+                      <th scope="col">Online</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of boloes;index as i">
+                      <!-- <td>{{item.tipoModalidade}}</td> -->
+                      <td>
+                        {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                      </td>
+                      <td><input type="number" class="form-control" name="qtdcotas" id="qtdcotas_{{i}}"
+                          style="width:80px;" (change)="calcula(item.valorCota,i);" [(ngModel)]="this.listanum[i]"></td>
+                      <td>{{this.formataValor(item.valorCota)}}</td>
+                      <td>{{this.formataValor(valorsub[i])}}</td>
+                      <td>{{item.qtdCotasDisponiveis}}</td>
+                    </tr>
+                  </tbody>
+
+                  <tr>
+                    <td colspan="4">
+                      <b>Valor Total do Combo</b>
+                    </td>
+                    <td colspan="2">
+                      <b>{{this.preparaValorDe(this.valortotal)}}</b>
+                    </td>
+                  </tr>
+                </table>
+
+              </div>
+
+              <div class="col-md-12" id="repeticao" style="display: none;">
+                <div class="form-row col-md-8">
+                  <div style=" display:flex; vertical-align: bottom; height: 30px;">
+                    <p><b>Deseja repetir esse combo quantas vezes? </b></p>&nbsp;&nbsp;
+                  </div>
+                  <input type="text" value="1" style="width: 45px;" class="qtdvezes form-control"
+                    (change)="mudarCotaDisponivel();" name="qtdvezes" id="qtdvezes" />&nbsp;&nbsp;
+                  <button class="btn btn-primary" (click)="addQtd();"><i class="fas fa-plus-square"></i></button>&nbsp;
+                  <button class="btn btn-primary" (click)="removeQtd();"><i class="fas fa-minus-square"></i></button>
+                </div>
+              </div>
+              <br /><br />
+
+            </div>
+
+
+          </div>
+          <br />
+
+          <div class="divbuttonsresumo">
+            <button (click)="cadastrar();" class="btn btn-primary"><i class="fas fa-check"></i> Confirmar</button>&nbsp;
+            <button class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button>
+          </div>
+          <br />
+
+          <div id="divsuccess" class="fade-out col-md-12">
+            <h3>Dados gravados com sucesso</h3>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div *ngIf="mobile">
+
+    <div class="divtitulo">
+      <h4 class="card-title">COMBO DE BOLÕES</h4>
+    </div>
+
+    <div class="row col-12 submain-container">
+
+      <div *ngIf="(nave == 'true')">
+        <app-nav-bar></app-nav-bar>
+      </div>
+
+      <div class="col-md-12">
+        <div class="card">
+
+          <form>
+
+            <div class="form-row">
+
+              <div class="divmodalidade col-md-12">
+                <div class="divbar1">
+                  <h4 class="titlemodalidade" style="background-color: transparent;"><b>Escolha a modalidade</b></h4>
+                </div>
+              </div>
+
+              <div class="divbuttons col-xs-12 form-row" style="padding-top: 20px;">
+
+                <div class="form-group col-xs-6"
+                  style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                  <button (click)="addLfac();" class="btn btn-primary"
+                    style="text-align: center; width:150px; height:70px; margin:auto; background-color:#912690; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                    LOTOFÁCIL <label class="showInputField7" id="showInputField7"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                </div>
+
+                <div class="form-group col-xs-6"
+                  style="width: 50%; padding-top: 15px;align-items: center; justify-content: center; display: flex;">
+                  <button (click)="addMega();" class="btn btn-primary"
+                    style="text-align: center; width:150px; height:70px;  background-color:#00AB69; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">MEGA
+                    - SENA <label class="showInputField1" id="showInputField1"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+                </div>
+
+              </div>
+
+              <div class="divbuttons col-xs-12 form-row" style="background-color: #F4F4F4;">
+
+                <div class="form-group col-xs-6"
+                  style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+                  <button (click)="addQuin();" class="btn btn-primary"
+                    style="text-align: center; width:150px; height:70px; margin:auto; background-color:#015EA1; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                    QUINA <label class="showInputField2" id="showInputField2"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+                </div>
+
+
+                <div class="form-group col-xs-6"
+                  style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+                  <button (click)="addDupl();" class="btn btn-primary"
+                    style="text-align: center; width:150px; height:70px; margin:auto; background-color:#A52E54; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                    DUPLA SENA <label class="showInputField4" id="showInputField4"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+                </div>
+
+
+              </div>
+
+
+              <div class="divbuttons col-xs-12 form-row">
+
+
+                <div class="form-group col-xs-6"
+                  style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                  <button (click)="addLtma();" class="btn btn-primary" id="ltma"
+                    style="text-align: center; width:150px; height:70px; margin:auto; background-color:#ec7e00; border: 0px; border-radius: 15px;  text-color: #fff; font-size: 18px; font-weight: 800;">
+                    LOTOMANIA <label class="showInputField8" id="showInputField8"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+
+                </div>
+
+
+                <div class="form-group col-xs-6"
+                  style=" width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                  <button (click)="addTime();" class="btn btn-primary" id="time"
+                    style="text-align: center; width:150px; height:70px; margin:auto; background-color:#FFDB30; border: 0px; border-radius: 15px;  color: #169716; font-size: 18px; font-weight: 800;">
+                    TIMEMANIA <label class="showInputField10" id="showInputField10"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+                </div>
+
+
+              </div>
+
+
+              <div class="divbuttons col-xs-12 form-row" style="background-color: #F4F4F4;">
+
+                <div class="form-group col-xs-6"
+                  style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                  <button (click)="addDias();" class="btn btn-primary"
+                    style="text-align: center; width:150px; height:70px; margin:auto; background-color:#FFAD44; border: 0px; border-radius: 15px; text-color: #fff; font-size: 18px; font-weight: 800;">DIA
+                    SORTE <label class="showInputField5" id="showInputField5"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                </div>
+
+
+
+                <div class="form-group col-xs-6"
+                  style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                  <button (click)="addSup7();" class="btn btn-primary"
+                    style="text-align: center; width:150px; height:70px; margin:auto; background-color:#ACCE76; border: 0px; border-radius: 15px;  color: rgb(255, 255, 255); font-size: 18px; font-weight: 800;">
+                    SUPER 7 <label class="showInputField11" id="showInputField11"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                </div>
+              </div>
+
+
+              <!-- <div class="divbuttons col-xs-12 form-row">
+                      
+                      <div class="form-group col-xs-6" style="width: 50%;  align-items: center; justify-content: center; display: flex;">
+                        <button (click)="addLgol();" class="btn btn-primary" id="lgol" style="text-align: center; width:100px; margin:auto; background-color:#0084A4; border: 0px; border-radius: 30px;"> COMBO</button><label class="showInputField9"></label>
+                      </div>
+                      <div class="form-group col-xs-6" style="width: 50%;  align-items: center; justify-content: center; display: flex;">
+                        <button (click)="addTime();" class="btn btn-primary" id="time" style="text-align: center; width:100px; margin:auto; background-color:#FFF100; border: 0px; border-radius: 30px;"> TIME</button><label class="showInputField10"></label>
+                      </div>
+                    </div>
+
+                    <div class="divbuttons col-xs-12 form-row" style="align-items: center; justify-content: center; display: flex;">
+                      <div class="form-group col-xs-6" style=" width: 50%; align-items: center; justify-content: center; display: flex;">
+                        <button (click)="addSup7();" class="btn btn-primary" style="text-align: center; width:100px; margin:auto; background-color:rgb(153,255,153); border: 0px; border-radius: 30px;"> SUP7</button><label class="showInputField11"></label>
+                      </div>
+                    </div> -->
+
+              <div class="divbuttons col-xs-12 form-row">
+
+                <div class="form-group col-xs-6"
+                  style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                  <button (click)="addLote();" class="btn btn-primary"
+                    style="text-align: center; width:150px; height:70px; margin:auto; background-color:#EC2230; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                    LOTECA <label class="showInputField3" id="showInputField3"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+
+                </div>
+
+                <div class="form-group col-xs-6"
+                  style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+                  <button (click)="addBilh();" class="btn btn-primary"
+                    style="text-align: center; width:150px; height:70px; margin:auto; background-color:#6dcae4; border: 0px; border-radius: 15px;  text-color: #fff; font-size: 18px; font-weight: 800;">
+                    FEDERAL <label class="showInputField6" id="showInputField6"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                </div>
+
+              </div>
+              <br />
+            </div>
+            <table class="table table-bordered">
+              <tbody>
+                <tr id="trmega" style="display: none;" class="col-xs-12">
+                  <div id="divmega" style="display:none;">
+                    <div class="form-row" style=" padding-left:10px; width:100%">
+                      <div *ngFor="let item of boloesMega" class="form-check"
+                        style="padding-right:50px; display:flex; align-items: flex-start; width: 190px;">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                          (change)="addCarrinho(item)" />
+                        <label class="form-check-label">
+                          {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                          <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                        </label>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </tr>
+                <tr id="trquina" style="display: none;" class="col-xs-12">
+                  <hr>
+                  <div id="divquina" style="display:none;">
+                    <div class="form-row" style=" padding-left:10px; width:100%">
+                      <div *ngFor="let item of boloesQuina" class="form-check"
+                        style="padding-right:50px; display:flex; align-items: flex-start; width: 190px;">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                          (change)="addCarrinho(item)" />
+                        <label class="form-check-label">
+                          {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                          <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                        </label>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </tr>
+                <tr id="trlote" style="display: none;" class="col-xs-12">
+                  <hr>
+                  <div id="divlote" style="display:none;">
+                    <div class="form-row" style=" padding-left:10px; width:100%">
+                      <div *ngFor="let item of boloesLote" class="form-check"
+                        style="padding-right:50px; display:flex; align-items: flex-start; width: 190px;">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                          (change)="addCarrinho(item)" />
+                        <label class="form-check-label">
+                          {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                          <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                        </label>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </tr>
+                <tr id="trdupl" style="display: none;" class="col-xs-12">
+                  <hr>
+                  <div id="divdupl" style="display:none;">
+                    <div class="form-row" style=" padding-left:10px; width:100%">
+                      <div *ngFor="let item of boloesDupl" class="form-check"
+                        style="padding-right:50px; display:flex; align-items: flex-start; width: 190px;">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                          (change)="addCarrinho(item)" />
+                        <label class="form-check-label">
+                          {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                          <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                        </label>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </tr>
+                <tr id="trdias" style="display: none;" class="col-xs-12">
+                  <hr>
+                  <div id="divdias" style="display:none;">
+                    <div class="form-row" style=" padding-left:10px; width:100%">
+                      <div *ngFor="let item of boloesDias" class="form-check"
+                        style="padding-right:50px; display:flex; align-items: flex-start; width: 190px;">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                          (change)="addCarrinho(item)" />
+                        <label class="form-check-label">
+                          {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                          <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                        </label>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </tr>
+                <tr id="trbilh" style="display: none;" class="col-xs-12">
+                  <hr>
+                  <div id="divbilh" style="display:none;">
+                    <div class="form-row" style=" padding-left:10px; width:100%">
+                      <div *ngFor="let item of boloesBilh" class="form-check"
+                        style="padding-right:50px; display:flex; align-items: flex-start; width: 190px;">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                          (change)="addCarrinho(item)" />
+                        <label class="form-check-label">
+                          {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                          <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                        </label>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </tr>
+                <tr id="trlfac" style="display: none;" class="col-xs-12">
+                  <hr>
+                  <div id="divlfac" style="display:none;">
+                    <div class="form-row" style=" padding-left:10px; width:100%">
+                      <div *ngFor="let item of boloesLfac" class="form-check"
+                        style="padding-right:50px; display:flex; align-items: flex-start; width: 190px;">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                          (change)="addCarrinho(item)" />
+                        <label class="form-check-label">
+                          {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                          <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                        </label>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </tr>
+                <tr id="trltma" style="display: none;" class="col-xs-12">
+                  <hr>
+                  <div id="divltma" style="display:none;">
+                    <div class="form-row" style=" padding-left:10px; width:100%">
+                      <div *ngFor="let item of boloesLtma" class="form-check"
+                        style="padding-right:50px; display:flex; align-items: flex-start; width: 190px;">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                          (change)="addCarrinho(item)" />
+                        <label class="form-check-label">
+                          {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                          <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                        </label>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </tr>
+                <tr id="trtime" style="display: none;" class="col-xs-12">
+                  <hr>
+                  <div id="divtime" style="display:none;">
+                    <div class="form-row" style=" padding-left:10px; width:100%">
+                      <div *ngFor="let item of boloesTime" class="form-check"
+                        style="padding-right:50px; display:flex; align-items: flex-start; width: 190px;">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                          (change)="addCarrinho(item)" />
+                        <label class="form-check-label">
+                          {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                          <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                        </label>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </tr>
+                <tr id="trsup7" style="display: none;" class="col-md-12">
+                  <hr>
+                  <div id="divsup7" style="display:none;">
+                    <div class="form-row" style=" padding-left:10px; width:100%">
+                      <div *ngFor="let item of boloesSup7" class="form-check"
+                        style="padding-right:50px; display:flex; align-items: flex-start; width: 190px;">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                          (change)="addCarrinho(item)" />
+                        <label class="form-check-label">
+                          {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                          <!-- {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}} -->
+                        </label>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+
+
+            <br />
+
+            <br />
+            <div class="salvacombo">
+              <button (click)="subtotal();" class="btn btn-primary"><i class="fas fa-save"></i> Selecionar
+                bolões</button>
+            </div>
+            <br />
+
+            <br />
+
+            <div id="efg" class="divresumocombo card">
+              <h4 class="card-title"><b>Resumo do Combo</b></h4>
+              <br />
+              <div class="form-row">
+
+                <div style="text-align: center;">
+                  <p style="color: red;">Arraste para o lado para poder ver toda a tabela</p>
+                </div>
+                <div id="resumotable" class="resumoCombo col-md-8 " style="display: none;
+                    justify-content: center; align-self: center;">
+
+                  <table class="table table-bordered" style="display: block;max-width: auto; overflow: scroll;">
+                    <thead>
+                      <tr>
+                        <!-- <th scope="col">Modalidade</th> -->
+                        <th scope="col">Bolão</th>
+                        <th scope="col">Cota</th>
+                        <th scope="col">Valor Cota(R$)</th>
+                        <th scope="col">SubTotal(R$)</th>
+                        <th scope="col">Online</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- <tr *ngFor="let item of boloes;index as i">
+                          <td>{{item.tipoModalidade}}</td>
+                          <td>{{item.tipoModalidade}}&nbsp;-&nbsp;{{item.dataBolao}}</td>
+                          
+                          <td><input type="number" class="form-control" name="qtdcotas" id="qtdcotas" style="width:80px;" (change)="calcula(item.valorCota,i);" [(ngModel)]="this.listanum[i]"></td>
+                          <td>{{item.valorCota}}</td>
+                          <td>{{valorsub[i]}}</td>
+                          <td>{{item.qtdCotasDisponiveis}}</td>
+                        </tr> -->
+                      <tr *ngFor="let item of boloes;index as i">
+                        <!-- <td>{{item.tipoModalidade}}</td> -->
+                        <td>
+                          {{item.tipoModalidade}}&nbsp;-&nbsp;{{item.qtdCotas}}&nbsp;-&nbsp;{{preparaValorDe(item.valorCota)}}&nbsp;-&nbsp;{{item.horarioFechamento}}
+                        </td>
+                        <td><input type="number" class="form-control" name="qtdcotas" id="qtdcotas_{{i}}"
+                            style="width:80px;" (change)="calcula(item.valorCota,i);" [(ngModel)]="this.listanum[i]">
+                        </td>
+                        <td>{{this.formataValor(item.valorCota)}}</td>
+                        <td>{{this.formataValor(valorsub[i])}}</td>
+                        <td>{{item.qtdCotasDisponiveis}}</td>
+                      </tr>
+                    </tbody>
+                    <tr>
+                      <td colspan="4">
+                        <b>Valor Total do Combo</b>
+                      </td>
+                      <td colspan="2">
+                        <b>{{this.preparaValorDe(this.valortotal)}}</b>
+                      </td>
+                    </tr>
+                  </table>
+
+                </div>
+
+                <div class="col-xs-12" id="repeticao" style="display: none;">
+                  <div class="form-row col-xs-12">
+                    <div class="col-xs-12" style=" display:flex; vertical-align: bottom; height: 30px;">
+                      <p><b>Deseja repetir esse combo quantas vezes? </b></p>&nbsp;&nbsp;
+                    </div>
+                    <div class="col-3"></div>
+                    <div class="col-6 form-row" style=" align-items: center;">
+                      <input type="text" value="1" style="width: 45px;" class="qtdvezes form-control"
+                        (change)="mudarCotaDisponivel();" name="qtdvezes" id="qtdvezes" />&nbsp;&nbsp;
+                      <button class="btn btn-primary" (click)="addQtd();"><i
+                          class="fas fa-plus-square"></i></button>&nbsp;
+                      <button class="btn btn-primary" (click)="removeQtd();"><i
+                          class="fas fa-minus-square"></i></button>
+                    </div>
+                    <div class="col-3"></div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <br />
+
+            <div class="divbuttonsresumo">
+              <button (click)="cadastrar();" class="btn btn-primary"><i class="fas fa-check"></i>
+                Confirmar</button>&nbsp;
+              <button class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button>
+            </div>
+            <div style="padding-bottom: 20px;"></div>
+            <br /><br />
+
+            <div id="divsuccess" class="fade-out col-md-12">
+              <h3>Dados gravados com sucesso</h3>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+      <div style="
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: gray;
+      color: white;
+      text-align: center;">
+        <app-tab-bar></app-tab-bar>
+      </div>
+
+    </div>
+  </div>
+
+</div>

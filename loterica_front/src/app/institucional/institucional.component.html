@@ -1,0 +1,81 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<div class="col-12 main-container">
+
+  <div *ngIf="!mobile">
+
+    <div class="container">
+      <div class="col-md-6 mx-auto text-center">
+        <div class="header-title">
+          <h1 class="wv-heading--title">
+
+            <img src="../assets/logobolao.png" width="200" height="120">
+            <br /><br />Quem Somos
+          </h1>
+        </div>
+      </div>
+      <div class="col-md-10 mx-auto text-center" style="justify-content: center;">
+        <p style="text-align: justify;" id="texto">
+          &nbsp;&nbsp;&nbsp;O iBolão é uma aplicação (site) desenvolvida de forma customizada para apoiar as Casas Lotéricas no
+          impulsionamento e controle da venda de seu "produto principal". O BOLÃO. É um serviço prestado pela empresa
+          Agilizare Tecnologia e Soluções Ltda, CNPJ 43.275.345/0001-60, sediada no Rio de Janeiro e formada por
+          profissionais com mais de 20 anos de experiência no segmento de jogos e loterias, com muito conhecimento da
+          realidade da rede lotérica.<br/>&nbsp;&nbsp;&nbsp;
+          Assinando os serviços do iBolão você terá acesso a modernas ferramentas de controle e aceleração das vendas
+          dos bolões emitidos por sua casa lotérica. NÃO FAZEMOS venda online e sim faremos você vender os seus bolões,
+          através de melhoria de seus processos de venda e controle.
+        </p><br/>
+      </div>
+      <div style="text-align: center; padding-bottom: 50px;">
+        <button (click)="back();" class="btn btn-primary"><i class="far fa-arrow-alt-circle-left"></i> Voltar</button>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <div *ngIf="mobile">
+
+    <div id="logo">
+      <img src="../../assets/logobolao.png" width="80%" />
+    </div>
+
+    <div class="divtitulo">
+
+
+      <h4 class="card-title">QUEM SOMOS</h4>
+    </div>
+
+    <div class="row col-12 submain-container">
+
+      <div *ngIf="(nave == 'true')">
+        <app-nav-bar></app-nav-bar>
+      </div>
+      
+
+      <div class="submain-container">
+        <p id="texto"><b><br/>
+            &nbsp;&nbsp;O iBolão é uma aplicação (site) desenvolvida de forma customizada para apoiar as Casas Lotéricas no
+            impulsionamento e controle da venda de seu "produto principal".<br/>
+            &nbsp;&nbsp; O BOLÃO. É um serviço prestado pela empresa
+            Agilizare Tecnologia e Soluções Ltda, CNPJ 43.275.345/0001-60, sediada no Rio de Janeiro e formada por
+            profissionais com mais de 20 anos de experiência no segmento de jogos e loterias, com muito conhecimento da
+            realidade da rede lotérica.<br/>
+            &nbsp;&nbsp;&nbsp;Assinando os serviços do iBolão você terá acesso a modernas ferramentas de controle e aceleração das vendas
+            dos bolões emitidos por sua casa lotérica. NÃO FAZEMOS venda online e sim faremos você vender os seus
+            bolões, através de melhoria de seus processos de venda e controle.
+          </b></p>
+      </div>
+
+      <div style="text-align: center; padding-bottom: 50px;">
+        <button (click)="back();" class="btn btn-primary"><i class="far fa-arrow-alt-circle-left"></i> Voltar</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>

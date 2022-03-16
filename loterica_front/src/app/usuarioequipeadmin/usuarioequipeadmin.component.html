@@ -1,0 +1,300 @@
+<div class="divprinc" style="background-image: url('/assets/fundohome3.jpg');" *ngIf="!mobile">
+
+  <h4 class="card-title-dadoscad"><b>Dados do cadastro</b></h4>
+  <br />
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label><b>Nome</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="nome" id="nome" [(ngModel)]="equipe.nome">
+    </div>
+    <div class="form-group col-md-3">
+      <label><b>CPF</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="cpf" id="cpf" onkeypress="$(this).mask('000.000.000-00');"
+      (change)="testaCPF();" [(ngModel)]="equipe.cpf">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>CEP</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="cep" id="cep" onkeypress="$(this).mask('00.000-000');"
+      (change)="buscaCep(this.equipe.cep);" [(ngModel)]="equipe.cep">
+    </div>
+    
+    <div class="form-group col-md-6">
+      <label><b>Endereço</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="endereco" id="endereco" [(ngModel)]="equipe.endereco">
+    </div>
+    <div class="form-group col-md-1">
+      <label><b>Nº</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="numero" id="numero" [(ngModel)]="equipe.numero">
+    </div>
+    <div class="form-group col-md-2">
+      <label><b>Complemento </b></label>
+      <input type="text" class="form-control" name="complemento" id="complemento" [(ngModel)]="equipe.complemento">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>Bairro</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="bairro" id="bairro" [(ngModel)]="equipe.bairro">
+    </div>
+    <div class="form-group col-md-4">
+      <label><b>Cidade</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="cidade" id="cidade" [(ngModel)]="equipe.cidade">
+    </div>
+    <div class="form-group col-md-1">
+      <label><b>Estado</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <select id="estado" name="estado" class="opcaoestado form-control" [(ngModel)]="equipe.estado">
+        <option disabled selected>...</option>
+        <option>AC</option>
+        <option>AL</option>
+        <option>AP</option>
+        <option>AM</option>
+        <option>BA</option>
+        <option>CE</option>
+        <option>DF</option>
+        <option>ES</option>
+        <option>GO</option>
+        <option>MA</option>
+        <option>MT</option>
+        <option>MS</option>
+        <option>MG</option>
+        <option>PB</option>
+        <option>PR</option>
+        <option>PE</option>
+        <option>PI</option>
+        <option>RJ</option>
+        <option>RN</option>
+        <option>RS</option>
+        <option>RO</option>
+        <option>RR</option>
+        <option>SC</option>
+        <option>SP</option>
+        <option>SE</option>
+        <option>TO</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label><b>Email principal </b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="email" class="form-control" name="emailprincipal" id="emailprincipal" [(ngModel)]="equipe.email">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>Telefone Contato 1</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato1" id="contato1"
+        [(ngModel)]="equipe.contato1">
+    </div>
+    <div class="form-group col-md-3">
+      <label><b>Telefone Contato 2</b></label>
+      <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato2" id="contato2"
+        [(ngModel)]="equipe.contato2">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-7">
+      <label><b>Gênero</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault1"
+          (change)="gravarSexoMasc();" />
+        <label class="form-check-label" for="flexRadioDefault1"> Masculino </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault2"
+          (change)="gravarSexoFem();" />
+        <label class="form-check-label" for="flexRadioDefault2"> Feminino </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault2"
+          (change)="gravarSexoOther();" />
+        <label class="form-check-label" for="flexRadioDefault2"> Outros </label>
+      </div>
+      <br />
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked="true"
+           />
+        <label class="form-check-label">
+          Autorizo receber mensagens por SMS, WhatsApp, email ou qualquer outra forma de contato?
+        </label>
+      </div>
+      <!-- <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" checked="true"
+         />
+        <label class="form-check-label">
+          Declaro que li e concordo com os <a target="blank" href="https://api.ibolao.com.br/#/termosuso"> termos de uso</a> e <a target="blank" href="https://api.ibolao.com.br/#/politica">política de privacidade</a> do iBOLÃO.
+        </label>
+      </div> -->
+    </div>
+  </div>
+  <div id="divsuccess" class="fade-out col-md-12">
+    <h3>Dados gravados com sucesso</h3>
+  </div>
+  <br />
+
+  <div class="divbuttons3">
+    <button (click)="gravar();" onclick="clearRadioButtons();" class="btn btn-primary"><i class="fas fa-save"></i> Gravar</button>&nbsp;
+    <button (click)="limpar();" onclick="clearRadioButtons();" class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button>
+  </div>
+
+  <br />
+
+
+</div>
+
+<div class="divprinc" style="background-image: url('/assets/fundohome3.jpg');" *ngIf="mobile">
+
+  <div class="divbar2">
+    <h5 class="card-title-dadoscadastro" style="background-color: transparent; font-size: 23px;"><b>Dados do
+        cadastro</b></h5>
+  </div>
+
+  <br />
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label><b>Nome</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="nome" id="nome" [(ngModel)]="equipe.nome">
+    </div>
+    <div class="form-group col-md-3">
+      <label><b>CPF</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="cpf" id="cpf" onkeypress="$(this).mask('000.000.000-00');"
+      (change)="testaCPF();" [(ngModel)]="equipe.cpf">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>CEP</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="cep" id="cep" onkeypress="$(this).mask('00.000-000');"
+      (change)="buscaCep(this.equipe.cep);" [(ngModel)]="equipe.cep">
+    </div>
+    <div class="form-group col-md-6">
+      <label><b>Endereço</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="endereco" id="endereco" [(ngModel)]="equipe.endereco">
+    </div>
+    <div class="form-group col-md-1">
+      <label><b>Nº</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="numero" id="numero" [(ngModel)]="equipe.numero">
+    </div>
+    <div class="form-group col-md-2">
+      <label><b>Complemento </b></label>
+      <input type="text" class="form-control" name="complemento" id="complemento" [(ngModel)]="equipe.complemento">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>Bairro</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="bairro" id="bairro" [(ngModel)]="equipe.bairro">
+    </div>
+    <div class="form-group col-md-4">
+      <label><b>Cidade</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" name="cidade" id="cidade" [(ngModel)]="equipe.cidade">
+    </div>
+    <div class="form-group col-md-1">
+      <label><b>Estado</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <select id="estado" name="estado" class="opcaoestado form-control" [(ngModel)]="equipe.estado">
+        <option disabled selected>...</option>
+        <option>AC</option>
+        <option>AL</option>
+        <option>AP</option>
+        <option>AM</option>
+        <option>BA</option>
+        <option>CE</option>
+        <option>DF</option>
+        <option>ES</option>
+        <option>GO</option>
+        <option>MA</option>
+        <option>MT</option>
+        <option>MS</option>
+        <option>MG</option>
+        <option>PB</option>
+        <option>PR</option>
+        <option>PE</option>
+        <option>PI</option>
+        <option>RJ</option>
+        <option>RN</option>
+        <option>RS</option>
+        <option>RO</option>
+        <option>RR</option>
+        <option>SC</option>
+        <option>SP</option>
+        <option>SE</option>
+        <option>TO</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label><b>Email principal </b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="email" class="form-control" name="emailprincipal" id="emailprincipal" [(ngModel)]="equipe.email">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>Telefone Contato 1</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+      <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato1" id="contato1"
+        [(ngModel)]="equipe.contato1">
+    </div>
+    <div class="form-group col-md-3">
+      <label><b>Telefone Contato 2</b></label>
+      <input type="number" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato2"
+        id="contato2" [(ngModel)]="equipe.contato2">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-7">
+      <label><b>Gênero</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault1"
+          (change)="gravarSexoMasc();" />
+        <label class="form-check-label" for="flexRadioDefault1"> Masculino </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault2"
+          (change)="gravarSexoFem();" />
+        <label class="form-check-label" for="flexRadioDefault2"> Feminino </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault2"
+          (change)="gravarSexoOther();" />
+        <label class="form-check-label" for="flexRadioDefault2"> Outros </label>
+      </div>
+      <br />
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked="true"
+           />
+        <label class="form-check-label">
+          Autorizo receber mensagens por SMS, WhatsApp, email ou qualquer outra forma de contato?
+        </label>
+      </div>
+      <!-- <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" checked="true"
+         />
+        <label class="form-check-label">
+          Declaro que li e concordo com os <a target="blank" href="https://api.ibolao.com.br/#/termosuso"> termos de uso</a> e <a target="blank" href="https://api.ibolao.com.br/#/politica">política de privacidade</a> do iBOLÃO.
+        </label>
+      </div> -->
+    </div>
+  </div>
+  <div id="divsuccess" class="fade-out col-md-12">
+    <h3>Dados gravados com sucesso</h3>
+  </div>
+  <br />
+  <div class="divbuttons3">
+    <button (click)="gravar();" onclick="clearRadioButtons();" class="btn btn-primary"><i class="fas fa-save"></i> Gravar</button>&nbsp;
+    <button (click)="limpar();" onclick="clearRadioButtons();" class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button>
+  </div>
+
+  <br />
+
+</div>

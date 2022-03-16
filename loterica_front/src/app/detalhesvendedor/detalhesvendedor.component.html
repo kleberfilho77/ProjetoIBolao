@@ -1,0 +1,234 @@
+<div *ngIf="mobile" style="padding-bottom: 80px;">
+
+  <app-top-bar></app-top-bar>
+
+</div>
+
+<div *ngIf="!mobile" class="col-md-12 submain-container" >
+
+    <h4 class="card-title-dadoscad" *ngIf="!mobile"><b>Dados do cadastro</b></h4>
+  
+    <app-nav-bar></app-nav-bar>
+  
+    <br />
+  
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label><b>Nome</b></label>
+        <input type="text" class="form-control" name="nome" id="nome" [(ngModel)]="equipe.nome">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label><b>CPF</b></label>
+        <input type="text" class="form-control" name="cpf" id="cpf" onkeypress="$(this).mask('000.000.000-00');"
+          [(ngModel)]="equipe.cpf">
+      </div>
+      <div class="form-group col-md-6">
+        <label><b>Endereço</b></label>
+        <input type="text" class="form-control" name="endereco" id="endereco" [(ngModel)]="equipe.endereco">
+      </div>
+      <div class="form-group col-md-1">
+        <label><b>Nº</b></label>
+        <input type="text" class="form-control" name="numero" id="numero" [(ngModel)]="equipe.numero">
+      </div>
+      <div class="form-group col-md-2">
+        <label><b>Complemento </b></label>
+        <input type="text" class="form-control" name="complemento" id="complemento"
+          [(ngModel)]="equipe.complemento">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label><b>Bairro</b></label>
+        <input type="text" class="form-control" name="bairro" id="bairro" [(ngModel)]="equipe.bairro">
+      </div>
+      <div class="form-group col-md-4">
+        <label><b>Cidade</b></label>
+        <input type="text" class="form-control" name="cidade" id="cidade" [(ngModel)]="equipe.cidade">
+      </div>
+      <div class="form-group col-md-1">
+        <label><b>Estado</b></label>
+        <select id="estado" name="estado" class="opcaoestado form-control" [(ngModel)]="equipe.estado">
+          <option disabled selected>...</option>
+          <option>AC</option>
+          <option>AL</option>
+          <option>AP</option>
+          <option>AM</option>
+          <option>BA</option>
+          <option>CE</option>
+          <option>DF</option>
+          <option>ES</option>
+          <option>GO</option>
+          <option>MA</option>
+          <option>MT</option>
+          <option>MS</option>
+          <option>MG</option>
+          <option>PB</option>
+          <option>PR</option>
+          <option>PE</option>
+          <option>PI</option>
+          <option>RJ</option>
+          <option>RN</option>
+          <option>RS</option>
+          <option>RO</option>
+          <option>RR</option>
+          <option>SC</option>
+          <option>SP</option>
+          <option>SE</option>
+          <option>TO</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label><b>Email principal </b></label>
+        <input type="email" class="form-control" name="emailprincipal" id="emailprincipal"
+          [(ngModel)]="equipe.email">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label><b>Telefone Contato 1</b></label>
+        <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato1" id="contato1"
+          [(ngModel)]="equipe.contato1">
+      </div>
+      <div class="form-group col-md-3">
+        <label><b>Telefone Contato 2</b></label>
+        <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato2" id="contato2"
+          [(ngModel)]="equipe.contato2">
+      </div>
+    </div>
+  
+    <br />
+  
+    <div class="divbuttons3">
+      <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Alterar</button>&nbsp;
+      <button *ngIf="this.perfil != 'VENDEDOR'" (click)="deletar();" class="btn btn-primary"><i class="fas fa-trash-alt"></i> Deletar</button>
+    </div>
+  
+    <br />
+  
+    <div id="divsuccess" class="fade-out col-md-12">
+      <h3>Dados gravados com sucesso</h3>
+    </div>
+  </div>
+  
+  <div class="divbar2" *ngIf="mobile">
+    <h5 class="card-title-dadoscadastro" style="background-color: transparent; font-size: 23px;"><b>Dados do
+        cadastro</b></h5>
+  </div>
+  
+  <div class="divprinc" *ngIf="mobile">
+
+    <div *ngIf="(nave == 'true')"><app-nav-bar></app-nav-bar></div>
+  
+    <br />
+  
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label><b>Nome</b></label>
+        <input type="text" class="form-control" name="nome" id="nome" [(ngModel)]="equipe.nome">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label><b>CPF</b></label>
+        <input type="text" class="form-control" name="cpf" id="cpf" onkeypress="$(this).mask('000.000.000-00');"
+          [(ngModel)]="equipe.cpf">
+      </div>
+      <div class="form-group col-md-6">
+        <label><b>Endereço</b></label>
+        <input type="text" class="form-control" name="endereco" id="endereco" [(ngModel)]="equipe.endereco">
+      </div>
+      <div class="form-group col-md-1">
+        <label><b>Nº</b></label>
+        <input type="text" class="form-control" name="numero" id="numero" [(ngModel)]="equipe.numero">
+      </div>
+      <div class="form-group col-md-2">
+        <label><b>Complemento </b></label>
+        <input type="text" class="form-control" name="complemento" id="complemento"
+          [(ngModel)]="equipe.complemento">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label><b>Bairro</b></label>
+        <input type="text" class="form-control" name="bairro" id="bairro" [(ngModel)]="equipe.bairro">
+      </div>
+      <div class="form-group col-md-4">
+        <label><b>Cidade</b></label>
+        <input type="text" class="form-control" name="cidade" id="cidade" [(ngModel)]="equipe.cidade">
+      </div>
+      <div class="form-group col-md-1">
+        <label><b>Estado</b></label>
+        <select id="estado" name="estado" class="opcaoestado form-control" [(ngModel)]="equipe.estado">
+          <option disabled selected>...</option>
+          <option>AC</option>
+          <option>AL</option>
+          <option>AP</option>
+          <option>AM</option>
+          <option>BA</option>
+          <option>CE</option>
+          <option>DF</option>
+          <option>ES</option>
+          <option>GO</option>
+          <option>MA</option>
+          <option>MT</option>
+          <option>MS</option>
+          <option>MG</option>
+          <option>PB</option>
+          <option>PR</option>
+          <option>PE</option>
+          <option>PI</option>
+          <option>RJ</option>
+          <option>RN</option>
+          <option>RS</option>
+          <option>RO</option>
+          <option>RR</option>
+          <option>SC</option>
+          <option>SP</option>
+          <option>SE</option>
+          <option>TO</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label><b>Email principal </b></label>
+        <input type="email" class="form-control" name="emailprincipal" id="emailprincipal"
+          [(ngModel)]="equipe.email">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label><b>Telefone Contato 1</b></label>
+        <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato1" id="contato1"
+          [(ngModel)]="equipe.contato1">
+      </div>
+      <div class="form-group col-md-3">
+        <label><b>Telefone Contato 2</b></label>
+        <input type="number" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato2"
+          id="contato2" [(ngModel)]="equipe.contato2">
+      </div>
+    </div>
+  
+  
+    <br />
+    <div class="divbuttons3" style="padding-bottom: 100px;">
+      <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Alterar</button>&nbsp;
+      <button *ngIf="this.perfil != 'VENDEDOR'" (click)="deletar();" class="btn btn-primary"><i class="fas fa-trash-alt"></i> Deletar</button>
+    </div>
+  
+    <br />
+  
+    <div id="divsuccess" class="fade-out col-xs-12">
+      <h3>Dados gravados com sucesso</h3>
+    </div>
+
+    <div style="
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: gray;
+      color: white;
+      text-align: center;">
+        <app-tab-bar></app-tab-bar>
+      </div>
+  </div>

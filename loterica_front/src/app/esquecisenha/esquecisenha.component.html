@@ -1,0 +1,30 @@
+
+<div class="container">
+    <div class="col-md-6 mx-auto text-center">
+       <div class="header-title" >
+          <h1 class="wv-heading--title">
+            
+            <img src="../assets/logobolao.png" width="200" height="120">
+            <br/><br/>Esqueci minha senha<br/><br/>
+          </h1>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-md-4 mx-auto">
+          <div class="myform form ">
+             <form action="" method="post" name="login">
+                <div class="form-group">
+                   <input type="email" name='email' [(ngModel)]='login.email' id='login'  class="form-control my-input" placeholder="Insira o e-mail">
+                </div>
+                
+                <div class="text-center ">
+                   <button (click)='seguir();' class=" btn btn-block send-button tx-tfm">Enviar &nbsp; <i class="far fa-envelope"></i></button>
+                </div>
+                
+             </form>
+          </div>
+       </div>
+    </div>
+    <br/><br/><br/>
+    <div class="background-image"></div>
+  </div>

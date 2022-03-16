@@ -1,0 +1,87 @@
+<div class="col-3 wrapper">
+
+    <nav id="sidebar" style="overflow-y: auto;">
+        <div class="sidebar-header">    
+            <img src="../assets/logobolao.png" width="200" height="112">
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <a class="ahome" (click)="home();">Home</a>
+            </li>
+            <hr>
+            <li>
+                <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle apaciente"
+                    href="#pageSubmenucliente">Cadastro</a>
+                <ul class="collapse list-unstyled" id="pageSubmenucliente">
+                    <li *ngIf="perfil != 'VENDEDOR'"><a (click)="cadastrousuario();">&nbsp;&nbsp;Cadastrar Usuários</a></li>
+                    <li *ngIf="perfil == 'VENDEDOR'"><a (click)="cadastrousuario();">&nbsp;&nbsp;Cadastrar Cliente</a></li>
+                    <li *ngIf="perfil != 'VENDEDOR'"><a (click)="cadcliente();">&nbsp;&nbsp;Cadastrar Bolão</a></li>
+                    <li *ngIf="perfil == 'VENDEDOR'"><a (click)="cadbolaovend();">&nbsp;&nbsp;Cadastrar Bolão</a></li>
+                    <li *ngIf="perfil != 'VENDEDOR'"><a (click)="cadastrometas();">&nbsp;&nbsp;Cadastrar Metas</a></li>
+                    <li *ngIf="perfil != 'VENDEDOR'"><a (click)="cadastrocombo();">&nbsp;&nbsp;Cadastrar Combo</a></li>
+                </ul>
+                <hr>
+            </li>
+            <li *ngIf="perfil != 'VENDEDOR'">
+                <a class="atransfcotas" (click)="transferenciacota();">Transferência de Cotas</a>
+            </li>
+            <hr *ngIf="perfil == 'ADMINISTRADOR'">
+            <li *ngIf="perfil == 'ADMINISTRADOR'">
+                <a class="atransfcotas" (click)="mudarPerfil();">Venda</a>
+            </li>
+            <hr *ngIf="perfil != 'VENDEDOR'">
+            <li *ngIf="perfil != 'ADMINISTRADOR' && perfil != 'LOTERICA'">
+                <a class="atransfcotas" (click)="painelvendedora();">Venda</a>
+            </li>
+            <hr *ngIf="perfil == 'VENDEDOR'">
+            <li>
+                <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle amedico"
+                    href="#pageSubmenuvendedora">Financeiro</a>
+                <ul class="collapse list-unstyled" id="pageSubmenuvendedora">
+                    
+                    <li><a (click)="extratovendedora();">&nbsp;&nbsp;Prestação de Contas</a></li>
+                    <li><a (click)="areceber();">&nbsp;&nbsp;A Receber</a></li>
+                    <!-- <li><a (click)="vendaspendentes();">&nbsp;&nbsp;Vendas Pendentes</a></li> -->
+                    <li *ngIf="perfil == 'ADMINISTRADOR'"><a (click)="prestacontas();">&nbsp;&nbsp;Extrato</a></li>
+                </ul>
+            </li>
+            <hr >
+            <!-- <li>
+                <a class="usuboloes" (click)="indices();">Usuário / Bolões</a>
+            </li>
+            <hr> -->
+            <li>
+                <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle amedico"
+                    href="#pageSubmenuextratos">Relatório</a>
+                <ul class="collapse list-unstyled" id="pageSubmenuextratos">
+                    <li ><a (click)="listausuarios();">&nbsp;&nbsp;Usuários</a></li>
+                    <li><a (click)="listaboloes();">&nbsp;&nbsp;Bolões</a></li>
+                    <li><a (click)="listacombos();">&nbsp;&nbsp;Combos</a></li>
+                    <li *ngIf="perfil == 'VENDEDOR'"><a (click)="listacotas();">&nbsp;&nbsp;Cotas</a></li>
+                    <li><a (click)="listametas();">&nbsp;&nbsp;Metas</a></li>
+                </ul>
+            </li>
+            <hr>
+            <li >
+                <a class="atransfcotas" (click)="tutorial();">Tutorial</a>
+            </li>
+            <hr>
+            <li>
+                <a class="atransfcotas" (click)="templates();">Templates</a>
+            </li>
+            <hr>
+        <div style=" padding-top: -5px;">
+            <a id="btlogout" (click)="logout();" class="btn btn-sm btn-outline-light mr-2">
+                Logout <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+        </ul>
+        <div style=" padding-top: -5px; text-align: center;">
+            <label><b>Perfil: {{this.perfil}}</b></label>
+        </div>
+
+        
+    </nav>
+
+</div>

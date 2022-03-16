@@ -1,0 +1,15 @@
+.footer{
+    display: flex;
+    justify-content: center;
+    padding-top:20px; 
+    padding-bottom: 5px;
+    background-color: rgb(244, 244, 244);
+    /* position: relative; */
+}
+
+label{
+    color: #545F9F; 
+    margin-top: 5px; 
+    font-weight:bold; 
+    font-size: 14px;
+}

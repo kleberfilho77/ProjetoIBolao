@@ -1,0 +1,302 @@
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>  
+
+<div class="col-12 main-container">
+
+    <div *ngIf="!mobile" class="row col-12 submain-container">
+
+      <app-nav-bar></app-nav-bar>
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <h4 class="card-title">TRANSFERÊNCIA DE COTA</h4>
+          </div>
+    
+          <br/>
+          <form>
+            <div class="divboloes card">
+              <div class="form-row">
+                  
+                <div class="col-md-12"><h4 class="divtituloboloes card-title"><b>Bolões Ativos </b></h4></div><br/><br/>
+                  <div class="form-group col-md-3" style="width: 1195px; padding-left: 20px;">
+                    <label><b>Escolha a modalidade:</b></label>
+                    
+                    <select  id="tipomodalidade" name="tipomodalidade" class="form-control" (change)="filtrarBolao(selectedValue2)" [(ngModel)]="selectedValue2" style="width:250px;">
+                      <option>LFAC</option>
+                      <option>MEGA</option>
+                      <option>QUINA</option>
+                      <option>DUPL</option>
+                      <option>LTMA</option>
+                      <option>TIME</option>
+                      <option>DIAS</option>
+                      <option>SUP7</option>
+                      <option>LOTE</option>
+                      <option>BILH</option>
+                      
+                    </select>
+                    <br/>
+                    <label><b>Escolha o bolão:</b></label>
+                    
+                    <select  id="modalidade" name="modalidade" class="form-control" (change)="proxetapa()" [(ngModel)]="selectedValue" style="width:250px;">
+                      <option selected></option>
+                      <option *ngFor="let item of boloes" id="opcao" [value]="item.id">{{item.tipoModalidade}}-{{item.qtdCotas}}-{{preparaValorDe(item.valorCota)}}-{{item.horarioFechamento}}</option>
+                    </select>
+                    
+                  </div>
+              </div>
+            </div>
+              <div *ngIf="selectedValue == null || selectedValue == 0" class="divopcao0 card">
+          
+              </div>
+  
+              <div id="hij" *ngIf="selectedValue != null || selectedValue != 0" class="divopcao1">
+            
+              <div class="divdetalhamento card">
+                <h4 class="divtitulodetalhamento card-title"><b>Detalhamento de Cotas</b></h4><br/>
+
+                  
+                <div class="form-row">
+                  <div *ngIf="flag" class="form-row col-md-12" style="padding-left:10px; padding-bottom:10px;">
+                    
+                    <div class="col-md-3">
+                      &nbsp;&nbsp;
+                      <label><b>Total de Cotas: </b> </label> &nbsp; {{bolao.qtdCotas}}
+                    </div>
+                    <div class="col-md-2">
+                      <b>Online:</b> &nbsp; {{bolao.qtdCotasDisponiveis}}
+                    </div>
+                    <div class="col-md-3">
+                      <b>Cotas em combo(s):</b> &nbsp; {{this.cotascombo}}
+                    </div>
+                    <div class="col-md-3">
+                      <b>Cotas Vendidas:</b> &nbsp; {{bolao.qtdCotas-this.somacotas-this.cotascombo}}
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Vendedor(a)</th>
+                      <th scope="col">Cota</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of cotas; index as k">
+                      <td><input type="text" class="form-control" name="vendedor" id="vendedor" [value]="cotas[k].nome" disabled></td>
+                      <td><input type="text" class="form-control" name="qtdcotas_{{k}}" (change)="atualizactodisp(k);" id="qtdyes_{{k}}" [(ngModel)]="cotas[k].quantidade"></td>
+                      <td><button (click)="addQtd(k);" class="btn btn-primary"><i class="fas fa-plus-square"></i></button>
+                      &nbsp;<button (click)="removeQtd(k);" class="btn btn-primary"><i class="fas fa-minus-square"></i></button></td>
+                    </tr>
+                    
+                    
+                  </tbody>
+
+                </table>
+
+
+                <!-- <div *ngFor="let item of cotas; index as k" class="form-row">
+                  <div class="form-group col-md-1"></div>
+                  <div class="form-group col-md-2">
+                    <label><b>Vendedora:</b></label>
+                    <input type="text" class="form-control" name="vendedor" id="vendedor" [value]="cotas[k].nome" disabled>
+                  </div>
+                  <div class="form-group col-md-1">
+                    <label><b>Cotas</b></label>
+                    <input type="text" class="form-control" name="qtdcotas_{{k}}" id="qtdyes" [(ngModel)]="cotas[k].quantidade"> 
+                    <input type="number" class="form-control" style="width:70px;" name="qtdcotas_{{k}}" id="qtdyes" (change)="alteraCotas(k)" [(ngModel)]="listanum[k]">
+                  </div>
+                  <div class="divbuttonscotas form-group col-md-3">
+                    <label class="titcotas"><b>Cotas</b></label><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button (click)="addQtd(k);" class="btn btn-primary"><i class="fas fa-plus-square"></i></button>&nbsp;
+                            <button (click)="removeQtd(k);" class="btn btn-primary"><i class="fas fa-minus-square"></i></button>
+                  </div>
+                </div> -->
+                
+                  <hr/>
+                    <br/>
+
+              </div>
+
+          </div>
+          <div id="divsuccess" class="fade-out col-md-12" ><h3>Cotas atualizadas com sucesso</h3></div>
+  
+            <br/>
+            
+              <br/>
+              <div class="salvamudancas">
+                <button (click)="salvarMudancas();" class="btn btn-primary"><i class="fas fa-save"></i> Salvar Mudanças</button>
+              </div>
+              <br/>
+              
+            </form>
+
+
+        </div>
+      </div>      
+        
+    
+    </div>
+
+
+
+<div *ngIf="mobile">
+
+  <div class="divtitulo">
+    <h4 class="card-title">TRANSFERÊNCIA DE COTA</h4>
+  </div>
+
+    <div class="row col-12 submain-container">
+
+      <div *ngIf="(nave == 'true')"><app-nav-bar></app-nav-bar></div>
+
+      <div class="col-md-12">
+        <div class="card">
+          
+          <form>
+            <div class="divboloes card">
+              <div class="form-row">
+                  
+                <div class="col-md-12"><h4 class="divtituloboloes"><b>Bolões Ativos </b></h4></div><br/><br/>
+                  <div class="form-group col-md-3" style="width: 1195px; padding-left: 20px;">
+                    <label><b>Escolha a modalidade:</b></label>
+                    
+                    <select  id="tipomodalidade" name="tipomodalidade" class="form-control" (change)="filtrarBolao(selectedValue2)" [(ngModel)]="selectedValue2" style="width:250px;">
+                      <option>LFAC</option>
+                      <option>MEGA</option>
+                      <option>QUINA</option>
+                      <option>DUPL</option>
+                      <option>LTMA</option>
+                      <option>TIME</option>
+                      <option>DIAS</option>
+                      <option>SUP7</option>
+                      <option>LOTE</option>
+                      <option>BILH</option>
+                    </select>
+                    <br/>
+                    <label><b>Escolha o bolão:</b></label>
+                    
+                    <select  id="modalidade" name="modalidade" class="form-control" (change)="proxetapa()" [(ngModel)]="selectedValue" style="width:250px;">
+                      <option selected></option>
+                      <option *ngFor="let item of boloes" id="opcao" [value]="item.id">{{item.tipoModalidade}}-{{item.qtdCotas}}-{{preparaValorDe(item.valorCota)}}-{{item.horarioFechamento}}</option>
+                    </select> 
+                    
+                  </div>
+              </div>
+            </div>
+              <div *ngIf="selectedValue == null || selectedValue == 0" class="divopcao0 card">
+          
+              </div>
+  
+              <div id="hij" *ngIf="selectedValue != null || selectedValue != 0" class="divopcao1">
+
+            <div class="divdetalhamento card">
+              <h4 class="divtitulodetalhamento"><b>Detalhamento de Cotas</b></h4><br/>
+              <div class="form-row">
+                <!-- <div class="form-group col-md-6 form-row">
+                  <label><b>Total de Cotas: </b></label> <b>  {{bolao.qtdCotas}}</b><br/>
+                  &nbsp;&nbsp;<label><b>Online: </b></label> <b>  {{bolao.qtdCotasDisponiveis}}</b>
+                </div> -->
+                <div class="col-12">
+                  &nbsp;&nbsp;
+                  <label><b>Total de Cotas: </b> </label> &nbsp; {{bolao.qtdCotas}}
+                </div>
+                <div class="col-12">
+                  &nbsp;&nbsp;
+                 <label><b>Online:</b> </label> &nbsp; {{bolao.qtdCotasDisponiveis}}
+                </div>
+                <div class="col-12">
+                  &nbsp;&nbsp;
+                  <label> <b>Cotas em combo(s):</b> </label> &nbsp; {{this.cotascombo}}
+                </div>
+                <div class="col-12">
+                  &nbsp;&nbsp;
+                  <label> <b>Cotas Vendidas:</b> </label> &nbsp; {{bolao.qtdCotas-this.somacotas-this.cotascombo}}
+                </div>
+              </div>
+
+                <!-- <div *ngIf="flag" class="form-row" style="padding-left:1px; padding-bottom:10px;">
+                  <div class="col-12">
+                  <b>Online:</b> <input type="text" class="form-control" value="{{bolao.qtdCotasDisponiveis}}">
+                  </div>
+                </div> -->
+
+                <table class="table table-bordered" style="display: block;max-width: auto; overflow: scroll;">
+                  <thead>
+                    <tr>
+                      <th scope="col">Vendedor(a)</th>
+                      <th scope="col">Cota</th>
+                      <th scope="col" colspan="2"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of cotas; index as k">
+                      <td><input type="text" class="form-control" name="vendedor" id="vendedor" [value]="cotas[k].nome" disabled></td>
+                      <td><input type="text" class="form-control" name="qtdcotas_{{k}}" (change)="atualizactodisp(k);" id="qtdyes_{{k}}" [(ngModel)]="cotas[k].quantidade" style="width: 50px;"></td>
+                      <td><button (click)="addQtd(k);" class="btn btn-primary"><i class="fas fa-plus-square"></i></button></td>
+                      <td><button (click)="removeQtd(k);" class="btn btn-primary"><i class="fas fa-minus-square"></i></button></td>
+                    </tr>
+                  </tbody>
+
+                </table>
+
+
+              <!-- <div *ngFor="let item of cotas; index as k" class="form-row">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                  <label><b>Vendedora:</b></label>
+                  <input type="text" class="form-control" name="vendedor" id="vendedor" [value]="cotas[k].nome">
+                </div>
+                <div class="form-group col-md-1">
+                  <label><b>Cotas</b></label>
+                  <input type="text" class="form-control" name="qtdcotas_{{k}}" (change)="atualizactodisp(k);" id="qtdyes_{{k}}" [(ngModel)]="cotas[k].quantidade">
+                </div>
+                <div class="divbuttonscotas form-group col-md-2">
+                  <label class="titcotas"><b>Cotas</b></label><br/>
+                    <button (click)="addQtd(k);" class="btn btn-primary"><i class="fas fa-plus-square"></i></button>&nbsp;
+                    <button (click)="removeQtd(k);" class="btn btn-primary"><i class="fas fa-minus-square"></i></button>
+                </div>
+                
+              </div> -->
+
+
+                <hr/>
+                  <br/>
+
+            </div>
+
+          </div>
+  
+              <br/>
+              <div id="divsuccess" class="fade-out col-md-12" ><h3>Cotas atualizadas com sucesso</h3></div>
+              <div class="salvamudancas">
+                <button (click)="salvarMudancas();" class="btn btn-primary"><i class="fas fa-save"></i> Salvar Mudanças</button>
+              </div>
+              <div style="padding-bottom: 50px;"></div>
+              <br/>
+              
+            </form>
+
+              <br/><br/>
+        </div>
+      </div>      
+
+      <div style="
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: gray;
+      color: white;
+      text-align: center;"><app-tab-bar></app-tab-bar> </div>  
+        
+    
+    </div>
+    
+    </div>

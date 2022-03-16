@@ -1,0 +1,108 @@
+.btn-quemsomos{
+    color:#6d7fcc;
+}
+
+.btn-politica{
+    color:#6d7fcc;
+}
+.fa-users{
+    color:#6d7fcc;
+}
+
+.fa-file-alt{
+    color:#6d7fcc;
+}
+
+.card-header{
+    font-family: 'Archivo Black', sans-serif;
+    color:#6d7fcc;
+    background-color: #FFFFFF;
+    font-size: 25px;
+    border:none;
+    padding:12px;
+}
+
+.background-image {
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: block;
+    background-image: url('/assets/fundohome.png');
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 1080px;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+
+.maincard{
+    padding-top:60px;
+}
+
+.card-body{
+    /* background-color: #6d7fcc; */
+    background-color: rgb(84, 195, 218);
+    padding:12px;
+}
+
+.card-body label{
+    font-weight: bold;
+    color: white;
+}
+
+.form form-control{
+    padding-bottom: 10px;
+}
+
+.link{
+    justify-content: center; 
+    align-items: center; 
+    display: flex; 
+    padding-top: 15px; 
+    margin-bottom: -20px;
+}
+
+.footer{
+    display: flex;
+    justify-content: center;
+    padding-top:20px; 
+    padding-bottom: 5px;
+    background-color: rgb(244, 244, 244);
+    /* z-index: 994;
+    position: relative; */
+}
+
+label{
+    color: #545F9F; 
+    margin-top: 5px; 
+    font-weight:bold; 
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 500px) {
+
+    .maincard{
+        padding-top:50px;
+    }
+
+    .background-image {
+        position: fixed;
+        left: -40px;
+        right: 0;
+        background-image: url('/assets/fundohome.png');
+        background-size: 300px;
+        /* -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px); */
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 800px;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+}

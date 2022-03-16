@@ -1,0 +1,318 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>  
+
+<div class="col-12 main-container">
+
+  <div *ngIf="!mobile" class="row col-12 submain-container"> 
+
+    <app-nav-bar></app-nav-bar>
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-tabs card-header-primary">
+          <h4 class="card-title">INCLUSÃO DE METAS</h4>
+        </div><br/><br/>
+    
+    <form>
+      
+
+      <div class="cardmeta">
+        <div class="divbar1"><h4 class="card-title-metas" style=" color: white;"><b>Meta Variável</b></h4></div><br/>
+
+        <div class="divtabextrato card">
+          <div class="form-row">
+              
+              <table class="table table-hover">
+                <tr>
+                  <td class="text-warning" colspan="5"><b><label style="font-size: 24px;">%Comissão s /venda</label></b></td>
+                </tr>  
+                <tr class="text-warning">
+                  <th>Comissão (%)</th>
+                  <th>De</th>
+                  <th>Até</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                <tbody>
+                  <tr>
+                    <td><input type="text" onkeyup="c(this);" id="com0" (change)=alteraMetavarComissao(0) [value]=preparaComissao(metavar[0].comissao)  /></td> 
+                    <td>R$ 1,00</td>
+                    <td><input type="text" id="input0" onkeyup="k(this);" (change)=alteraMetavarValor(0) (click)="this.apagarconteudo(0);" [value]=preparaValorPara(metavar[0].valor)  /></td>
+                    <td>Faixa 1</td>
+                    <td *ngIf="metavar.length == 1">
+                      <button (click)="addNovaMetavarFirst();" class="btn btn-primary"><i class="fas fa-plus-square"></i></button>&nbsp;
+                      
+                    </td>
+                  </tr>
+                  <tr *ngFor="let item of metavar; index as i">
+                    <td *ngIf="i < metavar.length-1 && i != 0"><input disabled id="com{{i}}" (change)=alteraMetavarComissao(i)  [value]=preparaComissao(item.comissao)  /></td>
+                    <td *ngIf="i == metavar.length-1 && i != 0"><input  type="text" onkeyup="c(this);" id="com{{i}}" (change)=alteraMetavarComissao(i) [value]=preparaComissao(item.comissao)  /></td>
+                    <td *ngIf="i != 0">{{preparaValorDe(metavar[i-1].valor+100)}}</td>
+                    <td *ngIf="i < metavar.length-1 && i != 0"><input disabled type="text" onkeyup="k(this);" id="input{{i}}" (change)=alteraMetavarValor(i) (click)="this.apagarconteudo(i);" [value]=preparaValorPara(item.valor)  /></td>  
+                    <td *ngIf="i == metavar.length-1 && i != 0"><input type="text" onkeyup="k(this);" id="input{{i}}" (change)=alteraMetavarValor(i) (click)="this.apagarconteudo(i);" [value]=preparaValorPara(item.valor)  /></td>    
+                    <td *ngIf="i != 0">Faixa {{i+1}}</td>
+                    <td *ngIf="i == (metavar.length-1) && i != 0">
+                      <button (click)="addNovaMetavar();" class="btn btn-primary"><i class="fas fa-plus-square"></i></button>&nbsp;
+                      <button (click)="removeNovaMetavar(i);" class="btn btn-primary"><i class="fas fa-minus-square"></i></button>
+                    </td>
+                  </tr>
+                  
+                  </tbody>
+                </table>
+            </div>
+            
+        </div>
+      </div>
+      <br/>
+      <div class="cardmeta">
+        <div class="divbar1"><h4 class="card-title-metas" style=" color: white;"><b>Meta Fixa</b></h4></div><br/>
+
+        <div class="form-row">
+          
+          <div class="form-group col-md-2">
+            <label><b>Mês</b></label>
+            <select id="mes" name="mes" class="form-control" (change)="selecionaData()" [(ngModel)]="meta.mes">
+              <option disabled selected></option>
+              <option>Janeiro</option>
+              <option>Fevereiro</option>
+              <option>Março</option>
+              <option>Abril</option>
+              <option>Maio</option>
+              <option>Junho</option>
+              <option>Julho</option>
+              <option>Agosto</option>
+              <option>Setembro</option>
+              <option>Outubro</option>
+              <option>Novembro</option>
+              <option>Dezembro</option>
+            </select>
+          </div>
+          <div class="form-group col-md-1">
+            <label><b>Ano </b></label>
+            <input type="text" id="ano" class="form-control" (change)="selecionaData()" name="ano" [(ngModel)]="meta.ano">
+          </div>
+
+      </div>
+      <br/><br/>
+
+        <div class="form-row">
+          
+          <table class="table table-bordered" style="width: 500px;">
+              <thead style="background-image: url('/assets/imagebar.jpg'); color: white;">
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col" >Meta(R$)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor ="let item of vendedores; index as i">
+                  <td style="vertical-align: middle;"><b>{{resumeNome(i)}}</b></td>
+                  <td><input type="text" class="form-control" onkeyup="k(this);" placeholder="Insira o valor da meta" name="premioprev{{i}}" id="premioprev{{i}}" style="border: 0;" [(ngModel)]=this.listanum[i]></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+            
+      </div>
+      <div id="divsuccess" class="fade-out col-md-12" ><h3>Dados gravados com sucesso</h3></div>
+    <div style="text-align: center;">
+      <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Gravar</button>&nbsp;
+      <button  class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button>
+    </div>
+    <br/>
+
+    
+      
+    </form>
+
+      </div>
+      </div>    
+    
+
+</div>
+
+
+<div *ngIf="mobile">
+
+  <div class="divtitulo">
+    <h4 class="card-title">INCLUSÃO DE METAS</h4>
+  </div>
+
+<div class="row col-12 submain-container">
+
+
+  <div *ngIf="(nave == 'true')"><app-nav-bar></app-nav-bar></div>
+
+  <div class="col-md-12">
+    <div class="card">
+  
+  <form>
+
+
+    <div class="cardmeta">
+      <div class="divbar1"><h4 class="card-title-metas" style=" color: white;"><b>Meta Variável</b></h4></div><br/>
+
+      <div class="divtabmetas card" style="margin-top: 0;">
+        <div class="form-row" style="display: flex; justify-content: center; align-self: center; padding-left:0px; width:250px;">
+            <div style="text-align: center;">
+              <p style="color: red;">Arraste para o lado para poder ver toda a tabela</p>
+            </div>
+            <table class="table table-hover" style="display: block;max-width: auto; overflow: scroll;">
+              <tr>
+                <td class="text-warning" colspan="5"><b><h4>%Comissão s /venda</h4></b></td>
+              </tr>  
+              <tr class="text-warning">
+                <th>Comissao (%)</th>
+                <th>De</th>
+                <th>Até</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+                <tbody>
+                  <!-- <tr>
+                    <td><input id="com0" (change)=alteraMetavarComissao(0) [value]=preparaComissao(metavar[0].comissao)  /></td> 
+                    <td>R$ 1,00</td>
+                    <td><input id="input0" (change)=alteraMetavarValor(0) [value]=preparaValorPara(metavar[0].valor)  /></td>
+                    <td>Faixa 1</td>
+                    <td *ngIf="metavar.length == 1">
+                      <button (click)="addNovaMetavar();" class="btn btn-primary"><i class="fas fa-plus-square"></i></button>&nbsp;
+                      
+                    </td>
+                  </tr>
+                  <tr *ngFor="let item of metavar; index as i">
+                    <td *ngIf="i != 0"><input id="com{{i}}" (change)=alteraMetavarComissao(i) [value]=preparaComissao(item.comissao)  /></td>
+                    <td *ngIf="i != 0">{{preparaValorDe(metavar[i-1].valor+100)}}</td>
+                    <td *ngIf="i != 0"><input id="input{{i}}" (change)=alteraMetavarValor(i) [value]=preparaValorPara(item.valor)  /></td> 
+                    <td *ngIf="i != 0">Faixa {{i+1}}</td>
+                    <td *ngIf="i == (metavar.length-1) && i != 0" colspan="4">
+                      <div class="form-row">
+                      <div><button (click)="addNovaMetavar();" class="btn btn-primary"><i class="fas fa-plus-square"></i></button>&nbsp;</div>
+                      <div><button (click)="removeNovaMetavar();" class="btn btn-primary"><i class="fas fa-minus-square"></i></button></div>
+                    </div>
+                    </td>
+                  </tr> -->
+                  <tr>
+                    <td><input type="text" onkeyup="c(this);" id="com0" (change)=alteraMetavarComissao(0) [value]=preparaComissao(metavar[0].comissao)  /></td> <!-- {{preparaComissao(metavar[0].comissao)}} -->
+                    <td>R$ 1,00</td>
+                    <td><input type="text" id="input0" onkeyup="k(this);" (change)=alteraMetavarValor(0) (click)="this.apagarconteudo(0);" [value]=preparaValorPara(metavar[0].valor)  /></td>
+                    <td>Faixa 1</td>
+                    <td *ngIf="metavar.length == 1">
+                      <button (click)="addNovaMetavarFirst();" class="btn btn-primary"><i class="fas fa-plus-square"></i></button>&nbsp;
+                      <!-- <button (click)="removeNovaMetavar();" class="btn btn-primary"><i class="fas fa-minus-square"></i></button> -->
+                    </td>
+                  </tr>
+                  <tr *ngFor="let item of metavar; index as i">
+                    <td *ngIf="i < metavar.length-1 && i != 0"><input disabled id="com{{i}}" (change)=alteraMetavarComissao(i) [value]=preparaComissao(item.comissao)  /></td>
+                    <td *ngIf="i == metavar.length-1 && i != 0"><input type="text" onkeyup="c(this);" id="com{{i}}" (change)=alteraMetavarComissao(i) [value]=preparaComissao(item.comissao)  /></td>
+                    <td *ngIf="i != 0">{{preparaValorDe(metavar[i-1].valor+100)}}</td>
+                    <td *ngIf="i < metavar.length-1 && i != 0"><input disabled type="text" onkeyup="k(this);" id="input{{i}}" (change)=alteraMetavarValor(i) (click)="this.apagarconteudo(i);" [value]=preparaValorPara(item.valor)  /></td>    <!--  -->
+                    <td *ngIf="i == metavar.length-1 && i != 0"><input type="text" onkeyup="k(this);" id="input{{i}}" (change)=alteraMetavarValor(i) (click)="this.apagarconteudo(i);" [value]=preparaValorPara(item.valor)  /></td>    <!--  -->
+                    <td *ngIf="i != 0">Faixa {{i+1}}</td>
+                    <td *ngIf="i == (metavar.length-1) && i != 0">
+                      <button (click)="addNovaMetavar();" class="btn btn-primary"><i class="fas fa-plus-square"></i></button>&nbsp;
+                      <button (click)="removeNovaMetavar(i);" class="btn btn-primary"><i class="fas fa-minus-square"></i></button>
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+          </div>
+          
+      </div>
+      
+    </div>
+    <br/><br/>
+
+    <div class="cardmeta">
+      <div class="divbar1"> <h4 class="card-title-metas" style="background-color: transparent; color: white;"><b>Meta Fixa</b></h4></div><br/>
+
+      <div class="form-row col-xs-12" style="padding: 8px;">
+        
+        <div class=" col-xs-6">
+          <label><b>Mês</b></label>
+          <select id="mes" name="mes" class="form-control" [(ngModel)]="meta.mes" style="width:140px;">
+            <option disabled selected></option>
+            <option>Janeiro</option>
+            <option>Fevereiro</option>
+            <option>Março</option>
+            <option>Abril</option>
+            <option>Maio</option>
+            <option>Junho</option>
+            <option>Julho</option>
+            <option>Agosto</option>
+            <option>Setembro</option>
+            <option>Outubro</option>
+            <option>Novembro</option>
+            <option>Dezembro</option>
+          </select>
+        </div>
+        <div class="col-xs-5"></div>
+        <div class="col-xs-1">
+          <label><b>Ano </b></label>
+          <input type="text" class="form-control" name="ano" id="ano" mask="0000" [(ngModel)]="meta.ano" style="width:80px;">
+        </div>
+
+    </div>
+<br/><br/>
+
+      <div class="form-row">
+        
+        <table class="table table-bordered" style="width: 500px;">
+            <thead style="background-image: url('/assets/imagebar.jpg'); color: white;">
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col" >Meta(R$)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of vendedores; index as i">
+                <td style="vertical-align: middle;"><b>{{resumeNome(i)}}</b></td>
+                <td><input type="text" class="form-control" onkeyup="k(this);" placeholder="Insira o valor da meta" name="premioprev{{i}}" id="premioprev{{i}}" style="border: 0;" [(ngModel)]=this.listanum[i]></td>
+              </tr>       
+            </tbody>
+          </table>
+      </div>
+
+    </div>
+    
+    <div id="divsuccess" class="fade-out col-md-12" ><h3>Dados gravados com sucesso</h3></div>
+  <div style="text-align: center;">
+    <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Gravar</button>&nbsp;
+    <button  class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button>
+  </div>
+  <div style="padding-bottom: 100px;"></div>
+  <br/><br/>
+
+  
+    
+  </form>
+
+    </div>
+    </div>    
+
+    <div style="
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: gray;
+      color: white;
+      text-align: center;"><app-tab-bar></app-tab-bar> </div>  
+  
+
+</div>
+</div>
+
+</div>

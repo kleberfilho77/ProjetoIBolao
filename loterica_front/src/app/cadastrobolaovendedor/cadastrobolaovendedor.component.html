@@ -1,0 +1,594 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>
+
+
+<ng-template #customLoadingTemplate></ng-template>
+<div class="col-12 main-container">
+
+  <div *ngIf="!mobile" class="row col-12 submain-container">
+
+    <app-nav-bar></app-nav-bar>
+
+    <div class="full-screen-scroller">
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <h4 class="card-title">INCLUSÃO DE BOLÃO</h4>
+          </div>
+
+          <form>
+            <div class="card">
+              <div class="form-row">
+
+                <div class="divbar1 col-md-12">
+                  <h4 class="card-title-modalidade"><b>Escolha a modalidade</b>
+                  </h4>
+                </div>
+
+                <div class="divbuttons col-md-12 form-row" style="padding-top: 10px;">
+                  <div class="form-group col-md-1"></div>
+                  <div class="form-group col-md-2">
+
+                    <button (click)="addLfac();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#912690; border: 0px;">
+                    <b>LOTOFÁCIL</b> <label class="showInputField7" id="showInputField7"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+                    <button (click)="addMega();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#00AB69; border: 0px;">
+                      <b>MEGA - SENA</b><label class="showInputField1" id="showInputField1"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+                    <button (click)="addQuin();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#015EA1; border: 0px;">
+                      <b> QUINA </b><label class="showInputField2" id="showInputField2"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                        
+                  </div>
+                  <div class="form-group col-md-1"></div>
+                </div>
+                <br /><br /><br />
+                <div class="divbuttons col-md-12 form-row">
+                  <div class="form-group col-md-1"></div>
+                  <div class="form-group col-md-2">
+                    <button (click)="addDupl();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#A52E54; border: 0px;">
+                      <b> DUPLA SENA </b><label class="showInputField4" id="showInputField4"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+                    <button (click)="addLtma();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#ec7e00; border: 0px;">
+                    <b>LOTOMANIA </b><label class="showInputField3" id="showInputField8"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                    
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+
+                    <button (click)="addTime();" class="btn btn-primary" id="time"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#FFDB30; border: 0px; color:green">
+                    <b>TIMEMANIA </b><label class="showInputField10" id="showInputField10"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                  </div>
+                  <div class="form-group col-md-1"></div>
+                </div>
+                <br /><br /><br />
+                <div class="divbuttons col-md-12 form-row">
+                  <div class="form-group col-md-1"></div>
+                  <div class="form-group col-md-2">
+                    
+                    <button (click)="addDias();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#FFAD44; border: 0px;"><b>DIA SORTE</b>
+                    <label class="showInputField5" id="showInputField5"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+                    
+
+                      <button (click)="addSup7();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#ACCE76;; border: 0px;">
+                    <b> SUPER7 </b><label class="showInputField11" id="showInputField11"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+
+                    <button (click)="addLote();" class="btn btn-primary" id="ltma"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#EC2230; border: 0px;">
+                   <b> LOTECA </b><label class="showInputField8" id="showInputField3"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                    
+                    
+                  </div>
+                  <div class="form-group col-md-1"></div>
+                </div>
+                <br /><br /><br />
+                <div class="divbuttons col-md-12 form-row">
+                  <div class="form-group col-md-1"></div>
+                  <div class="form-group col-md-2">
+                    <!-- <button (click)="addTime();" class="btn btn-primary" id="time" style="text-align: center; width:200px; height:80px; margin:auto; background-color:#FFF100; border: 0px;"> TIME</button><label class="showInputField10"></label> -->
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+
+                    <button (click)="addBilh();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#6dcae4; border: 0px;">
+                      <b>FEDERAL </b><label class="showInputField6" id="showInputField6"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                    
+                  </div>
+                  <div class="form-group col-md-1"></div>
+                </div>
+                <br /><br /><br />
+              </div>
+
+            </div>
+            <div id="abc" class="carddadostec">
+              <h4 class="card-title-dados-tec" style="text-align: center;"><b>Dados técnicos - {{this.bolao.tipoModalidade}}</b></h4><br />
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label><b>Nº do Sorteio </b></label>&nbsp;<label style="color:red"><b>*</b></label>
+                  <input required=true type="number" class="form-control" name="numerosorteio" id="numerosorteio" (change)="verifycategory();"
+                    placeholder="Insira o nº do sorteio" [(ngModel)]="bolao.numeroSorteio">
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label><b>Data do Sorteio</b></label>&nbsp;<label style="color:red"><b>*</b></label>
+                  <input type="date" class="form-control" name="datasorteio" id="datasorteio"
+                     placeholder="Ex.: 00/00/0000"
+                    [(ngModel)]="bolao.dataSorteio">
+                </div>
+                <div class="form-group col-md-4">
+                  <label><b>Horário do Fechamento  (GMT-3 Brasília)</b></label>&nbsp;<label style="color:red"><b>*</b></label>
+                  <!-- <input type="text" class="form-control" name="horalim" mask="00:00"  id="horalim" placeholder="Insira a hora do sorteio" [(ngModel)]="bolao.horarioFechamento"> -->
+                  <input type="text" class="form-control" name="horasorteio" id="horasorteio" (change)="verificarHoraFechamento();" onkeypress="$(this).mask('00:00')" [(ngModel)]="bolao.horarioSorteio" placeholder="19:00">
+
+                </div>
+                <!-- <div class="form-group col-md-3">
+                  <label><b>Data do Bolão</b></label>
+                  <input type="text" class="form-control" name="databolao" id="databolao"
+                    onkeypress="$(this).mask('00/00/0000')" placeholder="Ex.: 00/00/0000" [(ngModel)]="bolao.dataBolao">
+                </div> -->
+
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label><b>Horário do registro do bolão (hh:mm:ss) </b></label>&nbsp;<label style="color:red"><b>*</b></label>
+                  <!-- <input type="text" class="form-control" name="horalim" mask="00:00"  id="horalim" placeholder="Insira a hora do sorteio" [(ngModel)]="bolao.horarioFechamento"> -->
+                  <input required="true" type="text" class="form-control" name="horacadastro"  onkeypress="$(this).mask('00:00:00')" id="horacadastro"
+                    placeholder="hh:mm:ss" (change)="verificarHora();" [(ngModel)]="bolao.horarioFechamento" >
+                </div>
+                <div class="form-group col-md-2">
+                  <label><b>Quantidade de Jogos</b></label>&nbsp;<label style="color:red"><b>*</b></label>
+                  <input type="number" class="form-control" name="qtdjogos" id="qtdjogos" [(ngModel)]="bolao.qtdJogos">
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Quantidade de Dezenas</b></label>&nbsp;<label style="color:red"><b>*</b></label>
+                  <input type="number" class="form-control" name="qtddez" id="qtddez" [(ngModel)]="bolao.qtdDezenas">
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Quantidade de Cotas</b></label>&nbsp;<label style="color:red"><b>*</b></label>
+                  <input type="number" (change)="atualizacota();" class="form-control" name="qtdcotas" id="qtdcotas" placeholder="Digite a quantidade de cotas"
+                    [(ngModel)]="bolao.qtdCotas">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label><b>Valor da Cota </b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+                  <div class="form-row" style="padding-left: 5px;">
+                    <p style="padding-top: 10px;"><b>R$</b></p>&nbsp;<input type="text" class="form-control"
+                      name="valorcota" id="vlresult" style="width:345px;" (click)="zeraInputCota();"
+                      onkeyup="k(this);" [(ngModel)]=this.vlcota>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label><b>Prêmio Previsto</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+                  <div class="form-row" style="margin-left: 2px;">
+                    <p style="padding-top: 10px;"><b>R$</b></p>&nbsp;<input type="text" class="form-control"
+                      name="premioprev" id="premioprev" style="width:230px;" (focusout)="proxtela()" (click)="zeraInputPremio();"
+                      onkeyup="k(this);" [(ngModel)]=this.vlpremio>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <input type="file" (change)="selecionaImagem($event)" />
+              </div>
+
+            </div>
+
+            <br />
+
+
+            <br />
+            <div id="next" class="carddefinacao">
+              <h4 class="card-title-definicao"><b>Defina abaixo a cota de cada vendedor(a)</b></h4><br />
+              <div class="form-group col-md-6 form-row">
+                <label style="font-size: 22px;"><b>Total de Cotas: </b></label><label style="font-size: 22px;"> <b>  {{bolao.qtdCotas}}</b><br/></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;<label style="font-size: 22px;"><b>Estoque Online: </b></label><label style="font-size: 22px;"> <b>  {{cotasdisponiveis}}</b></label> <!--&nbsp;/&nbsp; <label><b>Cotas disponíveis (Online): {{cotassuplentes}}</b></label>-->
+              </div>
+
+              <div class="form-row" style="padding-left: 10px;">
+
+                <table class="tablevendedora table-bordered">
+                  <thead class="theadvendedora">
+                    <tr>
+                      <th scope="col" style="padding-left: 5px;">Nome</th>
+                      <th scope="col" style="padding-left: 5px;">Cotas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of vendedores; index as i">
+                    
+                        <td *ngIf='item.id == this.vendedorid' class="tdnome" style="padding-left: 5px;"><b>{{resumeNome(i)}}</b></td>
+                        <td *ngIf='item.id == this.vendedorid'><input type="number" class="tdcota form-control" 
+                                (click)="zeraInput(i);" (change)="atualizactodisp(i);" name="cotavendedor{{i}}" id="qtdcotavendedor_{{i}}"
+                                value="{{bolao.qtdCotas}}" disabled></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- The add() function is called -->
+            </div>
+
+            <br /><br /><br />
+            <label style="color:red"><b>* (Campos obrigatórios)</b></label >
+              <div id="divsuccess" class="fade-out col-md-12">
+                <h3>Dados gravados com sucesso</h3>
+              </div>
+            <div class="divbuttons2">
+              <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Gravar</button>&nbsp;
+              <button (click)="limpar();" class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button>
+            </div>
+            <br />
+
+            
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div *ngIf="mobile">
+
+    <div class="divtitulo">
+      <h4 class="card-title">INCLUSÃO DE BOLÃO</h4>
+    </div>
+
+    <div class="row col-12 submain-container">
+
+
+      <div *ngIf="(nave == 'true')">
+        <app-nav-bar></app-nav-bar>
+      </div>
+
+      <div class="col-md-12">
+        <div class="card">
+          <form>
+            <div class="card" style="margin-top: 0px;">
+              <div class="form-row">
+
+                <div class="divbar1 col-md-12">
+                  <h4 class="card-title-modalidade" style="background-color: transparent; "><b>Escolha a modalidade</b>
+                  </h4>
+                </div>
+
+                <div class="divbuttons col-xs-12 form-row" style="padding-top: 20px;">
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addLfac();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#912690; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                      LOTOFÁCIL <label class="showInputField7" id="showInputField7"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                    
+                  </div>
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px;align-items: center; justify-content: center; display: flex;">
+                    <button (click)="addMega();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px;  background-color:#00AB69; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">MEGA
+                      - SENA <label class="showInputField1" id="showInputField1"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+
+                </div>
+
+                <div class="divbuttons col-xs-12 form-row" style="background-color: #F4F4F4;">
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+                    <button (click)="addQuin();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#015EA1; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                      QUINA <label class="showInputField2" id="showInputField2"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+                    <button (click)="addDupl();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#A52E54; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                      DUPLA SENA <label class="showInputField4" id="showInputField4"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+
+
+                </div>
+
+
+                <div class="divbuttons col-xs-12 form-row">
+
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addLtma();" class="btn btn-primary" id="ltma"
+                    style="text-align: center; width:150px; height:70px; margin:auto; background-color:#ec7e00; border: 0px; border-radius: 15px;  text-color: #fff; font-size: 18px; font-weight: 800;">
+                    LOTOMANIA <label class="showInputField8" id="showInputField8"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+                    
+                  </div>
+
+
+                  <div class="form-group col-xs-6"
+                    style=" width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addTime();" class="btn btn-primary" id="time"
+                    style="text-align: center; width:150px; height:70px; margin:auto; background-color:#FFDB30; border: 0px; border-radius: 15px;  color: #169716; font-size: 18px; font-weight: 800;">
+                    TIMEMANIA <label class="showInputField10" id="showInputField10"
+                      style="color:white; display: none;">&nbsp;✓</label></button>
+
+                    
+                  </div>
+
+
+                </div>
+
+
+                <div class="divbuttons col-xs-12 form-row" style="background-color: #F4F4F4;">
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addDias();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#FFAD44; border: 0px; border-radius: 15px; text-color: #fff; font-size: 18px; font-weight: 800;">DIA
+                      SORTE <label class="showInputField5" id="showInputField5"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                    
+                  </div>
+
+
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addSup7();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#ACCE76; border: 0px; border-radius: 15px;  color: rgb(255, 255, 255); font-size: 18px; font-weight: 800;">
+                      SUPER 7 <label class="showInputField11" id="showInputField11"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                    
+                  </div>
+                </div>
+
+
+                <!-- <div class="divbuttons col-xs-12 form-row">
+                        
+                        <div class="form-group col-xs-6" style="width: 50%;  align-items: center; justify-content: center; display: flex;">
+                          <button (click)="addLgol();" class="btn btn-primary" id="lgol" style="text-align: center; width:100px; margin:auto; background-color:#0084A4; border: 0px; border-radius: 30px;"> COMBO</button><label class="showInputField9"></label>
+                        </div>
+                        <div class="form-group col-xs-6" style="width: 50%;  align-items: center; justify-content: center; display: flex;">
+                          <button (click)="addTime();" class="btn btn-primary" id="time" style="text-align: center; width:100px; margin:auto; background-color:#FFF100; border: 0px; border-radius: 30px;"> TIME</button><label class="showInputField10"></label>
+                        </div>
+                      </div>
+
+                      <div class="divbuttons col-xs-12 form-row" style="align-items: center; justify-content: center; display: flex;">
+                        <div class="form-group col-xs-6" style=" width: 50%; align-items: center; justify-content: center; display: flex;">
+                          <button (click)="addSup7();" class="btn btn-primary" style="text-align: center; width:100px; margin:auto; background-color:rgb(153,255,153); border: 0px; border-radius: 30px;"> SUP7</button><label class="showInputField11"></label>
+                        </div>
+                      </div> -->
+
+                <div class="divbuttons col-xs-12 form-row">
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addLote();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#EC2230; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                      LOTECA <label class="showInputField3" id="showInputField3"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+                    
+                  </div>
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+                    <button (click)="addBilh();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#6dcae4; border: 0px; border-radius: 15px;  text-color: #fff; font-size: 18px; font-weight: 800;">
+                      FEDERAL <label class="showInputField6" id="showInputField6"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                        
+                  </div>
+
+                </div>
+
+                <br /><br /><br />
+              </div>
+
+            </div>
+            <div id="abc" style="padding-bottom: 100px;"></div>
+            <!-- <div id="abc" class="carddadostec"> -->
+            <div class="carddadostec">
+                <h4 class="card-title-dados-tec" style="background-color: transparent;"><b>Dados
+                    técnicos - {{this.bolao.tipoModalidade}}</b></h4><br />
+              
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label><b>Nº do Sorteio</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+                  <input type="number" class="form-control" name="numerosorteio" id="numerosorteio" (change)="verifycategory();"
+                    placeholder="Insira o nº do sorteio" [(ngModel)]="bolao.numeroSorteio">
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label><b>Data do Sorteio</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+                  <input type="text" class="form-control" name="datasorteio" id="datasorteio" mask="00/00/0000"
+                    placeholder="Ex.: 00/00/0000" [(ngModel)]="bolao.dataSorteio">
+                </div>
+                <div class="form-group col-md-4">
+                  <label><b>Horário de Fechamento (GMT-3 - Brasília)</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+                  <input type="text" class="form-control" name="horasorteio" id="horasorteio" (change)="verificarHoraFechamento();" mask="00:00" [(ngModel)]="bolao.horarioSorteio" placeholder="19:00">
+                </div>
+                <!-- <div class="form-group col-md-3">
+                  <label><b>Data do Bolão</b></label>
+                  <input type="text" class="form-control" name="databolao" id="databolao" mask="00/00/0000"
+                    placeholder="Ex.: 00/00/0000" [(ngModel)]="bolao.dataBolao">
+                </div> -->
+
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label><b>Horário do registro do bolão (hh:mm:ss) </b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+                  <!-- <input type="text" class="form-control" name="horalim" mask="00:00"  id="horalim" placeholder="Insira a hora do sorteio" [(ngModel)]="bolao.horarioFechamento"> -->
+                  <input type="text" class="form-control" name="horacadastro" name="horacadastro" mask="00:00:00" id="horacadastro"
+                  placeholder="hh:mm:ss" (change)="verificarHora();" [(ngModel)]="bolao.horarioFechamento">
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Quantidade de Jogos</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+                  <input type="number" class="form-control" name="qtdjogos" id="qtdjogos" [(ngModel)]="bolao.qtdJogos">
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Quantidade de Dezenas</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+                  <input type="number" class="form-control" name="qtddez" id="qtddez" [(ngModel)]="bolao.qtdDezenas">
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Quantidade de Cotas</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+                  <input type="number" (change)="atualizacota();" class="form-control" name="qtdcotas" id="qtdcotas" placeholder="Digite a quantidade de cotas"
+                    [(ngModel)]="bolao.qtdCotas">
+
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label><b>Valor da Cota (R$)</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+                  <input type="text" class="form-control" name="valorcota" id="vlresult"(click)="zeraInputCota();"
+                  onkeyup="k(this);" [(ngModel)]=this.vlcota>
+
+                    
+                </div>
+                <div class="form-group col-md-6">
+                  <label><b>Prêmio Previsto (R$)</b></label>&nbsp;<label style="color:red"><b>*</b></label><br />
+                  <input type="text" class="form-control" name="premioprev" id="premioprev" (focusout)="proxtela()" (click)="zeraInputPremio();"
+                  onkeyup="k(this);" [(ngModel)]=this.vlpremio>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <input type="file" (change)="selecionaImagem($event)" />
+              </div>
+              
+            </div>
+
+            
+
+            <br />
+            <div id="next" class="carddefinacao">
+              <div class="divbar1">
+                <h4 class="card-title-definicao" style="background-color: transparent;"><b>Defina abaixo a cota de cada
+                    vendedora</b></h4>
+              </div><br />
+              <div class="form-group col-md-6 form-row">
+                <label><b>Total de Cotas: </b></label> <b>  {{bolao.qtdCotas}}</b><br/>
+                &nbsp;&nbsp;<label><b>Estoque Online: </b></label> <b>  {{cotasdisponiveis}}</b> <!--&nbsp;/&nbsp; <label><b>Cotas disponíveis (Online): {{cotassuplentes}}</b></label>-->
+              </div>
+              <div class="form-row">
+
+                <table class="tablevendedora table-bordered">
+                  <thead class="theadvendedora">
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Cotas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of vendedores; index as i">
+                    
+                        <td *ngIf='item.id == this.vendedorid' class="tdnome" style="padding-left: 5px;"><b>{{resumeNome(i)}}</b></td>
+                        <td *ngIf='item.id == this.vendedorid'><input type="number" class="tdcota form-control" placeholder="Insira a quantidade de cotas"
+                                (click)="zeraInput(i);" (change)="atualizactodisp(i);" name="cotavendedor{{i}}" id="qtdcotavendedor_{{i}}"
+                                value="{{bolao.qtdCotas}}" disabled></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- The add() function is called -->
+
+            </div>
+
+            <br /><br /><br />
+            <label style="color:red"><b>* (Campos obrigatórios)</b></label >
+              <div id="divsuccess" class="fade-out col-xs-12">
+                <h3>Dados gravados com sucesso</h3>
+              </div>
+            <div class="divbuttons2">
+              <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Gravar</button>&nbsp;
+              <button (click)="limpar();" class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button>
+            </div>
+            <br />
+
+            
+            <div style="padding-bottom: 100px;">
+            </div>
+            <br /><br />
+          </form>
+
+        </div>
+      </div>
+
+      <div style="
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: gray;
+      color: white;
+      text-align: center;">
+        <app-tab-bar></app-tab-bar>
+      </div>
+
+    </div>
+  </div>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+
+</div>

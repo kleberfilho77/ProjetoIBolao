@@ -1,0 +1,269 @@
+<div *ngIf="mobile" style="padding-bottom: 80px;">
+
+  <app-top-bar></app-top-bar>
+
+</div>
+
+<div *ngIf="!mobile" class="col-md-12 submain-container" >
+
+  <h4 class="card-title-dadoscad" *ngIf="!mobile"><b>Detalhamento do cliente</b></h4>
+
+  <app-nav-bar></app-nav-bar>
+
+  <br /> <br /> <br />
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label><b>Nome</b></label>
+      <input type="text" class="form-control" name="nome" id="nome" [(ngModel)]="clientefinal.nome">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>CPF</b></label>
+      <input type="text" class="form-control" name="cpf" id="cpf" onkeypress="$(this).mask('000.000.000-00');"
+        [(ngModel)]="clientefinal.cpf">
+    </div>
+    <div class="form-group col-md-6">
+      <label><b>Endereço</b></label>
+      <input type="text" class="form-control" name="endereco" id="endereco" [(ngModel)]="clientefinal.endereco">
+    </div>
+    <div class="form-group col-md-1">
+      <label><b>Nº</b></label>
+      <input type="text" class="form-control" name="numero" id="numero" [(ngModel)]="clientefinal.numero">
+    </div>
+    <div class="form-group col-md-2">
+      <label><b>Complemento </b></label>
+      <input type="text" class="form-control" name="complemento" id="complemento"
+        [(ngModel)]="clientefinal.complemento">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>Bairro</b></label>
+      <input type="text" class="form-control" name="bairro" id="bairro" [(ngModel)]="clientefinal.bairro">
+    </div>
+    <div class="form-group col-md-4">
+      <label><b>Cidade</b></label>
+      <input type="text" class="form-control" name="cidade" id="cidade" [(ngModel)]="clientefinal.cidade">
+    </div>
+    <div class="form-group col-md-1">
+      <label><b>Estado</b></label>
+      <select id="estado" name="estado" class="opcaoestado form-control" [(ngModel)]="clientefinal.estado">
+        <option disabled selected>...</option>
+        <option>AC</option>
+        <option>AL</option>
+        <option>AP</option>
+        <option>AM</option>
+        <option>BA</option>
+        <option>CE</option>
+        <option>DF</option>
+        <option>ES</option>
+        <option>GO</option>
+        <option>MA</option>
+        <option>MT</option>
+        <option>MS</option>
+        <option>MG</option>
+        <option>PB</option>
+        <option>PR</option>
+        <option>PE</option>
+        <option>PI</option>
+        <option>RJ</option>
+        <option>RN</option>
+        <option>RS</option>
+        <option>RO</option>
+        <option>RR</option>
+        <option>SC</option>
+        <option>SP</option>
+        <option>SE</option>
+        <option>TO</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label><b>Email principal </b></label>
+      <input type="email" class="form-control" name="emailprincipal" id="emailprincipal"
+        [(ngModel)]="clientefinal.email">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>Telefone Contato 1</b></label>
+      <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato1" id="contato1"
+        [(ngModel)]="clientefinal.contato1">
+    </div>
+    <div class="form-group col-md-3">
+      <label><b>Telefone Contato 2</b></label>
+      <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato2" id="contato2"
+        [(ngModel)]="clientefinal.contato2">
+    </div>
+    <div *ngIf="this.perfil !='VENDEDOR'" class="form-group col-md-3">
+       <label><b>Vendedor</b></label>
+      <!--<input disabled type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="vendedor" id="vendedor"
+        [(ngModel)]="clientefinal.usuarioVendedor"> -->
+        <select  id="vendedor" name="vendedor" (change)="pegarIdVendedor();" class="form-control">
+          <option selected disabled style="color:darkblue; background-color: rgb(238, 230, 230); font-weight: bold;">{{this.vendedor.nome}}</option>
+           <option id="vend_{{i}}" value="{{item.id}}" *ngFor="let item of vendedores; index as i">{{item.nome}}</option>
+        </select>
+       
+    </div>
+    <div *ngIf="this.perfil == 'VENDEDOR'" class="form-group col-md-3">
+      <label><b>Vendedor</b></label>
+      <input disabled type="text" class="form-control" name="emailprincipal" id="emailprincipal"
+      value={{this.nomeVendedor}}/>
+      
+    </div>
+
+  </div>
+    
+
+  <br />
+
+  <div class="divbuttons3">
+    <button (click)="back();" class="btn btn-primary"><i class="far fa-arrow-alt-circle-left"></i> Voltar</button>&nbsp;
+    <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Alterar</button>&nbsp;
+  </div>
+
+  <br />
+
+  <div id="divsuccess" class="fade-out col-md-12">
+    <h3>Dados gravados com sucesso</h3>
+  </div>
+</div>
+
+<div class="divbar2" *ngIf="mobile">
+  <h5 class="card-title-dadoscadastro" style="background-color: transparent; font-size: 23px;"><b>Detalhamento do cliente</b></h5>
+</div>
+
+<div class="divprinc" *ngIf="mobile">
+
+  <div *ngIf="(nave == 'true')"><app-nav-bar></app-nav-bar></div>
+
+  <br />
+<div style="padding-left:20px; padding-right: 20px;">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label><b>Nome</b></label>
+      <input type="text" class="form-control" name="nome" id="nome" [(ngModel)]="clientefinal.nome">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>CPF</b></label>
+      <input type="text" class="form-control" name="cpf" id="cpf" onkeypress="$(this).mask('000.000.000-00');"
+        [(ngModel)]="clientefinal.cpf">
+    </div>
+    <div class="form-group col-md-6">
+      <label><b>Endereço</b></label>
+      <input type="text" class="form-control" name="endereco" id="endereco" [(ngModel)]="clientefinal.endereco">
+    </div>
+    <div class="form-group col-md-1">
+      <label><b>Nº</b></label>
+      <input type="text" class="form-control" name="numero" id="numero" [(ngModel)]="clientefinal.numero">
+    </div>
+    <div class="form-group col-md-2">
+      <label><b>Complemento </b></label>
+      <input type="text" class="form-control" name="complemento" id="complemento"
+        [(ngModel)]="clientefinal.complemento">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>Bairro</b></label>
+      <input type="text" class="form-control" name="bairro" id="bairro" [(ngModel)]="clientefinal.bairro">
+    </div>
+    <div class="form-group col-md-4">
+      <label><b>Cidade</b></label>
+      <input type="text" class="form-control" name="cidade" id="cidade" [(ngModel)]="clientefinal.cidade">
+    </div>
+    <div class="form-group col-md-1">
+      <label><b>Estado</b></label>
+      <select id="estado" name="estado" class="opcaoestado form-control" [(ngModel)]="clientefinal.estado">
+        <option disabled selected>...</option>
+        <option>AC</option>
+        <option>AL</option>
+        <option>AP</option>
+        <option>AM</option>
+        <option>BA</option>
+        <option>CE</option>
+        <option>DF</option>
+        <option>ES</option>
+        <option>GO</option>
+        <option>MA</option>
+        <option>MT</option>
+        <option>MS</option>
+        <option>MG</option>
+        <option>PB</option>
+        <option>PR</option>
+        <option>PE</option>
+        <option>PI</option>
+        <option>RJ</option>
+        <option>RN</option>
+        <option>RS</option>
+        <option>RO</option>
+        <option>RR</option>
+        <option>SC</option>
+        <option>SP</option>
+        <option>SE</option>
+        <option>TO</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label><b>Email principal </b></label>
+      <input type="email" class="form-control" name="emailprincipal" id="emailprincipal"
+        [(ngModel)]="clientefinal.email">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label><b>Telefone Contato 1</b></label>
+      <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato1" id="contato1"
+        [(ngModel)]="clientefinal.contato1">
+    </div>
+    <div class="form-group col-md-3">
+      <label><b>Telefone Contato 2</b></label>
+      <input type="number" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="contato2"
+        id="contato2" [(ngModel)]="clientefinal.contato2">
+    </div>
+    <div *ngIf="this.perfil !='VENDEDOR'" class="form-group col-md-3">
+      <label><b>Vendedor</b></label>
+     <!--<input disabled type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="vendedor" id="vendedor"
+       [(ngModel)]="clientefinal.usuarioVendedor"> -->
+       <select  id="vendedor" name="vendedor" (change)="pegarIdVendedor();" class="form-control">
+         <option selected disabled style="color:darkblue; background-color: rgb(238, 230, 230); font-weight: bold;">{{this.vendedor.nome}}</option>
+          <option id="vend_{{i}}" value="{{item.id}}" *ngFor="let item of vendedores; index as i">{{item.nome}}</option>
+       </select>
+      
+   </div>
+   <div *ngIf="this.perfil == 'VENDEDOR'" class="form-group col-md-3">
+     <label><b>Vendedor</b></label>
+     <input disabled type="text" class="form-control" name="emailprincipal" id="emailprincipal"
+     value={{this.nomeVendedor}}/>
+     
+   </div>
+  </div>
+</div>
+
+  <br />
+  <div class="divbuttons3" style="padding-bottom: 100px;">
+    <button (click)="back();" class="btn btn-primary"><i class="far fa-arrow-alt-circle-left"></i> Voltar</button>&nbsp;
+    <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Alterar</button>&nbsp;
+    
+  </div>
+
+  <br />
+
+  <div id="divsuccess" class="fade-out col-xs-12">
+    <h3>Dados gravados com sucesso</h3>
+  </div>
+
+ 
+  <div style="
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: gray;
+      color: white;
+      text-align: center;">
+        <app-tab-bar></app-tab-bar>
+      </div>
+</div>

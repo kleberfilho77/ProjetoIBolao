@@ -1,0 +1,256 @@
+
+
+<div *ngIf="!mobile" class="form-row" style="padding-left: 5px;">
+  <img src="../assets/logobolao.png" width="200" height="112">&nbsp;
+  <div class="card-title-dadoscad" style="width:80%; padding-top: 40px;"><b><h2 style="font-family: fantasy;">Pagamento de bolão adquirido em casa lotérica</h2></b></div>
+</div>
+<ng-template #customLoadingTemplate></ng-template>
+<div class="divprinc col-md-12 form-row"  *ngIf="!mobile">
+    
+    <br />
+    <div class="col-md-6">
+      <h4>Resumo da Compra</h4>
+      <div class="col-md-12 form-row" style="padding-left: 0px;">
+      <div class="form-group col-md-7">
+        <label><b>Nome do cliente</b></label>
+        <input type="text" class="form-control" name="nomecliente" id="nomecliente" [(ngModel)]="ordempagamento.nomeCliente">
+      </div>
+      <div class="form-group col-md-5">
+        <label><b>Email do cliente</b></label>
+        <input type="text" class="form-control" name="emailcliente" id="emailcliente" [(ngModel)]="ordempagamento.emailCliente">
+      </div>
+
+      <div class="form-group col-md-7">
+        <label><b>Nome da Lotérica</b></label>
+        <input type="text" class="form-control" name="nomecliente" id="nomecliente" [(ngModel)]="ordempagamento.nomeLoterica">
+      </div>
+      <div class="form-group col-md-5">
+        <label><b>CNPJ da lotérica</b></label>
+        <input type="text" class="form-control" name="emailcliente" id="emailcliente" [(ngModel)]="ordempagamento.cnpjLoterica">
+      </div>
+      </div>
+
+
+      <textarea class="md-textarea form-control" id="story" name="story" rows="8" cols="80">
+      {{descricaocompra}}
+      </textarea>
+
+    </div>
+
+    <div class="col-md-6" style="padding-left: 30px;">
+  
+    <div class="form-row">
+      <div class="form-group col-md-10">
+        <label><b>Nome do titular do cartão</b></label>
+        <input type="text" class="form-control" name="nometit" id="nometit" [(ngModel)]="pagamento.titular" placeholder="Nome impresso no cartão">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label><b>Número do cartão</b></label>
+        <input type="text" class="form-control" name="numcard" id="numcard" onkeypress="$(this).mask('0000 0000 0000 0000');" [(ngModel)]="pagamento.numerocartao" placeholder="Número do cartão">
+      </div>
+      <div class="form-group col-md-6">
+        <label><b>Bandeira</b></label>
+        <select id="parcelas" name="parcelas" class="opcaobandeira form-control" [(ngModel)]="pagamento.bandeira" style="width: 165px;">
+              <option value="VISA">VISA</option>
+              <option value="ELO">ELO</option>
+              <option value="MASTERCARD">MASTERCARD</option>
+              <option value="3">VISA ELECTRON</option>
+              <option value="ELECTRON">MAESTRO</option>
+              <option value="AMEX">AMEX</option>
+              <option value="DISCOVER">DISCOVER</option>
+              <option value="DINERS">DINERS</option>
+        </select>
+      </div>
+      
+    </div>
+    <div class="form-row">
+
+            <div class="form-group col-md-6">
+              <label><b>Código de segurança (CVV / CSC)</b></label>
+              <input type="text" class="form-control" name="codseg" id="codseg" [(ngModel)]="pagamento.codseguranca" >
+            </div>
+        
+            <div class="form-group col-md-4">
+                <label><b>Validade</b></label>
+                <input type="text" placeholder="Ex: 10/23" class="form-control" name="validade" id="validade" [(ngModel)]="pagamento.validade" onkeypress="$(this).mask('00/00')">
+            </div>
+      
+    </div>
+
+    <div class="col-md-10" style="padding-left: 0px;">
+      <hr>
+
+      <label><b>Valor Total</b></label>
+      <input disabled class="form-control" name="valor" id="valor" [(ngModel)]="pagamento.valor">
+    </div>
+
+    <br />
+  
+    <div class="divbuttons3 col-md-10">
+      <button (click)="pagamentoApi();" class="btn btn-primary"><i class="fas fa-money-check-alt"></i> Pagar</button>&nbsp;
+    </div>
+
+    
+  </div>
+<div class="col-md-12" style=" text-align: center; padding-top: 20px;">
+ <span style="color: red; font-size: 24px;"><b>Informamos que a compra neste site irá constar na sua fatura como “PAGCOM”</b></span>
+</div>    
+      
+    <div class="col-md-12 form-row" style="padding-top: 0px;">
+
+      <div style="padding-right: 40px;"><img src="./assets/compra-segura.png" width="300px" height="152px"/></div>&nbsp;
+      <div style="padding-top: 62px; padding-right: 20px;"><img src="./assets/visa.png" width="80px" height="40px"/></div>
+      <div style="padding-top: 62px; padding-right: 20px;"><img src="./assets/velectron.png" width="80px" height="40px"/></div>
+      <div style="padding-top: 62px; padding-right: 20px;"><img src="./assets/master.png" width="80px" height="40px"/></div>
+      <div style="padding-top: 62px; padding-right: 20px;"><img src="./assets/maestro.png" width="80px" height="40px"/></div>
+      <div style="padding-top: 62px; padding-right: 20px;"><img src="./assets/elo.png" width="60px" height="40px"/></div>
+      <div style="padding-top: 62px; padding-right: 20px;"><img src="./assets/amex.png" width="80px" height="40px"/></div>
+      <div style="padding-top: 62px; padding-right: 20px;"><img src="./assets/dinners.png" width="80px" height="40px"/></div>
+      <div style="padding-top: 62px;"><img src="./assets/discover.png" width="120px" height="40px"/></div>
+
+    </div>
+  
+</div>
+  
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+
+
+
+<nav *ngIf="mobile" class="navbar navbar-expand-lg " style=" width: 100%;">
+  <img src="../assets/icontab.png" width="40" height="45" style="border-radius: 20%;">
+  <div style="text-align: center;">
+    <h4><b>Pagamento de bolão adquirido em casa lotérica</b></h4>
+  </div>
+</nav>
+
+
+  <div class="divprinc" *ngIf="mobile" style="padding-top: 100px;">
+    <br /> <br /> <br />
+    <div class="col-xs-6">
+      <h4>Resumo da Compra</h4>
+      <div class="form-group col-xs-6">
+        <label><b>Nome do Cliente</b></label>
+        <input type="text" class="form-control" name="nomecliente" id="nomecliente" [(ngModel)]="ordempagamento.nomeCliente">
+      </div>
+      <div class="form-group col-xs-5">
+        <label><b>Email do Cliente</b></label>
+        <input type="text" class="form-control" name="emailcliente" id="emailcliente" [(ngModel)]="ordempagamento.emailCliente">
+      </div>
+      <div class="form-group col-xs-7">
+        <label><b>Nome da Lotérica</b></label>
+        <input type="text" class="form-control" name="nomecliente" id="nomecliente" [(ngModel)]="ordempagamento.nomeLoterica">
+      </div>
+      <div class="form-group col-xs-5">
+        <label><b>CNPJ da Lotérica</b></label>
+        <input type="text" class="form-control" name="emailcliente" id="emailcliente" [(ngModel)]="ordempagamento.cnpjLoterica">
+      </div>
+      <br/>
+      <div class="form-group col-xs-12">
+        <textarea class="md-textarea form-control" id="story" name="story" rows="3" cols="30">
+            {{descricaocompra}}
+            </textarea>
+      </div>
+
+    </div>
+    <br/>
+    <div class="col-md-6" style="padding-left: 10px;">
+  
+    <div class="form-row">
+      <div class="form-group col-md-10">
+        <label><b>Nome do titular do cartão</b></label>
+        <input type="text" class="form-control" name="nometit" id="nometit" [(ngModel)]="pagamento.titular" placeholder="Nome impresso no cartão">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label><b>Número do cartão</b></label>
+        <input type="text" class="form-control" name="numcard" id="numcard" onkeypress="$(this).mask('0000 0000 0000 0000');" [(ngModel)]="pagamento.numerocartao" placeholder="Número do cartão">
+      </div>
+      <div class="form-group col-md-6">
+        <label><b>Bandeira</b></label>
+        <select id="parcelas" name="parcelas" class="opcaobandeira form-control" [(ngModel)]="pagamento.bandeira">
+              <option value="VISA">VISA</option>
+              <option value="ELO">ELO</option>
+              <option value="MASTERCARD">MASTERCARD</option>
+              <option value="3">VISA ELECTRON</option>
+              <option value="ELECTRON">MAESTRO</option>
+              <option value="AMEX">AMEX</option>
+              <option value="DISCOVER">DISCOVER</option>
+              <option value="DINERS">DINERS</option>
+        </select>
+      </div>
+      
+    </div>
+    <div class="form-row">
+
+            <div class="form-group col-md-6">
+              <label><b>Código de segurança (CVV / CSC)</b></label>
+              <input type="text" class="form-control" name="codseg" id="codseg" [(ngModel)]="pagamento.codseguranca" >
+            </div>
+        
+            <div class="form-group col-md-4">
+                <label><b>Validade</b></label>
+                <input type="text" placeholder="Ex: 10/23" class="form-control" name="validade" id="validade" onkeypress="$(this).mask('00/00')" [(ngModel)]="pagamento.validade" >
+            </div>
+      
+    </div>
+
+    <div class="col-md-10" style="padding-left: 0px;">
+      <hr>
+
+      <label><b>Valor Total</b></label>
+      <input disabled class="form-control" name="valor" id="valor" [(ngModel)]="pagamento.valor">
+    </div>
+
+    <br />
+  
+    <div class="divbuttons3 col-md-10">
+      <button (click)="pagamentoApi();" class="btn btn-primary"><i class="fas fa-money-check-alt"></i> Pagar</button>&nbsp;
+    </div>
+
+    
+  </div>
+  <br/>
+
+  <div class="col-md-12" style=" text-align: center; padding-top: 10px;">
+    <span style="color: red; font-size: 24px;"><b>Informamos que a compra neste site irá constar na sua fatura como “PAGCOM”</b></span>
+   </div>
+    
+      
+  <div class="col-xs-12" style="padding-left: 10px;">
+    <div class="col-xs-6" style="display: flex; justify-content: center;">
+      <img src="./assets/compra-segura.png" width="200px" height="102px" />
+    </div>
+    <div class="col-xs-6" style=" display: flex; justify-content: center;">
+      <div style="padding-top: 25px; padding-right: 20px;"><img src="./assets/visa.png" width="80px" height="40px" /></div>
+    </div>
+    <div class="col-xs-6" style="display: flex; justify-content: center;">
+      <div style="padding-top: 25px; padding-right: 20px;"><img src="./assets/velectron.png" width="80px" height="40px" />
+      </div>
+    </div>
+    <div class="col-xs-6" style="display: flex; justify-content: center;">
+      <div style="padding-top: 25px; padding-right: 20px;"><img src="./assets/master.png" width="80px" height="40px" />
+      </div>
+    </div>
+    <div class="col-xs-6" style="display: flex; justify-content: center;">
+      <div style="padding-top: 25px; padding-right: 20px;"><img src="./assets/maestro.png" width="80px" height="40px" />
+      </div>
+    </div>
+    <div class="col-xs-6" style="display: flex; justify-content: center;">
+      <div style="padding-top: 25px; padding-right: 20px;"><img src="./assets/elo.png" width="60px" height="50px" /></div>
+    </div>
+    <div class="col-xs-6" style="display: flex; justify-content: center;">
+      <div style="padding-top: 25px; padding-right: 20px;"><img src="./assets/amex.png" width="80px" height="40px" /></div>
+    </div>
+    <div class="col-xs-6" style="display: flex; justify-content: center;">
+      <div style="padding-top: 25px; padding-right: 20px;"><img src="./assets/dinners.png" width="80px" height="50px" />
+      </div>
+    </div>
+    <div class="col-xs-6" style="display: flex; justify-content: center;">
+      <div style="padding-top: 25px; margin-left:-20px;"><img src="./assets/discover.png" width="90px" height="25px" /></div>
+    </div>
+  </div>
+</div>

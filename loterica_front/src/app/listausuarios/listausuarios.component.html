@@ -1,0 +1,413 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>
+
+<div class="col-12 main-container">
+
+  <div *ngIf="!mobile" class="col-md-12 submain-container">
+
+    <app-nav-bar></app-nav-bar>
+
+    <div class="cardcategoria col-md-12">
+      <div class="form-row">
+
+        <div class="col-md-12">
+          <h4 class="card-title-categoria"><b>ÍNDICE</b></h4>
+        </div><br /><br />
+        <div>
+          <div class="divopcao form-group col-md-12">
+            <p><b>Escolha o tipo do usuario:</b></p>
+
+            <select id="modalidade" name="modalidade" class="form-control" [(ngModel)]="selectedValue">
+              <!-- <option value="0" selected></option> -->
+              <option value="1" selected>CLIENTES</option>
+              <option *ngIf="perfil != 'VENDEDOR'" value="2">VENDEDORES</option>
+              <option *ngIf="perfil != 'VENDEDOR'" value="3">ADMINISTRADORES</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedValue == null || selectedValue == 0" class="divresp0 card">
+
+    </div>
+
+    <div class="col-md-12">
+
+      <form>
+        <div *ngIf="selectedValue == 1" class="divresp1 card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <h4 class="card-title">CLIENTES</h4>
+          </div>
+
+          <br />
+
+
+          <div class="divtabextrato cardinterno">
+
+            <div class="form-row col-12" style="padding-bottom: 0px; margin-bottom: 0px;">
+              <div class=" form-row col-md-4">
+                <label><b>Busca por nome: </b></label>
+              </div>
+              <div class=" form-row col-md-1"></div>
+              <div class=" form-row col-md-4">
+                <label><b>Busca por cpf: </b></label>
+              </div>
+            </div>
+            <div class="form-group form-row col-md-12" > 
+              <div class="form-group form-row col-md-4"><input type="text" autocomplete="on" class="form-control" name="nomecliente" id="nomecliente" (input)="buscarNomeCliente();"></div>
+              <div class="form-group form-row col-md-1"></div>
+              <div class="form-group form-row col-md-3"><input type="text" autocomplete="on" class="form-control" onkeypress="$(this).mask('000.000.000-00');" name="cpfcliente" id="cpfcliente" (input)="buscarCpfCliente();"></div>
+ 
+              <div class="col-2" style="justify-content: center; display: flex;"><button (click)="refresh();" class="btn btn-primary" style="height: 40px;"><i class="fas fa-sync-alt"></i>&nbsp;Limpar filtro</button></div>
+              <div class="col-2"></div>
+            </div>
+
+            <div class="form-row">
+
+              <table class="table table-hover">
+                <thead class="text-warning" style="text-align: center;">
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Email</th>
+                  <th>Telefone</th>
+                  <th>Vendedor</th>
+                  <th>Ver/Editar</th>
+                </thead>
+                
+                <tbody style="text-align: center;">
+                  <tr *ngFor="let item of clientes; index as i">
+                    <td>{{item[0]}}</td>
+                    <td>{{item[1]}}</td>
+                    <td>{{item[2]}}</td>
+                    <td>{{item[3]}}</td>
+                    <td>{{item[4]}}</td>
+                    <td><button (click)="detalhes(item[5],i)"><i class="fas fa-eye"></i></button></td>
+                  </tr>
+                </tbody>
+                
+              </table>
+            </div>
+
+          </div>
+          <br />
+        </div>
+
+        <div *ngIf="selectedValue == 2 && perfil != 'VENDEDOR'" class="divresp2 card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <h4 class="card-title">VENDEDORES</h4>
+          </div>
+
+          <br />
+
+
+          <div class="divtabextrato cardinterno">
+
+            <div class="form-row col-12" style="padding-bottom: 0px; margin-bottom: 0px;">
+              <div class=" form-row col-md-4">
+                <label><b>Busca por nome: </b></label>
+              </div>
+              <div class="form-row col-md-1"></div>
+              <div class="form-row col-md-4">
+                <label><b>Busca por cpf: </b></label>
+              </div>
+            </div>
+            <div class="form-group form-row col-md-12" > 
+              <div class="form-group form-row col-md-4"><input type="text" autocomplete="on" class="form-control" name="nomevendedor" id="nomevendedor" (input)="buscarNomeVendedor();"></div>
+              <div class="form-group form-row col-md-1"></div>
+              <div class="form-group form-row col-md-3"><input type="text" autocomplete="on" class="form-control" onkeypress="$(this).mask('000.000.000-00');" name="cpfvendedor" id="cpfvendedor" (input)="buscarCpfVendedor();"></div>
+ 
+              <div class="col-2" style="justify-content: center; display: flex;"><button (click)="refresh();" class="btn btn-primary" style="height: 40px;"><i class="fas fa-sync-alt"></i>&nbsp;Limpar filtro</button></div>
+              <div class="col-2"></div>
+            </div>
+
+
+            <div class="form-row">
+
+              <table class="table table-hover">
+                <thead class="text-warning" style="text-align: center;">
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Email</th>
+                  <th>Telefone</th>
+                  <th>Ver/Editar</th>
+                </thead>
+                <tbody style="text-align: center;">
+                  <tr *ngFor="let item of vendedores">
+                    <td>{{item.nome}}</td>
+                    <td>{{item.cpf}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.contato1}}</td>
+                    <td><button (click)="detalhesvend(item.id)"><i class="fas fa-eye"></i></button></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+
+          <br />
+        </div>
+        <div *ngIf="selectedValue == 3 && perfil != 'VENDEDOR'" class="divresp3 card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <h4 class="card-title">ADMINISTRADORES</h4>
+          </div>
+
+          <br />
+
+          <div class="divtabextrato cardinterno">
+
+            <div class="form-row col-12" style="padding-bottom: 0px; margin-bottom: 0px;">
+              <div class=" form-row col-md-4">
+                <label><b>Busca por nome: </b></label>
+              </div>
+              <div class=" form-row col-md-1"></div>
+              <div class=" form-row col-md-4">
+                <label><b>Busca por cpf: </b></label>
+              </div>
+            </div>
+            <div class="form-group form-row col-md-12" > 
+              <div class="form-group form-row col-md-4"><input type="text" autocomplete="on" class="form-control" name="nomeadministrador" id="nomeadministrador" (input)="buscarNomeAdministrador();"></div>
+              <div class="form-group form-row col-md-1"></div>
+              <div class="form-group form-row col-md-3"><input type="text" autocomplete="on" class="form-control" onkeypress="$(this).mask('000.000.000-00');" name="cpfadministrador" id="cpfadministrador" (input)="buscarCpfAdministrador();"></div>
+ 
+              <div class="col-2" style="justify-content: center; display: flex;"><button (click)="refresh();" class="btn btn-primary" style="height: 40px;"><i class="fas fa-sync-alt"></i>&nbsp;Limpar filtro</button></div>
+              <div class="col-2"></div>
+            </div>
+
+            <div class="form-row">
+
+              <table class="table table-hover">
+                <thead class="text-warning" style="text-align: center;">
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Email</th>
+                  <th>Telefone</th>
+                  <th>Telefone (2ª opção)</th>
+                  <th>Ver/Editar</th>
+                </thead>
+                <tbody style="text-align: center;">
+                  <tr *ngFor="let item of administradores">
+                    <td>{{item.nome}}</td>
+                    <td>{{item.cpf}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.contato1}}</td>
+                    <td>{{item.contato2}}</td>
+                    <td><button (click)="detalhesadmin(item.id)"><i class="fas fa-eye"></i></button></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <br />
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <div>
+    <div *ngIf="mobile">
+
+      <div class="divtitulo">
+        <h4 class="card-title">ÍNDICE DE USUÁRIOS</h4>
+      </div>
+
+      <div class="row col-12 submain-container">
+
+        <div *ngIf="(nave == 'true')">
+          <app-nav-bar></app-nav-bar>
+        </div>
+
+
+        <div class="cardcategoria col-12">
+          <div>
+            <div>
+              <div class="divopcao form-group col-12">
+                <p><b>Escolha o tipo do usuario:</b></p>
+
+                <select id="modalidade" name="modalidade" class="form-control" [(ngModel)]="selectedValue">
+                  <!-- <option value="0" selected></option> -->
+                  <option value="1" selected>CLIENTES</option>
+                  <option *ngIf="perfil != 'VENDEDOR'" value="2">VENDEDORES</option>
+                  <option *ngIf="perfil != 'VENDEDOR'" value="3">ADMINISTRADORES</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="selectedValue == null || selectedValue == 0" class="divresp0 card">
+
+        </div>
+
+        <form>
+
+
+          <div *ngIf="selectedValue == 1" class="card" style="margin-left: 20px;">
+
+            
+              <div class="form-group col-12">
+                <label><b>Busca por nome: </b></label>
+              </div>
+
+              <div class="form-group col-12"><input type="text" autocomplete="on" class="form-control" name="nomecliente" id="nomecliente" (input)="buscarNomeCliente();"></div>
+              
+              <div class="form-group col-12">
+                <label><b>Busca por cpf: </b></label>
+              </div>
+            
+              <div class="form-group col-12"><input type="text" autocomplete="on" class="form-control" onkeypress="$(this).mask('000.000.000-00');" name="cpfcliente" id="cpfcliente" (input)="buscarCpfCliente();"></div>
+              
+              <div class="col-12" style="justify-content: center; display: flex;"><button (click)="refresh();" class="btn btn-primary" style="height: 40px;"><i class="fas fa-sync-alt"></i></button></div>
+              <br/>
+            
+
+            <div class="form-row"
+              style="display: flex; justify-content: center; overflow: scroll; width:300px; ">
+              <div style="text-align: center;">
+                <p style="color: red;">Arraste para o lado para poder ver toda a tabela</p>
+              </div>
+
+              <table class="table table-hover" style="display: block;max-width: auto; overflow: scroll;">
+                <thead class="text-warning" style="text-align: center;">
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Email</th>
+                  <th>Telefone</th>
+                  <th>Vendedor</th>
+                  <th>Ver/Editar</th>
+                </thead>
+                <tbody style="text-align: center;">
+                  <tr *ngFor="let item of clientes; index as i">
+                    <td>{{item[0]}}</td>
+                    <td>{{item[1]}}</td>
+                    <td>{{item[2]}}</td>
+                    <td>{{item[3]}}</td>
+                    <td>{{item[4]}}</td>
+                    <td><button (click)="detalhes(item[5],i)"><i class="fas fa-eye"></i></button></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <br />
+          </div>
+          <div *ngIf="selectedValue == 2 && perfil != 'VENDEDOR'" class="divresp2 card" style="margin-left: 20px;">
+
+            <div class="form-group col-12">
+              <label><b>Busca por nome: </b></label>
+            </div>
+
+            <div class="form-group col-12"><input type="text" autocomplete="on" class="form-control" name="nomevendedor" id="nomevendedor" (input)="buscarNomeVendedor();"></div>
+            
+            <div class="form-group col-12">
+              <label><b>Busca por cpf: </b></label>
+            </div>
+          
+            <div class="form-group col-12"><input type="text" autocomplete="on" class="form-control" onkeypress="$(this).mask('000.000.000-00');" name="cpfvendedor" id="cpfvendedor" (input)="buscarCpfVendedor();"></div>
+            
+            <div class="col-12" style="justify-content: center; display: flex;"><button (click)="refresh();" class="btn btn-primary" style="height: 40px;"><i class="fas fa-sync-alt"></i></button></div>
+            <br/>
+
+            <div class="form-row"
+              style="display: flex; justify-content: center; overflow: scroll; width:300px; padding-left: 20px;">
+              <div style="text-align: center;">
+                <p style="color: red;">Arraste para o lado para poder ver toda a tabela</p>
+              </div>
+              <table class="table table-hover" style="display: block;max-width: auto; overflow: scroll;">
+                <thead class="text-warning" style="text-align: center;">
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Email</th>
+                  <th>Telefone</th>
+                  <th>Ver/Editar</th>
+                </thead>
+                <tbody style="text-align: center;">
+                  <tr *ngFor="let item of vendedores">
+                    <td>{{item.nome}}</td>
+                    <td>{{item.cpf}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.contato1}}</td>
+                    <td><button (click)="detalhesvend(item.id)"><i class="fas fa-eye"></i></button></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <br />
+          </div>
+          <div *ngIf="selectedValue == 3 && perfil != 'VENDEDOR'" class="divresp3 card" style="margin-left: 20px;">
+
+
+            <div class="form-group col-12">
+              <label><b>Busca por nome: </b></label>
+            </div>
+
+            <div class="form-group col-12"><input type="text" autocomplete="on" class="form-control" name="nomeadministrador" id="nomeadministrador" (input)="buscarNomeAdministrador();"></div>
+            
+            <div class="form-group col-12">
+              <label><b>Busca por cpf: </b></label>
+            </div>
+          
+            <div class="form-group col-12"><input type="text" autocomplete="on" class="form-control" onkeypress="$(this).mask('000.000.000-00');" name="cpfadministrador" id="cpfadministrador" (input)="buscarCpfAdministrador();"></div>
+            
+            <div class="col-12" style="justify-content: center; display: flex;"><button (click)="refresh();" class="btn btn-primary" style="height: 40px;"><i class="fas fa-sync-alt"></i></button></div>
+            <br/>
+
+            <div class="form-row"
+              style="display: flex; justify-content: center; overflow: scroll; width:300px; padding-left: 20px;">
+              <div style="text-align: center;">
+                <p style="color: red;">Arraste para o lado para poder ver toda a tabela</p>
+              </div>
+              <table class="table table-hover" style="display: block;max-width: auto; overflow: scroll;">
+                <thead class="text-warning" style="text-align: center;">
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Email</th>
+                  <th>Telefone</th>
+                  <th>Telefone (2ª opção)</th>
+                  <th>Ver/Editar</th>
+                </thead>
+                <tbody style="text-align: center;">
+                  <tr *ngFor="let item of administradores">
+                    <td>{{item.nome}}</td>
+                    <td>{{item.cpf}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.contato1}}</td>
+                    <td>{{item.contato2}}</td>
+                    <td><button (click)="detalhesadmin(item.id)"><i class="fas fa-eye"></i></button></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <br />
+          </div>
+
+
+
+          <br /><br />
+
+          
+        </form>
+      </div>
+      <div style="
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: gray;
+                color: white;
+                text-align: center;">
+            <app-tab-bar></app-tab-bar>
+          </div>
+    </div>
+  </div>
+</div>

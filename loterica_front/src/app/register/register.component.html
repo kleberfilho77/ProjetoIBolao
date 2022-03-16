@@ -1,0 +1,54 @@
+
+<div class="container col-12">
+  <div class="col-md-6 mx-auto text-center">
+     <div class="header-title" >
+        <h1 class="wv-heading--title">
+          
+          <!-- <img src="../assets/logobolao.png" width="200" height="120"> -->
+          <br/>Cadastre-se<br/><br/>
+        </h1>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-4 mx-auto">
+        <div class="myform form ">
+           <form action="" method="post" name="login">
+              <div class="form-group">
+                 <input type="email" name='email' [(ngModel)]='usuario.email' id='login'  class="form-control my-input" placeholder="Insira o e-mail">
+              </div>
+              <div class="form-group">
+                 <input type="password" name='senha' [(ngModel)]='usuario.password' id='senha'  class="form-control my-input" placeholder="Cadastre uma senha">
+              </div>
+              <div class="input-group form-group form-row" style="padding-left: 5px;" >
+                 <div><input type="checkbox" (change)="showpass();"/></div>
+                 <div>&nbsp; Mostrar senha</div>
+              </div>
+            <hr>
+              <div class="form-group form-row">
+               <input type="password" name='senharepetida' id='senharepetida' (input)="verificar();" class="form-control my-input" placeholder="Repita a senha" style="width: 450px; margin-left: 5px; z-index: 998; text-indent: 20px;"><label class="showInputField1" id="showInputField1" style="color:white; display: none; position:absolute; z-index: 999; padding-top: 5px;">&nbsp;✔️</label><label class="showInputField2" id="showInputField2" style="color:white; display: none; position: absolute; z-index: 999; padding-top: 5px;">&nbsp;❌</label>
+            </div>
+            <div class="form-check">
+               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" checked="true"
+                />
+               <label class="form-check-label">
+                 Declaro que li e concordo com os <a target="blank" href="https://api.ibolao.com.br/#/termosuso"> termos de uso</a> e <a target="blank" href="https://api.ibolao.com.br/#/politica">política de privacidade</a> do iBOLÃO.
+               </label>
+             </div><br/>
+              <div class="text-center ">
+                 <button (click)='registrar();' class=" btn btn-block send-button tx-tfm">Cadastrar &nbsp; <i class="fas fa-check"></i></button>
+              </div>
+              <div class="col-md-12 ">
+                 <div class="login-or">
+                    <hr class="hr-or">
+                    <span class="span-or">ou</span>
+                 </div>
+              </div>
+              <div class="login-link">
+              <p class="medium mt-3"><b>Já é cadastrado? </b> <a routerLink="/login">Faça o login!</a></p>
+            </div>
+           </form>
+        </div>
+     </div>
+  </div>
+  <div class="background-image"></div>
+</div>

@@ -1,0 +1,178 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div> 
+
+<div class="col-12 main-container">
+
+    <div *ngIf="!mobile" class="row col-12 submain-container">
+
+      <app-nav-bar></app-nav-bar>
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <h4 class="card-title">INCLUSÃO DE USUÁRIO</h4>
+          </div>
+    
+          <br/><br/>
+          <form name="form1">
+            <div class="cardcategoria">
+              <div class="form-row">
+               
+                <div class="col-md-12"><h4 class="card-title-categoria"><b>Categoria</b></h4></div><br/><br/>
+                <div class="form-row">  
+                  <div class="divopcao form-group col-md-3">
+                      <label><b>Escolha o tipo do usuario:</b></label>
+                      
+                        <select id="modalidade" name="modalidade" class="form-control" [(ngModel)]="selectedValue">
+                        <option value="0" selected></option>
+                        <option value="1">UNID. LOTÉRICA</option>
+                        <option value="2">EQUIPE</option>
+                        <option value="3">CLIENTE FINAL</option>
+                      </select>
+                  </div>
+                  <div *ngIf="selectedValue == 2 || selectedValue == 4 || selectedValue == 5" class="form-group col-md-3">
+                    <label><b>Perfil:</b></label>
+                    <select id="modalidade2" name="modalidade2" class="form-control" [(ngModel)]="selectedValue2">
+                      <option value="4">ADMINISTRADOR</option>
+                      <option value="5">VENDEDOR</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br/> 
+              <div *ngIf="selectedValue == null || selectedValue == 0" class="divresp0 card">
+          
+              </div>
+  
+          <div *ngIf="selectedValue == 1" class="divresp1 card">
+            <app-usuariounidadeloterica></app-usuariounidadeloterica>
+             
+  
+          </div>
+  
+          <div *ngIf="selectedValue2 == 4 && selectedValue == 2" class="divresp2 card">
+            <app-usuarioequipeadmin></app-usuarioequipeadmin>
+            
+          </div>  
+
+          <div *ngIf="selectedValue2 == 5 && selectedValue == 2" class="divresp2 card">
+            <app-usuarioequipevendedor></app-usuarioequipevendedor>
+            
+          </div>
+  
+          <div *ngIf="selectedValue == 3" class="divresp3 card">
+            <app-usuarioclientefinal></app-usuarioclientefinal>
+            
+  
+          </div>  
+  
+            <br/>
+            
+            </form> 
+
+
+        </div>
+      </div>      
+        
+    
+    </div>
+
+<div  *ngIf="mobile">
+
+  <div class="divtitulo">
+    <h4 class="card-title">INCLUSÃO DE USUÁRIO</h4>
+  </div>
+
+    <div class="row col-12 submain-container">
+
+      <div *ngIf="(nave == 'true')"><app-nav-bar></app-nav-bar></div>
+
+      <div class="col-md-12">
+        <div class="card">
+    
+          <form>
+            <div class="cardcategoria" style="padding-top: 0; margin-top: 0;">
+              <div class="form-row">
+                <div class="divbar1 col-md-12"><h4 class="card-title-categoria" style="background-color: transparent;"><b>Categoria</b></h4></div>
+               
+                <div class="col-md-4"></div>
+                <div class="form-row col-md-4">  
+                  <div class="divopcao form-group col-md-3">
+                      <label><b>Escolha o tipo do usuario:</b></label><br/>
+                      
+                        <select id="modalidade" name="modalidade"  class="form-control" [(ngModel)]="selectedValue" style="max-width: auto;">
+                        <option selected value="0"></option>
+                        <option value="1">UNID. LOTÉRICA</option>
+                        <option value="2">EQUIPE</option>
+                        <option value="3">CLIENTE FINAL</option>
+                      </select>
+                  </div>
+                  <div *ngIf="selectedValue == 2 || selectedValue == 4 || selectedValue == 5" class="form-group col-md-3" style="padding-left: 0;">
+                    <label><b>Perfil:</b></label>
+                    <select id="modalidade2" name="modalidade2" class="form-control" style="max-width: auto; width: 100%;" [(ngModel)]="selectedValue2">
+                      <option value="4">ADMINISTRADOR</option>
+                      <option value="5">VENDEDOR</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+            </div>
+              <div *ngIf="selectedValue == null || selectedValue == 0" class="divresp0 card">
+          
+              </div>
+  
+          <div *ngIf="selectedValue == 1" class="divresp1 card">
+            <app-usuariounidadeloterica></app-usuariounidadeloterica>
+            
+  
+          </div>
+  
+          <div *ngIf="selectedValue2 == 4 && selectedValue == 2" class="divresp2 card">
+            <app-usuarioequipeadmin></app-usuarioequipeadmin>
+             
+          </div>  
+
+          <div *ngIf="selectedValue2 == 5 && selectedValue == 2" class="divresp2 card">
+            <app-usuarioequipevendedor></app-usuarioequipevendedor>
+            
+          </div>
+  
+          <div *ngIf="selectedValue == 3" class="divresp3 card">
+            <app-usuarioclientefinal></app-usuarioclientefinal>
+            
+  
+          </div>  
+  
+            
+              <div style="padding-bottom: 100px;"></div>
+              <br/>
+            </form>
+
+        </div>
+        
+      </div> 
+        
+
+      <div style="
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: gray;
+      color: white;
+      text-align: center;"><app-tab-bar></app-tab-bar> 
+      </div>  
+
+
+    </div>
+    </div>
+    
+    </div>

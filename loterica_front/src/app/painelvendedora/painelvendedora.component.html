@@ -1,0 +1,1498 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>
+
+<div class="col-12 main-container">
+
+  <div *ngIf="!mobile" class="row col-12 submain-container">
+
+    <div *ngIf="this.habilita != 'SIM'" class="col-3 wrapper">
+
+      <nav id="sidebar" style="overflow-y: auto;">
+        <div class="sidebar-header">
+          <img src="../assets/logobolao.png" width="200" height="112">
+        </div>
+
+        <ul class="list-unstyled components">
+          <li>
+            <a class="ahome" (click)="home();">Home</a>
+          </li>
+          <hr>
+          <li>
+            <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle apaciente"
+              href="#pageSubmenucliente">Cadastro</a>
+            <ul class="collapse list-unstyled" id="pageSubmenucliente">
+              <li><a (click)="cadastrousuario();">&nbsp;&nbsp;Cadastrar Usuários</a></li>
+              <!-- <li><a (click)="cadastrocombo();">&nbsp;&nbsp;Cadastrar Combo</a></li> -->
+              <li><a (click)="cadbolaovend();">&nbsp;&nbsp;Cadastrar Bolão</a></li>
+            </ul>
+            <hr>
+          </li>
+          <li>
+            <a class="atransfcotas">Venda</a>
+          </li>
+          <hr>
+          <li>
+            <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle amedico"
+              href="#pageSubmenuvendedora">Financeiro</a>
+            <ul class="collapse list-unstyled" id="pageSubmenuvendedora">
+              <li><a (click)="extratovendedora();">&nbsp;&nbsp;Prestação de Contas</a></li> 
+              <li><a (click)="areceber();">&nbsp;&nbsp;A Receber</a></li>
+              <li *ngIf="perfil == 'ADMINISTRADOR'"><a (click)="prestacontas();">&nbsp;&nbsp;Extrato</a></li>
+            </ul>
+          </li>
+          <hr>
+          <li>
+            <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle amedico"
+              href="#pageSubmenuextratos">Relatório</a>
+            <ul class="collapse list-unstyled" id="pageSubmenuextratos">
+              <li><a (click)="listausuarios();">&nbsp;&nbsp;Usuários</a></li>
+              <li><a (click)="listaboloes();">&nbsp;&nbsp;Bolões</a></li>
+              <li><a (click)="listacombos();">&nbsp;&nbsp;Combos</a></li>
+              <li *ngIf="perfil == 'VENDEDOR'"><a (click)="listacotas();">&nbsp;&nbsp;Cotas</a></li>
+              <li><a (click)="listametas();">&nbsp;&nbsp;Metas</a></li>
+            </ul>
+          </li>
+          <hr>
+          <li>
+            <a class="atransfcotas" (click)="tutorial();">Tutorial</a>
+          </li>
+          <hr>
+          <li>
+            <a class="atransfcotas" (click)="templates();">Templates</a>
+          </li>
+          <hr>
+          <div style=" padding-top: -5px;">
+            <a id="btlogout" (click)="logout();" class="btn btn-sm btn-outline-light mr-2">
+              Logout <i class="fas fa-sign-out-alt"></i>
+            </a>
+          </div>
+        </ul>
+        <div style=" padding-top: -5px; text-align: center;">
+          <label><b>Perfil: {{this.perfil}}</b></label>
+        </div>
+
+      </nav>
+
+    </div>
+    <div *ngIf="this.habilita == 'SIM'" class="col-3 wrapper">
+
+      <nav id="sidebar" style="overflow-y: auto;">
+        <div class="sidebar-header">
+          <img src="../assets/logobolao.png" width="200" height="112">
+        </div>
+
+        <ul class="list-unstyled components" style="display: none;">
+          <li>
+            <a class="ahome" (click)="home();">Home</a>
+          </li>
+          <hr>
+          <li>
+            <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle apaciente"
+              href="#pageSubmenucliente">Cadastro</a>
+            <ul class="collapse list-unstyled" id="pageSubmenucliente">
+              <li><a (click)="cadastrousuario();">&nbsp;&nbsp;Cadastrar Usuários</a></li>
+              <!-- <li><a (click)="cadastrocombo();">&nbsp;&nbsp;Cadastrar Combo</a></li> -->
+              <li><a (click)="cadbolaovend();">&nbsp;&nbsp;Cadastrar Bolão</a></li>
+            </ul>
+            <hr>
+          </li>
+          <li>
+            <a class="atransfcotas">Venda</a>
+          </li>
+          <hr>
+          <li>
+            <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle amedico"
+              href="#pageSubmenuvendedora">Financeiro</a>
+            <ul class="collapse list-unstyled" id="pageSubmenuvendedora">
+              <li><a (click)="extratovendedora();">&nbsp;&nbsp;Prestação de Contas</a></li> 
+              <li><a (click)="areceber();">&nbsp;&nbsp;A Receber</a></li>
+              <li *ngIf="perfil == 'ADMINISTRADOR'"><a (click)="prestacontas();">&nbsp;&nbsp;Extrato</a></li>
+            </ul>
+          </li>
+          <hr>
+          <li>
+            <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle amedico"
+              href="#pageSubmenuextratos">Relatório</a>
+            <ul class="collapse list-unstyled" id="pageSubmenuextratos">
+              <li><a (click)="listausuarios();">&nbsp;&nbsp;Usuários</a></li>
+              <li><a (click)="listaboloes();">&nbsp;&nbsp;Bolões</a></li>
+              <li><a (click)="listacombos();">&nbsp;&nbsp;Combos</a></li>
+              <li *ngIf="perfil == 'VENDEDOR'"><a (click)="listacotas();">&nbsp;&nbsp;Cotas</a></li>
+              <li><a (click)="listametas();">&nbsp;&nbsp;Metas</a></li>
+            </ul>
+          </li>
+          <hr>
+          <li>
+            <a class="atransfcotas" (click)="tutorial();">Tutorial</a>
+          </li>
+          <hr>
+          <li>
+            <a class="atransfcotas" (click)="templates();">Templates</a>
+          </li>
+          <hr>
+          <div style=" padding-top: -5px;">
+            <a id="btlogout" (click)="logout();" class="btn btn-sm btn-outline-light mr-2">
+              Logout <i class="fas fa-sign-out-alt"></i>
+            </a>
+          </div>
+        </ul>
+        <div style=" padding-top: -5px; text-align: center;">
+          <button (click)="voltarmenuinicial();" class="btn btn-primary"><i class="fas fa-home"></i> Voltar ao menu inicial</button>
+        </div>
+
+      </nav>
+
+    </div>
+
+
+    <div id="abc" class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-tabs card-header-primary">
+          <h4 class="card-title">Venda no Balcão</h4>
+        </div>
+
+        <form autocomplete="off">
+          <div class="divmodalidade card">
+
+            <div class="card">
+              <div class="form-row">
+
+                <div class="divbar1 col-md-12">
+                  <h4 class="titmodalidade" style="background-color: transparent;"><b>Escolha a modalidade</b>
+                  </h4>
+                </div>
+
+                <div class="divbuttons col-md-12 form-row" style="padding-top: 10px;">
+                  <div class="form-group col-md-1"></div>
+                  <div class="form-group col-md-2">
+
+                    <button (click)="addLfac();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#912690; border: 0px;">
+                      <b>LOTOFÁCIL</b> <label class="showInputField7" id="showInputField7"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+                    <button (click)="addMega();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#00AB69; border: 0px;">
+                      <b>MEGA - SENA</b><label class="showInputField1" id="showInputField1"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+                    <button (click)="addQuin();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#015EA1; border: 0px;">
+                      <b> QUINA </b><label class="showInputField2" id="showInputField2"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+                  </div>
+                  <div class="form-group col-md-1"></div>
+                </div>
+                <br /><br /><br />
+                <div class="divbuttons col-md-12 form-row">
+                  <div class="form-group col-md-1"></div>
+                  <div class="form-group col-md-2">
+                    <button (click)="addDupl();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#A52E54; border: 0px;">
+                      <b> DUPLA SENA </b><label class="showInputField4" id="showInputField4"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+                    <button (click)="addLtma();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#ec7e00; border: 0px;">
+                      <b>LOTOMANIA </b><label class="showInputField3" id="showInputField8"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+
+                    <button (click)="addTime();" class="btn btn-primary" id="time"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#FFDB30; border: 0px; color:green">
+                      <b>TIMEMANIA </b><label class="showInputField10" id="showInputField10"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+                  </div>
+                  <div class="form-group col-md-1"></div>
+                </div>
+                <br /><br /><br />
+                <div class="divbuttons col-md-12 form-row">
+                  <div class="form-group col-md-1"></div>
+                  <div class="form-group col-md-2">
+
+                    <button (click)="addDias();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#FFAD44; border: 0px;"><b>DIA
+                        SORTE</b>
+                      <label class="showInputField5" id="showInputField5"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+
+
+                    <button (click)="addSup7();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#ACCE76;; border: 0px;">
+                      <b> SUPER7 </b><label class="showInputField11" id="showInputField11"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+
+                    <button (click)="addLote();" class="btn btn-primary" id="ltma"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#EC2230; border: 0px;">
+                      <b> LOTECA </b><label class="showInputField8" id="showInputField3"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+
+                  </div>
+                  <div class="form-group col-md-1"></div>
+                </div>
+                <br /><br /><br />
+                <div class="divbuttons col-md-12 form-row">
+                  <div class="form-group col-md-1"></div>
+                  <div class="form-group col-md-2">
+                    <button (click)="addCombo();" class="btn btn-primary" id="lgol"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#0084A4; border: 0px;">
+                      COMBO <label class="showInputField9" id="showInputField9"
+                        style="color:white; display: none;">✓</label></button>
+                    <!-- <button (click)="addTime();" class="btn btn-primary" id="time" style="text-align: center; width:200px; height:80px; margin:auto; background-color:#FFF100; border: 0px;"> TIME</button><label class="showInputField10"></label> -->
+                  </div>
+                  <div class="form-group col-md-2">
+
+                  </div>
+                  <div class="form-group col-md-2">
+
+                    <button (click)="addBilh();" class="btn btn-primary"
+                      style="text-align: center; width:200px; height:80px; margin:auto; background-color:#6dcae4; border: 0px;">
+                      <b>FEDERAL </b><label class="showInputField6" id="showInputField6"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+                  </div>
+                  <div class="form-group col-md-2"></div>
+                  <div class="form-group col-md-2">
+
+
+                  </div>
+                  <div class="form-group col-md-1"></div>
+                </div>
+                <br /><br /><br />
+              </div>
+
+            </div>
+
+            <!-- <div class="form-row">
+
+              <div class="divtitmodalidade col-md-12">
+                <h4 class="titmodalidade card-title"><b>Escolha a modalidade</b></h4>
+              </div>
+
+              <div class="divbuttons col-md-12 form-row" style="padding-top: 10px;">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addMega();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#00AB69; border: 0px;">
+                    <b>MEGA - SENA</b><label class="showInputField1" id="showInputField1"
+                      style="color:white; display: none;">✓</label></button>
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addLfac();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#912690; border: 0px;">
+                    <b>LOTOFÁCIL</b> <label class="showInputField7" id="showInputField7"
+                      style="color:white; display: none;">✓</label></button>
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addQuin();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#015EA1; border: 0px;">
+                    <b> QUINA </b><label class="showInputField2" id="showInputField2"
+                      style="color:white; display: none;">✓</label></button>
+
+                </div>
+                <div class="form-group col-md-1"></div>
+              </div>
+              <br /><br /><br />
+              <div class="divbuttons col-md-12 form-row">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addDupl();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#A52E54; border: 0px;">
+                    <b> DUPLA SENA </b><label class="showInputField4" id="showInputField4"
+                      style="color:white; display: none;">✓</label></button>
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addDias();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#FFAD44; border: 0px;"><b>DIA
+                      SORTE</b>
+                    <label class="showInputField5" id="showInputField5"
+                      style="color:white; display: none;">✓</label></button>
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+
+                  <button (click)="addSup7();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#ACCE76;; border: 0px;">
+                    <b> SUPER7 </b><label class="showInputField11" id="showInputField11"
+                      style="color:white; display: none;">✓</label></button>
+
+                </div>
+                <div class="form-group col-md-1"></div>
+              </div>
+              <br /><br /><br />
+              <div class="divbuttons col-md-12 form-row">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+
+                  <button (click)="addTime();" class="btn btn-primary" id="time"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#FFDB30; border: 0px; color:green">
+                    <b>TIMEMANIA </b><label class="showInputField10" id="showInputField10"
+                      style="color:white; display: none;">✓</label></button>
+
+
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+
+
+
+
+                  <button (click)="addLtma();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#ec7e00; border: 0px;">
+                    <b>LOTOMANIA </b><label class="showInputField3" id="showInputField8"
+                      style="color:white; display: none;">✓</label></button>
+
+
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addBilh();" class="btn btn-primary"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#6dcae4; border: 0px;">
+                    <b>FEDERAL </b><label class="showInputField6" id="showInputField6"
+                      style="color:white; display: none;">✓</label></button>
+
+                </div>
+                <div class="form-group col-md-1"></div>
+              </div>
+              <br /><br /><br />
+              <div class="divbuttons col-md-12 form-row">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addLote();" class="btn btn-primary" id="ltma"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#EC2230; border: 0px;">
+                    <b> LOTECA </b><label class="showInputField8" id="showInputField3"
+                      style="color:white; display: none;">✓</label></button>
+                </div>
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-2">
+                  <button (click)="addCombo();" class="btn btn-primary" id="lgol"
+                    style="text-align: center; width:200px; height:80px; margin:auto; background-color:#0084A4; border: 0px;">
+                    COMBO <label class="showInputField9" id="showInputField9"
+                      style="color:white; display: none;">✓</label></button>
+
+                </div>
+                <div class="form-group col-md-1"></div>
+              </div>
+              <br /><br /><br />
+            </div> -->
+          </div>
+          <br />
+          <div id="resumotable" class="resumoCombo col-md-12">
+
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Bolão</th>
+                  <th scope="col">Cotas</th>
+                  <th scope="col">Valor Cota(R$)</th>
+                  <th scope="col">SubTotal(R$)</th>
+                  <th scope="col">Cotas restantes</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <!-- <tr *ngFor="let item of boloesVendedorMega; index as i">
+                  <td style=" padding-left:80px;">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                      (change)="addCarrinho(item,this.listanumMega[i])" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item[0]}}&nbsp;-&nbsp;{{item[1]}}
+                    </label>
+                  </td>
+                  <td><input type="number" class="form-control" name="qtdcotasmega" id="qtdcotasmega"
+                      style="width:80px;" (change)="calculaMega(item[2],i);" [(ngModel)]="this.listanumMega[i]"></td>
+                  <td>{{visualizaValor(item[2])}}</td>
+                  <td>{{visualizaValor(valorsubMega[i])}}</td>
+                  <td>{{item[3]}}</td>
+                </tr> -->
+
+                <tr *ngFor="let item of boloesVendedorMega; index as i">
+                  <td style=" padding-left:80px;">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                      (change)="addCarrinho(item,this.listanumMega[i],'qtdcotasmega',i)" />
+
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                    </label>
+                  </td>
+                  <td><input type="number" class="form-control" name="qtdcotasmega" id="qtdcotasmega_{{i}}" disabled
+                      style="width:80px;" (change)="calculaMega(item[2],i);" [(ngModel)]="this.listanumMega[i]"></td>
+                  <td>{{visualizaValor(item[2])}}</td>
+                  <td>{{visualizaValor(valorsubMega[i])}}</td>
+                  <td>{{item[3]}}</td>
+                </tr>
+
+
+                <tr *ngFor="let item of boloesVendedorQuina; index as i">
+                  <td style=" padding-left:80px;">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                      (change)="addCarrinho(item,this.listanumQuina[i],'qtdcotasquina',i)" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                    </label>
+                  </td>
+                  <td><input type="number" class="form-control" name="qtdcotasquina" id="qtdcotasquina_{{i}}" disabled
+                      style="width:80px;" (change)="calculaQuina(item[2],i);" [(ngModel)]="this.listanumQuina[i]"></td>
+                  <td>{{visualizaValor(item[2])}}</td>
+                  <td>{{visualizaValor(valorsubQuina[i])}}</td>
+                  <td>{{item[3]}}</td>
+                </tr>
+
+
+                <tr *ngFor="let item of boloesVendedorLote; index as i">
+                  <td style=" padding-left:80px;">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                      (change)="addCarrinho(item,this.listanumLote[i],'qtdcotaslote',i)" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                    </label>
+                  </td>
+                  <td><input type="number" class="form-control" name="qtdcotaslote" id="qtdcotaslote_{{i}}" disabled
+                      style="width:80px;" (change)="calculaLote(item[2],i);" [(ngModel)]="this.listanumLote[i]"></td>
+                  <td>{{visualizaValor(item[2])}}</td>
+                  <td>{{visualizaValor(valorsubLote[i])}}</td>
+                  <td>{{item[3]}}</td>
+                </tr>
+
+                <tr *ngFor="let item of boloesVendedorDupl; index as i">
+                  <td style=" padding-left:80px;">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                      (change)="addCarrinho(item,this.listanumDupl[i],'qtdcotasdupl',i)" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                    </label>
+                  </td>
+                  <td><input type="number" class="form-control" name="qtdcotasdupl" id="qtdcotasdupl_{{i}}" disabled
+                      style="width:80px;" (change)="calculaDupl(item[2],i);" [(ngModel)]="this.listanumDupl[i]"></td>
+                  <td>{{visualizaValor(item[2])}}</td>
+                  <td>{{visualizaValor(valorsubDupl[i])}}</td>
+                  <td>{{item[3]}}</td>
+                </tr>
+
+
+                <tr *ngFor="let item of boloesVendedorDias; index as i">
+                  <td style=" padding-left:80px;">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                      (change)="addCarrinho(item, this.listanumDias[i],'qtdcotasdias',i)" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                    </label>
+                  </td>
+                  <td><input type="number" class="form-control" name="qtdcotasdias" id="qtdcotasdias_{{i}}" disabled
+                      style="width:80px;" (change)="calculaDias(item[2],i);" [(ngModel)]="this.listanumDias[i]"></td>
+                  <td>{{visualizaValor(item[2])}}</td>
+                  <td>{{visualizaValor(valorsubDias[i])}}</td>
+                  <td>{{item[3]}}</td>
+                </tr>
+
+                <tr *ngFor="let item of boloesVendedorBilh; index as i">
+                  <td style=" padding-left:80px;">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                      (change)="addCarrinho(item,this.listanumBilh[i],'qtdcotasbilh',i)" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                    </label>
+                  </td>
+                  <td><input type="number" class="form-control" name="qtdcotasbilh" id="qtdcotasbilh_{{i}}" disabled
+                      style="width:80px;" (change)="calculaBilh(item[2],i);" [(ngModel)]="this.listanumBilh[i]"></td>
+                  <td>{{visualizaValor(item[2])}}</td>
+                  <td>{{visualizaValor(valorsubBilh[i])}}</td>
+                  <td>{{item[3]}}</td>
+                </tr>
+
+
+                <tr *ngFor="let item of boloesVendedorLfac; index as i">
+                  <td style=" padding-left:80px;">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                      (change)="addCarrinho(item, this.listanumLfac[i],'qtdcotaslfac',i)" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                    </label>
+                  </td>
+                  <td><input type="number" class="form-control" name="qtdcotaslfac" id="qtdcotaslfac_{{i}}" disabled
+                      style="width:80px;" (change)="calculaLfac(item[2],i);" [(ngModel)]="this.listanumLfac[i]"></td>
+                  <td>{{visualizaValor(item[2])}}</td>
+                  <td>{{visualizaValor(valorsubLfac[i])}}</td>
+                  <td>{{item[3]}}</td>
+                </tr>
+
+
+                <tr *ngFor="let item of boloesVendedorLtma; index as i">
+                  <td style=" padding-left:80px;">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                      (change)="addCarrinho(item,this.listanumLtma[i],'qtdcotasltma',i)" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                    </label>
+                  </td>
+                  <td><input type="number" class="form-control" name="qtdcotasltma" id="qtdcotasltma_{{i}}" disabled
+                      style="width:80px;" (change)="calculaLtma(item[2],i);" [(ngModel)]="this.listanumLtma[i]"></td>
+                  <td>{{visualizaValor(item[2])}}</td>
+                  <td>{{visualizaValor(valorsubLtma[i])}}</td>
+                  <td>{{item[3]}}</td>
+                </tr>
+
+
+                <tr *ngFor="let item of boloesVendedorTime; index as i">
+                  <td style=" padding-left:80px;">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault_{{i}}"
+                      (change)="addCarrinho(item,this.listanumTime[i],'qtdcotastime',i)" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                    </label>
+                  </td>
+                  <td><input type="number" class="form-control" name="qtdcotastime" id="qtdcotastime_{{i}}" disabled
+                      style="width:80px;" (change)="calculaTime(item[2],i);" [(ngModel)]="this.listanumTime[i]"></td>
+                  <td>{{visualizaValor(item[2])}}</td>
+                  <td>{{visualizaValor(valorsubTime[i])}}</td>
+                  <td>{{item[3]}}</td>
+                </tr>
+
+
+                <tr *ngFor="let item of boloesVendedorSup7; index as i">
+                  <td style=" padding-left:80px;">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                      (change)="addCarrinho(item,this.listanumSup7[i],'qtdcotassup7',i)" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                    </label>
+                  </td>
+                  <td><input type="number" class="form-control" name="qtdcotassup7" id="qtdcotassup7_{{i}}" disabled
+                      style="width:80px;" (change)="calculaSup7(item[2],i);" [(ngModel)]="this.listanumSup7[i]"></td>
+                  <td>{{visualizaValor(item[2])}}</td>
+                  <td>{{visualizaValor(valorsubSup7[i])}}</td>
+                  <td>{{item[3]}}</td>
+                </tr>
+
+
+            </table>
+          </div>
+
+          <div id="resumotable" class="resumoCombo col-md-12">
+
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Combo</th>
+                  <th scope="col">Cotas</th>
+                  <th scope="col">Unidades</th>
+                  <th scope="col">Valor do Combo(R$)</th>
+                  <th scope="col">SubTotal(R$)</th>
+                  <th scope="col">Combos restantes</th>
+                </tr>
+              </thead>
+
+
+
+              <tr *ngFor="let item of comboPainel; index as i">
+                <td style=" padding-left:80px;">
+                  <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                    (change)="addCarrinhoCombo(i)" />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    {{item.descricao}}
+                  </label>
+                </td>
+                <td><input id="cotacombo{{i}}" value={{numCotaCombos[i].substring(1)}} style="width:70px" disabled />
+                  <!--<input type="number" class="form-control" name="qtdcotas" id="qtdcotas" style="width:80px;" (change)="calcula(item.valorCota,i);" [(ngModel)]="this.listanum[i]"> -->
+                </td>
+                <td><input type="number" class="form-control" name="unidcombos_{{i}}" id="unidcombos_{{i}}"
+                    style="width:80px;" (change)="calculaCombo(valorCombo[i],i);"></td>
+                <td>{{visualizaValor(valorCombo[i])}}</td>
+                <td>{{visualizaValor(valorSubTotal[i])}}</td>
+                <td>{{item.multiplicador}}</td>
+              </tr>
+
+            </table>
+          </div>
+          <div class="col-12" style=" display:flex; align-items: center; justify-content: center;">
+            <div><button (click)="refresh();" class="btn btn-primary"><i class="fas fa-eraser"></i>&nbsp;Refazer seleção de bolão </button>
+            </div>
+
+          </div>
+
+
+          <div class="divdadoscomprador card">
+            <h4 class="divtitdadoscomprador card-title"><b>Dados do comprador</b></h4><br />
+
+            <div class="form-row">
+              <div class="form-group col-md-6" style="padding-left: 50px;">
+                <label><b>Nome</b></label>
+                <!-- <input type="text" class="form-control" name="nomecomprador" id="nomecomprador"  (input)="exemplo();"> -->
+                <input type="text" autocomplete="on" class="form-control" name="nomecomprador" id="nomecomprador"
+                  (input)="buscarNome();" (focusout)="escolherNome();" list="examploLista" value="{{nome}}" disabled />
+                <datalist id="examploLista">
+                  <option *ngFor="let item of clientes">{{item.nome}}</option>
+                </datalist>
+              </div>
+              <div class="form-group col-md-3">
+                <label><b>Telefone</b></label>
+                <input type="text" class="form-control" id="telefonecliente"
+                  onkeypress="$(this).mask('(00) 0000-00009')" value="{{telefone}}" disabled />
+              </div>
+              <div class="form-group col-md-3">
+                <label><b>CPF</b></label>
+                <input type="text" class="form-control" id="cpfcliente" onkeypress="$(this).mask('000.000.000-00');"
+                  value="{{cpf}}" disabled />
+              </div>
+              <div class="form-group col-md-6" style="padding-left: 50px;">
+                <label><b>Email do cliente</b></label>
+                <input type="text" class="form-control" name="emailcliente" id="emailcliente" value="{{email}}"
+                  disabled />
+              </div>
+              <div class="form-group col-md-3">
+                <label><b>Valor:</b></label>
+                <input type="text" class="form-control" onkeypress="$(this).mask('#.##0,00', {reverse: true});"
+                  name="valor" id="valor" value={{visualizaValor(this.valor)}} disabled=true>
+              </div>
+            </div>
+            <br />
+            <br />
+
+            <div class="col-12" style="align-items: center; justify-content: center; display: flex;">
+              <div><button (click)="limparDadosCliente();" class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar
+                  dados</button></div>
+            </div>
+
+          </div>
+
+          <div class="divdadoscomprador card">
+
+            <br />
+            <h4 class="divtitformapagto card-title"><b>Formas de Pagamento</b></h4><br />
+            <br />
+
+
+              <div class="divopcao form-group col-md-3" style="padding-left: 50px;">
+                  <p><b>Escolha o tipo de venda:</b></p>
+
+                  <select disabled id="modalidade" name="modalidade" class="form-control" [(ngModel)]="selectedValue">
+                      <option value="1">VENDA LOCAL</option>
+                      <option value="2">VENDA ONLINE</option>
+                  </select>
+              </div>
+              <br/><br/>
+
+
+        <div *ngIf="selectedValue == '1'" class="col-md-12">
+            <div class="form-row">
+              <div class="form-group col-md-2" style="text-align: center;">
+                <label><b>Dinheiro:</b></label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control" onkeyup="k(this);" name="dinheiro" id="dinheiro" value="0"
+                  (change)="calculaTotal(dinheirostring,'DINHEIRO')" [(ngModel)]="dinheirostring">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-2" style="text-align: center;">
+                <label><b>Pix:</b></label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control" onkeyup="k(this);" name="pix" id="pix" value="0"
+                  (change)="calculaTotal(pixstring,'PIX')" [(ngModel)]="pixstring">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-2" style="text-align: center;">
+                <label><b>Débito:</b></label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control" onkeyup="k(this);" name="debito" id="debito" value="0"
+                  (change)="calculaTotal(debitostring,'DEBITO')" [(ngModel)]="debitostring">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-2" style="text-align: center;">
+                <label><b>Crédito Físico:</b></label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control" onkeyup="k(this);" name="credito" id="credito" value="0"
+                  (change)="calculaTotal(creditostring,'CREDITO')" [(ngModel)]="creditostring">
+              </div>
+            </div>
+
+            <div class="form-row">
+
+              <div class="form-group col-md-2" style="text-align: center;">
+                <label><b>Outros:</b></label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control" onkeyup="k(this);" name="outros" id="outros" value="0"
+                  (change)="calculaTotal(outrosstring,'OUTROS')" [(ngModel)]="outrosstring">
+              </div>
+
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-2" style="text-align: center;">
+                <label><b>A receber:</b></label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control" name="areceber" id="areceber" disabled=true
+                  [value]="visualizaValor(this.valor - this.dinheiro - this.credito - this.debito - this.pix - this.outros)">
+              </div>
+              <div id="test" style="padding-left:20px;"></div>
+            </div>
+        </div>
+
+
+        <div *ngIf="selectedValue == '2'" class="col-md-12">
+         
+          <div class="form-row">
+
+            <div class="form-group col-md-2" style="text-align: center;">
+              <label><b>Link Online:</b></label>
+            </div>
+            <div class="form-group col-md-2">
+              <input disabled type="text" class="form-control" onkeyup="k(this);" name="link" id="link" value="0"
+                (change)="calculaTotal(linkstring,'LINK')" [(ngModel)]="linkstring">
+            </div>
+
+            <div class="divbuttons3 form-group col-md-2">
+              <button (click)="gerarLink();" id="botaolink" class="btn btn-primary" > Gerar Link</button>&nbsp;
+              <!-- <button class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button> -->
+            </div>
+
+          </div>
+          <div class="form-row" style=" padding-left: 30px;">
+            <input type="text" id="linkpagto" name="linkpagto" style="display: none;" #userinput />
+            &nbsp;<button id="btnlinkpagto" name="btnlinkpagto" (click)="copiarLink(userinput)"
+              class="btn btn-primary" style="display: none;"><i class="far fa-clone"></i> Copiar</button>
+            &nbsp; <span id="msgcopiado" name="msgcopiado" style="display: none;"><b>Link Copiado!</b></span>
+          </div>
+      </div>
+
+          </div>
+
+          <br />
+
+          <div *ngIf="selectedValue == '1'" class="col-md-12 form-row" style="padding-top: 15px; padding-left: 5px;">
+            <div class="divbuttons3 form-group form-row col-md-5">
+              <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-check"></i> Confirmar</button>&nbsp;
+              <!-- <button class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button> -->
+
+              <button id="btnnewsale" (click)="novaVenda();" class="btn btn-primary" style="display: none;"><i class="fas fa-cart-plus"></i>&nbsp; Efetuar nova venda</button>
+            </div>
+
+            <div id="divsuccess" class="fade-out col-xs-12">
+              <h3>Dados gravados com sucesso</h3>
+            </div>
+            <br/>
+
+          </div>
+
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div *ngIf="mobile">
+
+    <div class="divtitulo">
+      <h4 class="card-title">VENDA NO BALCÃO</h4>
+    </div>
+
+    <div class="row col-12 submain-container">
+
+      <div *ngIf="(nave == 'true')">
+        <div *ngIf="this.habilita != 'SIM'" class="col-3 wrapper">
+
+          <nav id="sidebar" style="overflow-y: auto;">
+            <div class="sidebar-header">
+              <img src="../assets/logobolao.png" width="200" height="112">
+            </div>
+    
+            <ul class="list-unstyled components">
+              <li>
+                <a class="ahome" (click)="home();">Home</a>
+              </li>
+              <hr>
+              <li>
+                <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle apaciente"
+                  href="#pageSubmenucliente">Cadastro</a>
+                <ul class="collapse list-unstyled" id="pageSubmenucliente">
+                  <li><a (click)="cadastrousuario();">&nbsp;&nbsp;Cadastrar Usuários</a></li>
+                  <!-- <li><a (click)="cadastrocombo();">&nbsp;&nbsp;Cadastrar Combo</a></li> -->
+                  <li><a (click)="cadbolaovend();">&nbsp;&nbsp;Cadastrar Bolão</a></li>
+                </ul>
+                <hr>
+              </li>
+              <li>
+                <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle amedico"
+                  href="#pageSubmenuvendedora">Financeiro</a>
+                <ul class="collapse list-unstyled" id="pageSubmenuvendedora">
+                  <li><a (click)="extratovendedora();">&nbsp;&nbsp;Prestação de Contas</a></li>
+                  <li><a (click)="areceber();">&nbsp;&nbsp;A receber</a></li>
+                  
+                </ul>
+              </li>
+              <hr>
+              <li>
+                <a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle amedico"
+                  href="#pageSubmenuextratos">Relatório</a>
+                <ul class="collapse list-unstyled" id="pageSubmenuextratos">
+                  <li *ngIf="perfil != 'VENDEDOR'"><a (click)="listausuarios();">&nbsp;&nbsp;Usuários</a></li>
+                  <li><a (click)="listaboloes();">&nbsp;&nbsp;Bolões</a></li>
+                  <li><a (click)="listacombos();">&nbsp;&nbsp;Combos</a></li>
+                  <li *ngIf="perfil == 'VENDEDOR'"><a (click)="listacotas();">&nbsp;&nbsp;Cotas</a></li>
+                  <li><a (click)="listametas();">&nbsp;&nbsp;Metas</a></li>
+                </ul>
+              </li>
+              <hr>
+              <li>
+                <a class="atransfcotas" (click)="tutorial();">Tutorial</a>
+              </li>
+    
+              <hr>
+              <li>
+                <a class="atransfcotas" (click)="templates();">Templates</a>
+              </li>
+    
+              <hr>
+              <div style=" padding-top: -5px;">
+                <a id="btlogout" (click)="logout();" class="btn btn-sm btn-outline-light mr-2">
+                  Logout <i class="fas fa-sign-out-alt"></i>
+                </a>
+              </div>
+            </ul>
+            <div style=" padding-top: -5px; text-align: center;">
+              <label><b>Perfil: {{this.perfil}}</b></label>
+            </div>
+    
+          </nav>
+    
+        </div>
+        <div *ngIf="this.habilita == 'SIM'" class="col-3 wrapper">
+    
+          <nav id="sidebar" style="overflow-y: auto;">
+            <div class="sidebar-header">
+              <img src="../assets/logobolao.png" width="200" height="112">
+            </div>
+    
+            <div style=" padding-top: -5px; text-align: center;">
+              <button (click)="voltarmenuinicial();" class="btn btn-primary"><i class="fas fa-home"></i> Voltar ao menu inicial</button>
+            </div>
+    
+          </nav>
+    
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="card">
+
+          <form  autocomplete="off">
+            <div class="divmodalidade card" style="margin-top: 0;">
+              <div class="form-row">
+
+                <div class="divtitmodalidade col-md-12">
+                  <div class="divbar1">
+                    <h4 class="titmodalidade" style="background-color: transparent;"><b>Escolha a modalidade</b></h4>
+                  </div>
+                </div>
+
+
+                <div class="divbuttons col-xs-12 form-row" style="padding-top: 20px;">
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addLfac();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#912690; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                      LOTOFÁCIL <label class="showInputField7" id="showInputField7"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+                  </div>
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px;align-items: center; justify-content: center; display: flex;">
+                    <button (click)="addMega();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px;  background-color:#00AB69; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">MEGA
+                      - SENA <label class="showInputField1" id="showInputField1"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+
+                </div>
+
+                <div class="divbuttons col-xs-12 form-row" style="background-color: #F4F4F4;">
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+                    <button (click)="addQuin();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#015EA1; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                      QUINA <label class="showInputField2" id="showInputField2"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+                    <button (click)="addDupl();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#A52E54; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                      DUPLA SENA <label class="showInputField4" id="showInputField4"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+                  </div>
+
+
+                </div>
+
+
+                <div class="divbuttons col-xs-12 form-row">
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addLtma();" class="btn btn-primary" id="ltma"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#ec7e00; border: 0px; border-radius: 15px;  text-color: #fff; font-size: 18px; font-weight: 800;">
+                      LOTOMANIA <label class="showInputField8" id="showInputField8"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+                  </div>
+
+
+                  <div class="form-group col-xs-6"
+                    style=" width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addTime();" class="btn btn-primary" id="time"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#FFDB30; border: 0px; border-radius: 15px;  color: #169716; font-size: 18px; font-weight: 800;">
+                      TIMEMANIA <label class="showInputField10" id="showInputField10"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+                  </div>
+
+
+                </div>
+
+
+                <div class="divbuttons col-xs-12 form-row" style="background-color: #F4F4F4;">
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addDias();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#FFAD44; border: 0px; border-radius: 15px; text-color: #fff; font-size: 18px; font-weight: 800;">DIA
+                      SORTE <label class="showInputField5" id="showInputField5"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+                  </div>
+
+
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addSup7();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#ACCE76; border: 0px; border-radius: 15px;  color: rgb(255, 255, 255); font-size: 18px; font-weight: 800;">
+                      SUPER 7 <label class="showInputField11" id="showInputField11"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+                  </div>
+                </div>
+
+
+
+                <div class="divbuttons col-xs-12 form-row">
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+
+                    <button (click)="addLote();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#EC2230; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                      LOTECA <label class="showInputField3" id="showInputField3"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+
+
+                  </div>
+
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+                    <button (click)="addBilh();" class="btn btn-primary"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#6dcae4; border: 0px; border-radius: 15px;  text-color: #fff; font-size: 18px; font-weight: 800;">
+                      FEDERAL <label class="showInputField6" id="showInputField6"
+                        style="color:white; display: none;">&nbsp;✓</label></button>
+
+                  </div>
+
+                </div>
+                <div class="divbuttons col-xs-12 form-row" style="align-items: center; justify-content: center;">
+                  <div class="form-group col-xs-6"
+                    style="width: 50%; padding-top: 15px; align-items: center; justify-content: center; display: flex;">
+                    <button (click)="addCombo();" class="btn btn-primary" id="lgol"
+                      style="text-align: center; width:150px; height:70px; margin:auto; background-color:#0084A4; border: 0px; border-radius: 15px; text-shadow: 2px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;">
+                      COMBO <label class="showInputField9" id="showInputField9"
+                        style="color:white; display: none;">✓</label></button>
+
+                  </div>
+                </div>
+                <br /><br /><br />
+              </div>
+            </div>
+            <br />
+
+            <div id="resumotable" class="resumoCombo col-md-12">
+
+              <table class="table table-bordered" style="display: block;max-width: auto; overflow: scroll;">
+                <thead>
+                  <tr>
+                    <th scope="col">Bolão</th>
+                    <th scope="col">Cota</th>
+                    <th scope="col">Valor Cota(R$)</th>
+                    <th scope="col">SubTotal(R$)</th>
+                    <th scope="col">Cotas restantes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of boloesVendedorMega; index as i">
+                    <td style=" padding-left:80px;">
+                      <input type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item,this.listanumMega[i],'qtdcotasmega',i)" />
+
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                        </label>
+                    </td>
+                    <td><input type="number" class="form-control" name="qtdcotasmega" id="qtdcotasmega_{{i}}" disabled
+                        style="width:80px;" (change)="calculaMega(item[2],i);" [(ngModel)]="this.listanumMega[i]"></td>
+                    <td>{{visualizaValor(item[2])}}</td>
+                    <td>{{visualizaValor(valorsubMega[i])}}</td>
+                    <td>{{item[3]}}</td>
+                  </tr>
+
+
+                  <tr *ngFor="let item of boloesVendedorQuina; index as i">
+                    <td style=" padding-left:80px;">
+                      <input type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item,this.listanumQuina[i],'qtdcotasquina',i)" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                        </label>
+                    </td>
+                    <td><input type="number" class="form-control" name="qtdcotasquina" id="qtdcotasquina_{{i}}" disabled
+                        style="width:80px;" (change)="calculaQuina(item[2],i);" [(ngModel)]="this.listanumQuina[i]">
+                    </td>
+                    <td>{{visualizaValor(item[2])}}</td>
+                    <td>{{visualizaValor(valorsubQuina[i])}}</td>
+                    <td>{{item[3]}}</td>
+                  </tr>
+
+
+                  <tr *ngFor="let item of boloesVendedorLote; index as i">
+                    <td style=" padding-left:80px;">
+                      <input type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item,this.listanumLote[i],'qtdcotaslote',i)" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                        </label>
+                    </td>
+                    <td><input type="number" class="form-control" name="qtdcotaslote" id="qtdcotaslote_{{i}}" disabled
+                        style="width:80px;" (change)="calculaLote(item[2],i);" [(ngModel)]="this.listanumLote[i]"></td>
+                    <td>{{visualizaValor(item[2])}}</td>
+                    <td>{{visualizaValor(valorsubLote[i])}}</td>
+                    <td>{{item[3]}}</td>
+                  </tr>
+
+                  <tr *ngFor="let item of boloesVendedorDupl; index as i">
+                    <td style=" padding-left:80px;">
+                      <input type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item,this.listanumDupl[i],'qtdcotasdupl',i)" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                        </label>
+                    </td>
+                    <td><input type="number" class="form-control" name="qtdcotasdupl" id="qtdcotasdupl_{{i}}" disabled
+                        style="width:80px;" (change)="calculaDupl(item[2],i);" [(ngModel)]="this.listanumDupl[i]"></td>
+                    <td>{{visualizaValor(item[2])}}</td>
+                    <td>{{visualizaValor(valorsubDupl[i])}}</td>
+                    <td>{{item[3]}}</td>
+                  </tr>
+
+
+                  <tr *ngFor="let item of boloesVendedorDias; index as i">
+                    <td style=" padding-left:80px;">
+                      <input type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item,this.listanumDias[i],'qtdcotasdias',i)" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                        </label>
+                    </td>
+                    <td><input type="number" class="form-control" name="qtdcotasdias" id="qtdcotasdias_{{i}}" disabled
+                        style="width:80px;" (change)="calculaDias(item[2],i);" [(ngModel)]="this.listanumDias[i]"></td>
+                    <td>{{visualizaValor(item[2])}}</td>
+                    <td>{{visualizaValor(valorsubDias[i])}}</td>
+                    <td>{{item[3]}}</td>
+                  </tr>
+
+                  <tr *ngFor="let item of boloesVendedorBilh; index as i">
+                    <td style=" padding-left:80px;">
+                      <input type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item, this.listanumBilh[i],'qtdcotasbilh',i)" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                        </label>
+                    </td>
+                    <td><input type="number" class="form-control" name="qtdcotasbilh" id="qtdcotasbilh_{{i}}" disabled
+                        style="width:80px;" (change)="calculaBilh(item[2],i);" [(ngModel)]="this.listanumBilh[i]"></td>
+                    <td>{{visualizaValor(item[2])}}</td>
+                    <td>{{visualizaValor(valorsubBilh[i])}}</td>
+                    <td>{{item[3]}}</td>
+                  </tr>
+
+
+                  <tr *ngFor="let item of boloesVendedorLfac; index as i">
+                    <td style=" padding-left:80px;">
+                      <input type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item,this.listanumLfac[i],'qtdcotaslfac',i)" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                        </label>
+                    </td>
+                    <td><input type="number" class="form-control" name="qtdcotaslfac" id="qtdcotaslfac_{{i}}" disabled
+                        style="width:80px;" (change)="calculaLfac(item[2],i);" [(ngModel)]="this.listanumLfac[i]"></td>
+                    <td>{{visualizaValor(item[2])}}</td>
+                    <td>{{visualizaValor(valorsubLfac[i])}}</td>
+                    <td>{{item[3]}}</td>
+                  </tr>
+
+
+                  <tr *ngFor="let item of boloesVendedorLtma; index as i">
+                    <td style=" padding-left:80px;">
+                      <input type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item, this.listanumLtma[i],'qtdcotasltma',i)" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                        </label>
+                    </td>
+                    <td><input type="number" class="form-control" name="qtdcotasltma" id="qtdcotasltma_{{i}}" disabled
+                        style="width:80px;" (change)="calculaLtma(item[2],i);" [(ngModel)]="this.listanumLtma[i]"></td>
+                    <td>{{visualizaValor(item[2])}}</td>
+                    <td>{{visualizaValor(valorsubLtma[i])}}</td>
+                    <td>{{item[3]}}</td>
+                  </tr>
+
+
+                  <tr *ngFor="let item of boloesVendedorTime; index as i">
+                    <td style=" padding-left:80px;">
+                      <input type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item,this.listanumTime[i],'qtdcotastime',i)" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                        </label>
+                    </td>
+                    <td><input type="number" class="form-control" name="qtdcotastime" id="qtdcotastime_{{i}}" disabled
+                        style="width:80px;" (change)="calculaTime(item[2],i);" [(ngModel)]="this.listanumTime[i]"></td>
+                    <td>{{visualizaValor(item[2])}}</td>
+                    <td>{{visualizaValor(valorsubTime[i])}}</td>
+                    <td>{{item[3]}}</td>
+                  </tr>
+
+
+                  <tr *ngFor="let item of boloesVendedorSup7; index as i">
+                    <td style=" padding-left:80px;">
+                      <input type="checkbox" id="flexCheckDefault"
+                        (change)="addCarrinho(item,this.listanumSup7[i],'qtdcotassup7',i)" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{item[0]}}&nbsp;-&nbsp;{{visualizaValor(item[2])}}&nbsp;-&nbsp;{{item[7]}}&nbsp;-&nbsp;{{item[6]}}
+                        </label>
+                    </td>
+                    <td><input type="number" class="form-control" name="qtdcotassup7" id="qtdcotassup7_{{i}}" disabled
+                        style="width:80px;" (change)="calculaSup7(item[2],i);" [(ngModel)]="this.listanumSup7[i]"></td>
+                    <td>{{visualizaValor(item[2])}}</td>
+                    <td>{{visualizaValor(valorsubSup7[i])}}</td>
+                    <td>{{item[3]}}</td>
+                  </tr>
+
+
+              </table>
+            </div>
+
+            <div id="resumotable" class="resumoCombo col-md-12">
+
+              <table class="table table-bordered" style="display: block;max-width: auto; overflow: scroll;">
+                <thead>
+                  <tr>
+                    <th scope="col">Combo</th>
+                    <th scope="col">Cotas</th>
+                    <th scope="col">Unidades</th>
+                    <th scope="col">Valor do Combo(R$)</th>
+                    <th scope="col">SubTotal(R$)</th>
+                    <th scope="col">Combos restantes</th>
+                  </tr>
+                </thead>
+
+
+
+                <tr *ngFor="let item of comboPainel; index as i">
+                  <td style=" padding-left:80px;">
+                    <input type="checkbox" id="flexCheckDefault" (change)="addCarrinhoCombo(i)" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{item.descricao}}
+                    </label>
+                  </td>
+                  <td>{{numCotaCombos[i].substring(1)}}
+                    <!--<input type="number" class="form-control" name="qtdcotas" id="qtdcotas" style="width:80px;" (change)="calcula(item.valorCota,i);" [(ngModel)]="this.listanum[i]"> -->
+                  </td>
+                  <td><input type="number" class="form-control" name="unidcombos_{{i}}" id="unidcombos_{{i}}"
+                      style="width:80px;" (change)="calculaCombo(valorCombo[i],i);"></td>
+                  <td>{{visualizaValor(valorCombo[i])}}</td>
+                  <td>{{visualizaValor(valorSubTotal[i])}}</td>
+                  <td>{{item.multiplicador}}</td>
+                </tr>
+
+              </table>
+            </div>
+
+            <div class="col-12" style=" display:flex; align-items: center; justify-content: center;">
+              <div><button (click)="refresh();" class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button>
+              </div>
+
+            </div>
+
+            <div class="divdadoscomprador card">
+              <div class="divbar1" style="padding-top: 10px;">
+                <h4 style="background-color: transparent; text-align: center;color: white;"><b>Dados do comprador</b>
+                </h4>
+              </div><br />
+
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label><b>Nome</b></label>
+                  <!-- <input type="text" class="form-control" name="nomecomprador" id="nomecomprador"
+                    [(ngModel)]="cliente.nome"> -->
+                  <input type="text" autocomplete="on" class="form-control" name="nomecomprador" id="nomecomprador"
+                    (input)="buscarNome();" (focusout)="escolherNome();" list="examploLista" value="{{nome}}"
+                    [(ngModel)]="cliente.nome" disabled>
+                  <datalist id="examploLista">
+                    <option *ngFor="let item of clientes">{{item.nome}}</option>
+                  </datalist>
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Telefone</b></label>
+                  <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')"
+                    name="telcomprador" id="telefonecliente" [(ngModel)]="cliente.contato1" disabled>
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>CPF</b></label>
+                  <input type="text" class="form-control" onkeypress="$(this).mask('000.000.000-00');"
+                    name="cpfcomprador" id="cpfcliente" [(ngModel)]="cliente.cpf" disabled>
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Email do cliente</b></label>
+                  <input type="text" class="form-control" name="emailcliente" id="emailcliente"
+                    [(ngModel)]="cliente.email" disabled>
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Valor:</b></label>
+                  <input type="text" class="form-control" onkeypress="$(this).mask('#.##0,00', {reverse: true});"
+                    name="valor" id="valor" value={{visualizaValor(this.valor)}} disabled=true>
+                </div>
+              </div>
+
+              <br />
+              <div class="col-12" style="align-items: center; justify-content: center; display: flex;">
+                <div><button (click)="limparDadosCliente();" class="btn btn-primary"><i class="fas fa-eraser"></i>
+                    Limpar dados</button></div>
+              </div>
+
+            </div>
+
+            <div class="divdadoscomprador card">
+
+              <br />
+              <h4 class="divtitformapagto card-title"><b>Formas de Pagamento</b></h4><br />
+              <br />
+
+              <div class="divopcao form-group col-md-3">
+                <p><b>Escolha o tipo de venda:</b></p>
+
+                <select disabled id="modalidade" name="modalidade" class="form-control" [(ngModel)]="selectedValue">
+                    <option value="1">VENDA LOCAL</option>
+                    <option value="2">VENDA ONLINE</option>
+                </select>
+            </div>
+            <br/><br/>
+
+
+      <div *ngIf="selectedValue == '1'" class="col-md-12">
+          <div class="form-row">
+            <div class="form-group col-md-2" style="text-align: center;">
+              <label><b>Dinheiro:</b></label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="text" class="form-control" onkeyup="k(this);" name="dinheiro" id="dinheiro" value="0"
+                (change)="calculaTotal(dinheirostring,'DINHEIRO')" [(ngModel)]="dinheirostring" >
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-2" style="text-align: center;">
+              <label><b>Pix:</b></label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="text" class="form-control" onkeyup="k(this);" name="pix" id="pix" value="0"
+                (change)="calculaTotal(pixstring,'PIX')" [(ngModel)]="pixstring" >
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-2" style="text-align: center;">
+              <label><b>Débito:</b></label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="text" class="form-control" onkeyup="k(this);" name="debito" id="debito" value="0"
+                (change)="calculaTotal(debitostring,'DEBITO')" [(ngModel)]="debitostring" >
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-2" style="text-align: center;">
+              <label><b>Crédito Físico:</b></label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="text" class="form-control" onkeyup="k(this);" name="credito" id="credito" value="0"
+                (change)="calculaTotal(creditostring,'CREDITO')" [(ngModel)]="creditostring" >
+            </div>
+          </div>
+
+          <div class="form-row">
+
+            <div class="form-group col-md-2" style="text-align: center;">
+              <label><b>Outros:</b></label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="text" class="form-control" onkeyup="k(this);" name="outros" id="outros" value="0"
+                (change)="calculaTotal(outrosstring,'OUTROS')" [(ngModel)]="outrosstring" >
+            </div>
+
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-2" style="text-align: center;">
+              <label><b>A receber:</b></label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="text" class="form-control" name="areceber" id="areceber" disabled=true
+                [value]="visualizaValor(this.valor - this.dinheiro - this.credito - this.debito - this.pix - this.outros)">
+            </div>
+            <div id="test" style="padding-left:20px;"></div>
+          </div>
+      </div>
+
+
+      <div *ngIf="selectedValue == '2'" class="col-md-12">
+       
+        <div class="form-row">
+
+          <div class="form-group col-md-2" style="text-align: center;">
+            <label><b>Link Online:</b></label>
+          </div>
+          <div class="form-group col-md-2">
+            <input disabled type="text" class="form-control" onkeyup="k(this);" name="link" id="link" value="0"
+              (change)="calculaTotal(linkstring,'LINK')" [(ngModel)]="linkstring">
+          </div>
+
+          <div class="divbuttons3 form-group col-md-2">
+            <button (click)="gerarLink();" id="botaolink" class="btn btn-primary" disabled> Gerar Link</button>&nbsp;
+            <!-- <button class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button> -->
+          </div>
+
+        </div>
+        <div class="col-md-12 form-row" style="padding-top: 15px; padding-left: 5px;">
+          <div class="form-row">
+            <input type="text" id="linkpagto" name="linkpagto" style="display: none;" #userinput />
+            &nbsp;<button id="btnlinkpagto" name="btnlinkpagto" (click)="copiarLink(userinput)"
+              class="btn btn-primary" style="display: none;"><i class="far fa-clone"></i> Copiar</button>
+            &nbsp; <span id="msgcopiado" name="msgcopiado" style="display: none;"><b>Link Copiado!</b></span>
+          </div>
+        </div>
+    </div>
+
+
+            </div>
+
+            
+            <br />
+            <div  *ngIf="selectedValue == '1'" class="divbuttons3">
+              <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-check"></i> Confirmar</button>&nbsp;
+              <button id="btnnewsale" (click)="novaVenda();" class="btn btn-primary" style="display: none;"><i class="fas fa-cart-plus"></i>&nbsp; Efetuar nova venda</button>
+            </div>
+            <br />
+
+            <div id="divsuccess" class="fade-out col-xs-12">
+              <h3>Dados gravados com sucesso</h3>
+            </div>
+
+            <!-- <a href="https://web.whatsapp.com/send?phone=+5521965986430&text=%20ouvido">Bora</a> -->
+
+            <!-- <div (click)="compartilhaWhats()" style="border-radius: 6px; background-color: green; color: ivory; align-items: center; padding: 10px">
+              Compartilhar Whatsapp
+            </div> -->
+
+            <!-- <div class="col-xs-12" style="justify-content: center; align-items: center; display: flex;">
+              <div class="addthis_inline_share_toolbox"></div>
+            </div> -->
+
+            <input type="file" id="input-file" name="file" style="display: none" (change)="compartilhaWhats($event)"
+              #referencia />
+
+            <div class="form-row" class="col-12" id="sharediv"
+              style="justify-content: center; align-items: center; display: none;">
+              <div class="col-5"></div>
+              <div (click)="referencia.click()" class="col-2"
+                style="justify-content: center; align-items: center; display: flex; border-radius: 4px; background-color: green; color: ivory; padding: 10px">
+                <i style="font-size: 22px;" class="fab fa-whatsapp"></i>
+              </div>
+              <div class="col-5"></div>
+            </div>
+
+            <div style="padding-bottom: 100px;"></div>
+          </form>
+
+        </div>
+      </div>
+      <div style="
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: gray;
+        color: white;
+        text-align: center;">
+        <app-tab-bar></app-tab-bar>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>

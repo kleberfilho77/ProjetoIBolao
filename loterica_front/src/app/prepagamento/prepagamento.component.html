@@ -1,0 +1,190 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<div class="background-image"></div>
+
+    <div *ngIf="mobile">
+    
+      <app-top-bar></app-top-bar>
+    
+    </div>
+    
+    <div class="col-12 main-container" id="main">
+        
+      <div *ngIf="!mobile" class="col-md-12 submain-container">
+        
+        <div class="col-3 wrapper">
+
+          <nav id="sidebar" style="overflow-y: auto;">
+              <div class="sidebar-header">    
+                  <img src="../assets/logobolao.png" width="200" height="112">
+              </div>
+      
+              <ul class="list-unstyled components">
+                  <li>
+                      <!-- <a class="ahome" (click)="home();">Home</a> -->
+                      <label>Nome da Loterica: <b>{{nomeLoterica}}</b></label><br/>
+                      <label>CNPJ da Loterica: <b>{{cnpjLoterica}}</b></label><br/>
+                      <label>Logradouro: <b>{{logradouro}}</b></label>
+                  </li>
+                  <hr>
+                  <li>
+                    <a class="atransfcotas" (click)="extratoloterica();">Extrato Financeiro</a>
+                </li>
+                  
+              </ul>
+              <div style=" padding-top: -5px;">
+                  <a id="btlogout" (click)="logout();" class="btn btn-sm btn-outline-light mr-2">
+                      Logout <i class="fas fa-sign-out-alt"></i>
+                  </a>
+              </div>
+      
+          </nav>
+      
+      </div>
+      <div class="col-md-12" style="padding-top:20px; padding-left:10px; text-align: center; display: flex; justify-content: center;">
+        <p style="color: #6D7FCC;">Bem vindo ao iBolão, sua ferramenta para incrementar as vendas de Bolão em sua loteria.
+          Em breve novas funcionalidades.</p>
+      </div>
+
+          <div class="card">
+            <div class="card-header card-header-tabs card-header-primary">
+              <h4 class="card-title">Geração de link para venda com cartão de crédito</h4>
+            </div>
+          <br/>
+        <div class="col-md-10" style="padding-left: 30px;">
+          
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label><b>Nome do cliente</b></label>
+                <input type="text" class="form-control" name="nomecliente" id="nomecliente" [(ngModel)]="ordempagamento.nomeCliente" style="width:500px;">
+              </div>
+              <div class="form-group col-md-12">
+                <label><b>Email do cliente</b></label>
+                <input type="text" class="form-control" name="emailcliente" id="emailcliente" [(ngModel)]="ordempagamento.emailCliente" style="width:300px;">
+              </div>
+                <div class="form-group col-md-12">
+                    <label><b>Descrição da compra</b></label>
+                    <input type="text" class="form-control" name="nometit" id="nometit" [(ngModel)]="ordempagamento.descricao">
+                </div>
+        
+                <div class="form-group col-md-3">
+                    <label><b>Valor Total</b></label><br/>
+                   <div><input class="form-control" name="valor" id="valor" (click)="zeraInput()" (change)="ajustaCentavos()" onkeypress="$(this).mask('#.##0,00', {reverse: true});" [(ngModel)]="this.valor"></div>
+                </div>
+            </div>
+            <div class="col-md-12 form-row" style="padding-top: 15px; padding-left: 5px;">
+                <div><button (click)="gerarlink();" class="btn btn-primary"><i class="fas fa-link"></i> Gerar Link</button></div>
+                <!-- <div style="padding-top: 15px; padding-left: 30px;"><a id="linkpagto" href='#' style="display: none;"></a></div> -->
+                <div class="form-row" style=" padding-left: 30px;">
+                  <input type="text" id="linkpagto" name="linkpagto" style="display: none;" #userinput/>
+                  &nbsp;<button id="btnlinkpagto" name="btnlinkpagto" (click)="copiarLink(userinput)" class="btn btn-primary" style="display: none;"><i class="far fa-clone"></i> Copiar</button>
+                  &nbsp; <span id="msgcopiado" name="msgcopiado" style="display: none;"><b>Copied!</b></span>
+                </div>
+            
+            </div>
+
+          </div>
+          <br />
+        
+      </div>
+    </div>
+      <div *ngIf="mobile" class="submain-container" style="padding-top: 100px;">
+
+        <div *ngIf="(nave == 'true')">
+          <div class="col-3 wrapper">
+
+            <nav id="sidebar" style="overflow-y: auto;">
+              <div class="sidebar-header">    
+                  <img src="../assets/logobolao.png" width="200" height="112">
+              </div>
+      
+              <ul class="list-unstyled components">
+                  <li>
+                      <!-- <a class="ahome" (click)="home();">Home</a> -->
+                      <label>Nome da Loterica: <b>{{nomeLoterica}}</b></label><br/>
+                      <label>CNPJ da Loterica:<b> {{cnpjLoterica}}</b></label><br/>
+                      <label>Logradouro:<b> {{logradouro}}</b></label>
+                  </li>
+                  <hr>
+                  <li>
+                    <a class="atransfcotas" (click)="extratoloterica();">Extrato Financeiro</a>
+                </li>
+                  
+              </ul>
+              <div style=" padding-top: -5px;">
+                  <a id="btlogout" (click)="logout();" class="btn btn-sm btn-outline-light mr-2">
+                      Logout <i class="fas fa-sign-out-alt"></i>
+                  </a>
+              </div>
+      
+          </nav>
+        
+        </div>
+        </div>
+        <div class="col-xs-12" style="padding-left:10px; text-align: center; display: flex; justify-content: center;">
+          <p>Bem vindo ao iBolão, sua ferramenta para incrementar as vendas de Bolão em sua loteria.
+            Em breve novas funcionalidades.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary" style="width: 250px;">
+            <h4 class="card-title">Geração de link para venda com cartão de crédito</h4>
+          </div>
+        <br/>
+      <div class="col-xs-12" style="padding: 5px;">
+        
+          <div class="form-row">
+            <div class="form-group col-xs-12" style="padding-right: 15px; width:100%;">
+              <label><b>Nome do cliente</b></label>
+              <input type="text" class="form-control" name="nomecliente" id="nomecliente" [(ngModel)]="ordempagamento.nomeCliente">
+            </div>
+            <div class="form-group col-xs-12" style="padding-right: 15px; width:100%;">
+              <label><b>Email do cliente</b></label>
+              <input type="text" class="form-control" name="emailcliente" id="emailcliente" [(ngModel)]="ordempagamento.emailCliente">
+            </div>
+              <div class="form-group col-xs-12" style="padding-right: 15px; width:100%;">
+                  <label><b>Descrição da compra</b></label>
+                  <input type="text" class="form-control" name="nometit" id="nometit" [(ngModel)]="ordempagamento.descricao">
+              </div>
+      
+              <div class="form-group col-xs-12" style="padding-right: 15px; width:100%;">
+                  <label><b>Valor Total</b></label>
+                   <div style="width:240px;"><input class="form-control" name="valor" id="valor" (change)="ajustaCentavos()" [(ngModel)]="this.valor"></div>
+                </div>
+          </div>
+          <div class="col-xs-12 form-row" style="padding-top: 15px; padding-left: 5px;">
+              <div><button (click)="gerarlink();" class="btn btn-primary"><i class="fas fa-link"></i> Gerar Link</button></div><br/><br/>
+              <!-- <div style="padding-top: 15px; padding-left: 30px;"><a id="linkpagto" href='#' style="display: none;"></a></div> -->
+              <div class="form-row" >
+                <input type="text" id="linkpagto" name="linkpagto" style="display: none;" #userinput/><br/><br/>
+                <button id="btnlinkpagto" name="btnlinkpagto" (click)="copiarLink(userinput)" class="btn btn-primary" style="display: none;"><i class="far fa-clone"></i> Copiar</button>
+                &nbsp; <span id="msgcopiado" name="msgcopiado" style="display: none;"><b>Copied!</b></span>
+              </div>
+          
+          </div>
+
+        </div>
+        <br />
+        <br /><br />
+    </div>
+  
+  
+          
+  
+          <div style="
+                            left: 0;
+                            bottom: 0;
+                            width: 100%;
+                            background-color: gray;
+                            color: white;
+                            text-align: center;">
+            <div class="footer form-row col-xs-12">
+              <div id="sair" class="col-xs-6">
+                <a id="btlogout" (click)="logout();"><img src="../assets/icone3.jpg" height="40px;" width="45px" /><br /></a>
+                <label>Sair</label>
+              </div>
+            </div>
+          </div>
+      </div>
+        
+    </div>

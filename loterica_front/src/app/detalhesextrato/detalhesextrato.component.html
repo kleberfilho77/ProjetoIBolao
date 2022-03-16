@@ -1,0 +1,319 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<div *ngIf="mobile">
+
+    <app-top-bar></app-top-bar>
+
+</div>
+
+<div class="col-12 main-container">
+
+    <div *ngIf="!mobile" class="row col-12 submain-container">
+
+
+        <app-nav-bar></app-nav-bar>
+
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                    <h4 class="card-title">Detalhamento do Extrato</h4>
+                </div>
+                <br /><br /><br />
+                <form>
+
+                    <div id="resumotable" class="resumoCombo col-md-12">
+
+                        <div class="form-group col-md-6" style="padding-left: 35px;">
+                            <label><b>Descrição da compra</b></label>
+                            <input type="text" class="form-control" name="descricaocompra" id="descricaocompra"
+                                value="{{listaExtrato[0][0]}}" disabled />
+                        </div>
+                    </div>
+
+
+                    <div class="divdadoscomprador card">
+                        <h4 class="divtitdadoscomprador card-title"><b>Dados do comprador</b></h4><br />
+
+                        <div *ngIf="perfil == 'VENDEDOR'" class="form-row">
+                            <div class="form-group col-md-4" style="padding-left: 50px;">
+                                <label><b>Nome do cliente</b></label>
+                                <input type="text" class="form-control" name="nomecliente" id="nomecliente"
+                                    value="{{listaExtrato[0][3]}}" disabled />
+                            </div>
+                            <div class="form-group col-md-4" style="padding-left: 50px;">
+                                <label><b>Email do cliente</b></label>
+                                <input type="text" class="form-control" name="emailcliente" id="emailcliente"
+                                    value="{{listaExtrato[0][4]}}" disabled />
+                            </div>
+                            <div class="form-group col-md-3" style="padding-left: 50px;">
+                                <label><b>Valor:</b></label>
+                                <input type="text" class="form-control"
+                                    onkeypress="$(this).mask('#.##0,00', {reverse: true});" name="valor" id="valor"
+                                    value={{visualizaValor(listaExtrato[0][1])}} disabled=true>
+                            </div>
+                        </div>
+                        <div *ngIf="perfil != 'VENDEDOR'" class="form-row">
+                            <div class="form-group col-md-4" style="padding-left: 50px;">
+                                <label><b>Nome do cliente</b></label>
+                                <input type="text" class="form-control" name="nomecliente" id="nomecliente"
+                                    value="{{listaExtrato[0][3]}}" disabled />
+                            </div>
+                            <div class="form-group col-md-4" style="padding-left: 50px;">
+                                <label><b>Email do cliente</b></label>
+                                <input type="text" class="form-control" name="emailcliente" id="emailcliente"
+                                    value="{{listaExtrato[0][4]}}" disabled />
+                            </div>
+                            <div class="form-group col-md-3" style="padding-left: 50px;">
+                                <label><b>Valor:</b></label>
+                                <input type="text" class="form-control"
+                                    onkeypress="$(this).mask('#.##0,00', {reverse: true});" name="valor" id="valor"
+                                    value={{visualizaValor(listaExtrato[0][1])}} disabled=true>
+                            </div>
+                        </div>
+                        <br />
+
+                    </div>
+
+                    <div class="divdadoscomprador card">
+
+                        <br />
+                        <h4 class="divtitformapagto card-title"><b>Formas de Pagamento</b></h4><br />
+                        <br />
+
+                        <div class="form-row">
+                            <div class="form-group col-md-2" style="text-align: center;">
+                                <label><b>Dinheiro:</b></label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control" onkeyup="k(this);" name="dinheiro" id="dinheiro"
+                                    [value]="visualizaValor(listaExtrato[0][10])" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-2" style="text-align: center;">
+                                <label><b>Pix:</b></label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control" onkeyup="k(this);" name="pix" id="pix" value="0"
+                                    [value]="visualizaValor(listaExtrato[0][12])" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-2" style="text-align: center;">
+                                <label><b>Crédito/Débito:</b></label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control" onkeyup="k(this);" name="debito" id="debito"
+                                    value="0" [value]="visualizaValor(listaExtrato[0][9])" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-2" style="text-align: center;">
+                                <label><b>Link Online:</b></label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control" onkeyup="k(this);" name="credito" id="credito"
+                                    value="0" [value]="visualizaValor(listaExtrato[0][8])" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-2" style="text-align: center;">
+                                <label><b>Outros:</b></label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control" onkeyup="k(this);" name="outros" id="outros"
+                                    value="0" [value]="visualizaValor(listaExtrato[0][11])" disabled>
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-2" style="text-align: center;">
+                                <label><b>A receber:</b></label>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control" name="areceber" id="areceber" disabled=true
+                                    [value]="visualizaValor(listaExtrato[0][13])">
+                            </div>
+                            <div id="test" style="padding-left:20px;"></div>
+                        </div>
+                        <br />
+
+                        <div class="divbuttons2 col-6" style="display: flex; justify-content: flex-end;">
+
+                            <button (click)="back();" class="btn btn-primary"><i
+                                    class="far fa-arrow-alt-circle-left"></i> Voltar</button>&nbsp;
+
+                        </div>
+
+
+                    </div>
+                    
+
+
+                </form>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div *ngIf="mobile">
+
+        <div class="divtitulo">
+            <h4 class="card-title">Detalhamento do Extrato</h4>
+        </div>
+
+        <div class="row col-12 submain-container">
+
+            <div *ngIf="(nave == 'true')">
+
+                <app-nav-bar></app-nav-bar>
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="card">
+
+                    <form>
+
+
+                            <div class="form-group col-md-6">
+                                <label><b>Descrição da compra</b></label>
+                                <input type="text" class="form-control" name="descricaocompra" id="descricaocompra"
+                                    value="{{listaExtrato[0][0]}}" disabled />
+                            </div>
+                        
+
+
+                        <div class="divdadoscomprador card">
+                            <h4 class="divtitdadoscomprador card-title"><b>Dados do comprador</b></h4><br />
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label><b>Nome do cliente</b></label>
+                                    <input type="text" class="form-control" name="nomecliente" id="nomecliente"
+                                        value="{{listaExtrato[0][3]}}" disabled />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label><b>Email do cliente</b></label>
+                                    <input type="text" class="form-control" name="emailcliente" id="emailcliente"
+                                        value="{{listaExtrato[0][4]}}" disabled />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label><b>Valor:</b></label>
+                                    <input type="text" class="form-control"
+                                        onkeypress="$(this).mask('#.##0,00', {reverse: true});" name="valor" id="valor"
+                                        value={{visualizaValor(listaExtrato[0][1])}} disabled=true>
+                                </div>
+                            </div>
+                            <br />
+
+                        </div>
+
+                        <div class="divdadoscomprador card">
+
+                            <br />
+                            <h4 class="divtitformapagto card-title"><b>Formas de Pagamento</b></h4><br />
+                            <br />
+
+                            <div class="form-row">
+                                <div class="form-group col-md-2" style="text-align: center;">
+                                    <label><b>Dinheiro:</b></label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="text" class="form-control" onkeyup="k(this);" name="dinheiro"
+                                        id="dinheiro" [value]="visualizaValor(listaExtrato[0][10])" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-2" style="text-align: center;">
+                                    <label><b>Pix:</b></label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="text" class="form-control" onkeyup="k(this);" name="pix" id="pix"
+                                        value="0" [value]="visualizaValor(listaExtrato[0][12])" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-2" style="text-align: center;">
+                                    <label><b>Crédito/Débito:</b></label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="text" class="form-control" onkeyup="k(this);" name="debito" id="debito"
+                                        value="0" [value]="visualizaValor(listaExtrato[0][9])" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-2" style="text-align: center;">
+                                    <label><b>Link Online:</b></label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="text" class="form-control" onkeyup="k(this);" name="credito"
+                                        id="credito" value="0" [value]="visualizaValor(listaExtrato[0][8])" disabled>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group col-md-2" style="text-align: center;">
+                                    <label><b>Outros:</b></label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="text" class="form-control" onkeyup="k(this);" name="outros" id="outros"
+                                        value="0" [value]="visualizaValor(listaExtrato[0][11])" disabled>
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-2" style="text-align: center;">
+                                    <label><b>A receber:</b></label>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="text" class="form-control" name="areceber" id="areceber" disabled=true
+                                        [value]="visualizaValor(listaExtrato[0][13])">
+                                </div>
+                                <br /><br />
+                                <div class="divbuttons2 col-12" style="display: flex; justify-content: center;">
+
+                                    <button (click)="back();" class="btn btn-primary"><i
+                                            class="far fa-arrow-alt-circle-left"></i> Voltar</button>&nbsp;
+    
+                                </div>
+                                
+                            </div>
+                            <br /><br /><br />
+
+                            
+
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+            <div style="
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: gray;
+            color: white;
+            text-align: center;">
+                <app-tab-bar></app-tab-bar>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>

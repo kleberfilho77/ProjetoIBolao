@@ -1,0 +1,311 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>
+
+
+
+<div class="col-12 main-container">
+
+  <div *ngIf="!mobile" class="row col-12 submain-container">
+
+    <app-nav-bar></app-nav-bar>
+
+    <div class="full-screen-scroller">
+
+      <div class="col-md-12" style="width: 1000px;">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <h4 class="card-title">DETALHAMENTO DE BOLÃO - {{bolao.tipoModalidade}}</h4>
+          </div>
+
+          <form>
+            <div class="card">
+              
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label><b>Nº do Sorteio</b></label>
+                      <input type="text" class="form-control" name="numerosorteio" id="numerosorteio"
+                        placeholder="Insira o nº do sorteio" [(ngModel)]="bolao.numeroSorteio">
+                    </div>
+    
+                    <div class="form-group col-md-4">
+                      <label><b>Data do Sorteio</b></label>
+                      <input type="text" class="form-control" name="datasorteio" id="datasorteio" mask="00/00/0000"
+                        placeholder="Ex.: 00/00/0000" value="{{datasorteiobolao}}">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label><b>Horário de Fechamento </b></label>
+                      <input type="text" class="form-control" name="horasorteio" id="horasorteio" onkeypress="$(this).mask('00:00')" [(ngModel)]="bolao.horarioSorteio">
+                    </div>
+                    <!-- <div class="form-group col-md-3">
+                      <label><b>Data do Bolão</b></label>
+                      <input type="text" class="form-control" name="databolao" id="databolao" mask="00/00/0000"
+                        placeholder="Ex.: 00/00/0000" [(ngModel)]="bolao.dataBolao">
+                    </div> -->
+    
+                  </div>
+
+              <div class="form-row col-md-12">
+                <div class="form-group col-md-3">
+                  <label><b>Horário do registro do bolão </b></label>
+                  <!-- <input type="text" class="form-control" name="horalim" mask="00:00"  id="horalim" placeholder="Insira a hora do sorteio" [(ngModel)]="bolao.horarioFechamento"> -->
+                  <input type="text" class="form-control" name="horacadastro"  onkeypress="$(this).mask('00:00:00')" id="horacadastro"
+                    placeholder="Insira a hora do cadastro" [(ngModel)]="bolao.horarioFechamento" >
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Quantidade de Jogos</b></label>
+                  <input type="number" class="form-control" name="qtdjogos" id="qtdjogos" [(ngModel)]="bolao.qtdJogos">
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Quantidade de Dezenas</b></label>
+                  <input type="number" class="form-control" name="qtddez" id="qtddez" [(ngModel)]="bolao.qtdDezenas">
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Quantidade de Cotas</b></label>
+                  <input type="number" class="form-control" name="qtdcotas" id="qtdcotas"
+                    [(ngModel)]="bolao.qtdCotas">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label><b>Valor da Cota </b></label>
+                  <div class="form-row" style="padding-left: 5px;">
+                    <p style="padding-top: 10px;"><b>R$</b></p>&nbsp;<input type="text" class="form-control"
+                      name="valorcota" id="vlresult" style="width:210px;" 
+                      onkeypress="$(this).mask('#.##0,00', {reverse: true});" value="{{preparaValor(bolao.valorCota)}}">
+                  </div>
+                </div>
+                <div class="form-group col-md-8">
+                  <label><b>Prêmio Previsto</b></label>
+                  <div class="form-row" style="margin-left: -40px;">
+                    <p style="padding-top: 10px;"><b>R$</b></p>&nbsp;<input type="text" class="form-control"
+                      name="premioprev" id="premioprev" style="width:230px;" 
+                      onkeypress="$(this).mask('#.##0,00', {reverse: true});"  value="{{preparaValor(bolao.premioPrevisto)}}">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <br />
+            <div style="text-align:center">
+              <img id="imagepath" width="300" />
+            </div>
+
+            <br />
+            <br />
+            <div id="next" class="carddefinacao">
+              <h4 class="card-title-definicao"><b>Vendedores / Cotas</b></h4><br />
+              <div class="form-group col-md-10 form-row">
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="font-size: 22px;"><b>Estoque online: </b></label><label style="font-size: 22px;"> <b>&nbsp;  {{bolao.qtdCotasDisponiveis}}</b></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="font-size: 22px;"><b>Cotas vendidas: </b></label><label style="font-size: 22px;"> <b>&nbsp;  {{(this.bolao.qtdCotas-this.somacotas-this.cotascombo)}}</b></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="font-size: 22px;"><b>Cotas em combo: </b></label><label style="font-size: 22px;"> <b>&nbsp;  {{(this.cotascombo)}}</b></label>
+              </div>
+
+              <div class="form-row" style="padding-left: 10px;">
+
+                <table class="tablevendedora table-bordered">
+                  <thead class="theadvendedora">
+                    <tr>
+                      <th scope="col" style="padding-left: 5px;">Nome</th>
+                      <th scope="col" style="padding-left: 5px;">Cotas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of vendedoresbolao; index as i">
+                      <td class="tdnome" style="padding-left: 5px;"><b>{{item[0]}}</b></td> 
+                      <td><input type="number" disabled class="tdcota form-control" placeholder="Insira a quantidade de cotas"
+                           name="cotavendedor{{i}}" id="qtdcotavendedor_{{i}}" value="{{item[1]}}" ></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div><br/>
+              <button *ngIf="perfil != 'VENDEDOR'" (click)="irparatransf();" class="btn btn-primary"><i class="fas fa-random"></i> Ir para Transferência de Cota</button>
+              <!-- The add() function is called -->
+            </div>
+
+            <br /><br /><br />
+            <div class="divbuttons2">
+              <!-- <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Gravar</button>&nbsp;
+              <button class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button> -->
+              <button (click)="back();" class="btn btn-primary"><i class="far fa-arrow-alt-circle-left"></i> Voltar</button>&nbsp;
+              <button *ngIf="this.perfil != 'VENDEDOR'" (click)="deletar();" class="btn btn-primary"><i class="fas fa-trash-alt"></i> Deletar</button>
+            </div>
+            <br />
+
+            <div id="divsuccess" class="fade-out col-md-12">
+              <h3>Dados gravados com sucesso</h3>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div *ngIf="mobile">
+
+    <div class="divtitulo">
+      <h4 class="card-title">DETALHAMENTO DE BOLÃO - {{bolao.tipoModalidade}}</h4>
+    </div>
+
+    <div class="row col-12 submain-container">
+
+
+      <div *ngIf="(nave == 'true')">
+        <app-nav-bar></app-nav-bar>
+      </div>
+
+      <div class="col-md-12">
+        <div class="card">
+          <form>
+            <div class="carddadostec">
+                <h4 class="card-title-dados-tec" style="background-color: transparent;"><b>Dados
+                    técnicos - {{this.bolao.tipoModalidade}}</b></h4><br />
+              
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label><b>Nº do Sorteio</b></label>
+                  <input type="text" class="form-control" name="numerosorteio" id="numerosorteio" 
+                    placeholder="Insira o nº do sorteio" [(ngModel)]="bolao.numeroSorteio">
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label><b>Data do Sorteio</b></label>
+                  <input type="text" class="form-control" name="datasorteio" id="datasorteio" mask="00/00/0000"
+                    placeholder="Ex.: 00/00/0000" value="{{datasorteiobolao}}">
+                </div>
+                <div class="form-group col-md-4">
+                  <label><b>Horário de Fechamento </b></label>
+                  <input type="text" class="form-control" name="horasorteio" id="horasorteio" mask="00:00" [(ngModel)]="bolao.horarioSorteio">
+                </div>
+                <!-- <div class="form-group col-md-3">
+                  <label><b>Data do Bolão</b></label>
+                  <input type="text" class="form-control" name="databolao" id="databolao" mask="00/00/0000"
+                    placeholder="Ex.: 00/00/0000" [(ngModel)]="bolao.dataBolao">
+                </div> -->
+
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label><b>Horário do registro do bolão </b></label>
+                  <!-- <input type="text" class="form-control" name="horalim" mask="00:00"  id="horalim" placeholder="Insira a hora do sorteio" [(ngModel)]="bolao.horarioFechamento"> -->
+                  <input type="text" class="form-control" name="horacadastro" name="horacadastro" mask="00:00:00" id="horacadastro"
+                  placeholder="Insira a hora do cadastro" [(ngModel)]="bolao.horarioFechamento">
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Quantidade de Jogos</b></label>
+                  <input type="number" class="form-control" name="qtdjogos" id="qtdjogos" [(ngModel)]="bolao.qtdJogos">
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Quantidade de Dezenas</b></label>
+                  <input type="number" class="form-control" name="qtddez" id="qtddez" [(ngModel)]="bolao.qtdDezenas">
+                </div>
+                <div class="form-group col-md-3">
+                  <label><b>Quantidade de Cotas</b></label>
+                  <input type="number" class="form-control" name="qtdcotas" id="qtdcotas"
+                    [(ngModel)]="bolao.qtdCotas">
+
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label><b>Valor da Cota (R$)</b></label>
+                  <input type="text" class="form-control" name="valorcota" id="vlresult"
+                    onkeypress="$(this).mask('#.##0,00', {reverse: true});" value="{{preparaValor(bolao.valorCota)}}">
+                </div>
+                <div class="form-group col-md-6">
+                  <label><b>Prêmio Previsto (R$)</b></label>
+                  <input type="text" class="form-control" name="premioprev" id="premioprev" 
+                    onkeypress="$(this).mask('#.##0,00', {reverse: true});" value="{{preparaValor(bolao.premioPrevisto)}}">
+                </div>
+              </div>
+
+            </div>
+
+            <div style="text-align:center">
+              <img id="imagepath" width="300" />
+            </div>
+
+            <br />
+            <div id="next" class="carddefinacao">
+              <div class="divbar1">
+                <h4 class="card-title-definicao" style="background-color: transparent;"><b>Vendedores/cotas</b></h4>
+              </div><br />
+               <div class="form-group col-md-6 form-row">
+                <label style="font-size: 22px;"><b>Estoque Online: </b></label><label style="font-size: 22px;"> <b>  {{bolao.qtdCotasDisponiveis}}</b></label><br/>
+                &nbsp;&nbsp;<label style="font-size: 22px;"><b>Cotas vendidas: </b></label><label style="font-size: 22px;"> <b>  {{(this.bolao.qtdCotas - this.somacotas - this.cotascombo)}}</b></label>
+                &nbsp;&nbsp;<label style="font-size: 22px;"><b>Cotas em combo: </b></label><label style="font-size: 22px;"> <b>  {{(this.cotascombo)}}</b></label>
+              </div> 
+
+
+              <div class="form-row">
+
+                <table class="tablevendedora table-bordered">
+                  <thead class="theadvendedora">
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Cotas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of vendedoresbolao; index as i">
+                      <td class="tdnome"><b>{{item[0]}}</b></td>
+                      <td><input type="number" disabled class="tdcota form-control" placeholder="Insira a quantidade de cotas"
+                          name="cotavendedor{{i}}" id="qtdcotavendedor_{{i}}" value="{{item[1]}}"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <br/>
+              <button *ngIf="perfil != 'VENDEDOR'" (click)="irparatransf();" class="btn btn-primary"><i class="fas fa-random"></i> Ir para Transferência de Cota</button>
+              <!-- The add() function is called -->
+
+            </div>
+
+            <br /><br /><br />
+            <div class="divbuttons2">
+              <!-- <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Gravar</button>&nbsp;
+              <button class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button> -->
+              <button (click)="back();" class="btn btn-primary"><i class="far fa-arrow-alt-circle-left"></i> Voltar</button>&nbsp;
+              <button *ngIf="this.perfil != 'VENDEDOR'" (click)="deletar();" class="btn btn-primary"><i class="fas fa-trash-alt"></i> Deletar</button>
+            </div>
+            <br />
+
+            <div id="divsuccess" class="fade-out col-xs-12">
+              <h3>Dados gravados com sucesso</h3>
+            </div>
+            <div style="padding-bottom: 100px;">
+            </div>
+            <br /><br />
+          </form>
+
+        </div>
+      </div>
+
+      <div style="
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: gray;
+      color: white;
+      text-align: center;">
+        <app-tab-bar></app-tab-bar>
+      </div>
+
+    </div>
+  </div>
+
+</div>

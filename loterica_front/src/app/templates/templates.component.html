@@ -1,0 +1,130 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<div *ngIf="mobile">
+
+    <app-top-bar></app-top-bar>
+
+</div>
+
+<div class="col-12 main-container">
+
+    <div *ngIf="!mobile" class="row col-12 submain-container">
+
+        <app-nav-bar></app-nav-bar>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-primary" style="text-align: center; margin-bottom: 60px;">
+                    <h4 class="card-title"><b>TEMPLATES</b></h4>
+                </div>
+
+                <div class="col-md-12">
+                    <h4 class="divtitformapagto card-title" style="margin-bottom: 30px;"><b>Escolha um template para compartilhamento</b></h4>
+                    <br />
+                </div>
+
+
+                <form>
+
+                    <div class="col-md-12 form-row">
+                        <div class="col-md-1" style=" justify-content: center; display: flex;"></div>
+                        <div class="col-md-4" style=" justify-content: center; display: flex; height:350px;">
+                            <img src="./assets/slide1.jpg">
+                        </div>
+                        <!-- <div class="col-md-4" style=" justify-content: center; display: flex;">b</div> -->
+                        <div class="col-md-2" style=" justify-content: first baseline; display: flex;"><input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault1"  /></div>
+                        <div class="col-md-4" style=" justify-content: center; display: flex; height:350px;"><img src="./assets/slide2.jpg">
+                        </div>
+                        <div class="col-md-1" style=" justify-content: first baseline;; display: flex;"><input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault1"  /></div>
+                    </div><br/>
+
+
+                    <div class="col-md-12 form-row">
+                        <div class="col-md-1" style=" justify-content: center; display: flex;"></div>
+                        <div class="col-md-4" style=" justify-content: center; display: flex; height:350px;"><img src="./assets/slide3.jpg"></div>
+                        <!-- <div class="col-md-4" style=" justify-content: center; display: flex;">b</div> -->
+                        <div class="col-md-2" style=" justify-content: first baseline; display: flex;"><input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault1"  /></div>
+                        <div class="col-md-4" style=" justify-content: center; display: flex; height:350px;"><img src="./assets/slide4.jpg"></div>
+                        <div class="col-md-1" style=" justify-content: first baseline; display: flex;"><input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault1"  /></div>
+                    </div><br/>
+
+                    <div class="col-md-12 form-row">
+                        <div class="col-md-4" style=" justify-content: center; display: flex;"></div>
+                        <div class="col-md-4" style=" justify-content: center; display: flex;"><button (click)="whatsapp();" class="btn btn-primary"><i class="fas fa-share-alt"></i> Compartilhar</button></div>
+                        <div class="col-md-4" style=" justify-content: center; display: flex;"></div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="mobile">
+
+        <div class="divtitulo">
+            <h4 class="card-title">TEMPLATES</h4>
+        </div>
+
+        <div class="row col-12 submain-container">
+
+
+            <div *ngIf="(nave == 'true')"><app-nav-bar></app-nav-bar></div>
+            
+
+            <div class="col-12">
+                <div class="card" style="padding-bottom: 100px;">
+
+                    <form>
+
+                        <div class="col-12 form-row" style=" justify-content: center; display: flex;">
+                            <input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault1"  />
+                            <img src="./assets/slide1.jpg">
+                        </div>
+
+                        <div class="col-12 form-row" style=" justify-content: center; display: flex;">
+                            <input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault1"  />
+                            <img src="./assets/slide2.jpg">
+                        </div>
+                            
+                        <br/>
+    
+    
+                        <div class="col-12 form-row" style=" justify-content: center; display: flex;">
+                            <input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault1" />
+                            <img src="./assets/slide3.jpg">
+                        </div>
+                        <div class="col-12 form-row" style=" justify-content: center; display: flex;">
+                            <input class="form-check-input" type="radio" name="radioList" id="flexRadioDefault1" />
+                            <img src="./assets/slide4.jpg">
+                        </div>
+                           
+                        
+                        <br/>
+    
+                        <div class="col-12 form-row" style=" justify-content: center; display: flex;">
+                            <button (click)="whatsapp();" class="btn btn-primary"><i class="fas fa-share-alt"></i> Compartilhar</button>
+                            
+                        </div>
+                        
+
+                    </form>
+            </div>
+            <div style="
+            z-index: 999;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: gray;
+            color: white;
+            text-align: center;
+            margin-top: 200px;">
+                <app-tab-bar></app-tab-bar>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

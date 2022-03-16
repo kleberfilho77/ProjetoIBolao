@@ -1,0 +1,194 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<div *ngIf="mobile">
+
+    <app-top-bar></app-top-bar>
+
+</div>
+
+<div class="col-12 main-container">
+
+    <div *ngIf="!mobile" class="row col-12 submain-container">
+
+        <app-nav-bar></app-nav-bar>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-primary" style="text-align: center;">
+                    <h4 class="card-title"><b>Vendas Pendentes</b></h4>
+                </div>
+
+                <form>
+
+
+                    <div class="divtabextrato card">
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <h4 class="divtitformapagto card-title"><b>Links Gerados sem efetivação de venda</b></h4>
+                                <br/>
+                            </div>
+
+                            <div style="padding-left: 20px" class="form-group col-md-3">
+                                <label><b>Filtrar por Cliente</b></label>
+                                <input class="form-control" id="inputcliente" name="inputcliente" [(ngModel)]="selected1" />
+                            </div>
+
+                            <div class="form-group col-md-2" style="padding-top:7px;">
+                                <br/>
+                                <button class="btn btn-primary" (click)="listar()">Filtrar</button>
+                            </div>
+
+                            <div class="col-md-12">
+                                <table *ngIf="perfil == 'VENDEDOR'" class="table table-hover">
+                                    <thead class="text-warning">
+                                        <th>Descricao</th>
+                                        <th>Valor da Venda</th>
+                                        <th>Cliente</th>
+                                        <th>Link</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let ls of listaExtrato">
+                                            <td>{{ls[0]}}</td>
+                                            <td>{{visualizaValor(ls[1])}}</td>
+                                            <td>{{ls[3]}}</td>
+                                            <td>{{ls[2]}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <table *ngIf="perfil != 'VENDEDOR'" class="table table-hover">
+                                    <thead class="text-warning">
+                                        <th>Descricao</th>
+                                        <th>Valor da Venda</th>
+                                        <th>Cliente</th>
+                                        <th>Vendedor</th>
+                                        <th>Link</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let ls of listaExtrato">
+                                            <td>{{ls[0]}}</td>
+                                            <td>{{visualizaValor(ls[1])}}</td>
+                                            <td>{{ls[4]}}</td>
+                                            <td>{{ls[3]}}</td>
+                                            <td>{{ls[2]}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <br />
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="mobile">
+
+        <div class="divtitulo">
+            <h4 class="card-title">Vendas Pendentes</h4>
+        </div>
+
+        <div class="row col-12 submain-container">
+
+            <div *ngIf="(nave == 'true')">
+                <app-nav-bar></app-nav-bar>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card">
+
+                    <form>
+
+                        <div class="divtabextrato card">
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <h4 class="divtitformapagto card-title"><b>Links Gerados sem efetivação de venda</b></h4>
+                                    <br/>
+                                </div>
+
+                                <div style="padding-left: 20px" class="form-group col-md-3">
+                                    <label><b>Filtrar por Cliente</b></label>
+                                    <input class="form-control" id="inputcliente" name="inputcliente" [(ngModel)]="selected1" />
+                                </div>
+    
+                                <div class="form-group col-md-2"  style="padding-left: 20px;">
+                                    
+                                    <button class="btn btn-primary" (click)="listar()">Filtrar</button>
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <p style="color: red;">Arraste para o lado para poder ver toda a tabela</p>
+                                </div>
+                                
+                                <table *ngIf="perfil == 'VENDEDOR'" class="table table-hover" style="display: block;max-width: auto; width:320px; overflow: scroll;">
+                                    <thead class="text-warning">
+                                        <th>Descricao</th>
+                                        <th>Valor da Venda</th>
+                                        <th>Cliente</th>
+                                        <th>Link</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let ls of listaExtrato">
+                                            <td>{{ls[0]}}</td>
+                                            <td>{{visualizaValor(ls[1])}}</td>
+                                            <td>{{ls[3]}}</td>
+                                            <td>{{ls[2]}}</td>
+                                        </tr>
+    
+                                    </tbody>
+                                </table>
+    
+                                <table *ngIf="perfil != 'VENDEDOR'" class="table table-hover" style="display: block;max-width: auto; width:320px; overflow: scroll;">
+                                    <thead class="text-warning">
+                                        <th>Descricao</th>
+                                        <th>Valor da Venda</th>
+                                        <th>Cliente</th>
+                                        <th>Vendedor</th>
+                                        <th>Link</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let ls of listaExtrato">
+                                            <td>{{ls[0]}}</td>
+                                            <td>{{visualizaValor(ls[1])}}</td>
+                                            <td>{{ls[4]}}</td>
+                                            <td>{{ls[3]}}</td>
+                                            <td>{{ls[2]}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+
+                        <br />
+                    </form>
+
+                </div>
+            </div>
+            <div style="
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: gray;
+            color: white;
+            text-align: center;">
+                <app-tab-bar></app-tab-bar>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,50 @@
+<div class="background-image"></div>
+<div class="container">
+    <div class="col-md-6 mx-auto text-center">
+       <div class="header-title" >
+          <h1 class="wv-heading--title">
+            
+            <img src="../assets/logobolao.png" width="200" height="120">
+            <br/><br/>
+          </h1>
+       </div>
+    </div>
+    <div class="col-12 form-row">
+
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div  style=" align-items: center; justify-content: center; display: flex; padding-bottom: 20px;">
+                <i class="fas fa-check-circle fa-5x"></i>
+            </div>
+            <div  style=" align-items: center; justify-content: center; display: flex; text-align: center;">
+                <h3><b>Pagamento aprovado de bolão adquirido na lotérica!</b></h3>
+
+            </div><br/>
+
+            <div class="col-12" style="text-align: center;">
+                <h4>Resumo da compra</h4><br/>
+
+            </div>
+            <div *ngIf="!mobile" class="col-12" style="text-align: center;">
+                    <label>Cliente: <b>{{nomecli}}</b></label><br/>
+                    <label>Email: <b>{{emailcli}}</b></label><br/>
+                    <label>Lotérica: <b>{{nomeloterica}}</b></label><br/>
+                    <label>CNPJ: <b>{{cnpjloterica}}</b></label><br/>
+                    <label><b>{{valor}}</b></label><br/><br/>
+            </div>
+            <div *ngIf="mobile" class="col-12" style="text-align: center;">
+                <label>Cliente:</label><br/> <b>{{nomecli}}</b><br/><br/>
+                <label>Email:</label><br/> <label><b>{{emailcli}}</b></label><br/><br/>
+                <label>Lotérica:</label><br/> <label><b>{{nomeloterica}}</b></label><br/><br/>
+                <label>CNPJ:</label><br/> <label><b>{{cnpjloterica}}</b></label><br/><br/>
+                <label><b>{{valor}}</b></label><br/><br/>
+            </div>
+
+            <div  style=" align-items: center; justify-content: center; display: flex; text-align: center;">
+                <h4>Você receberá um email com mais informações</h4>
+            </div>
+        </div>
+        <div class="col-2"></div>
+
+    </div>
+  </div>

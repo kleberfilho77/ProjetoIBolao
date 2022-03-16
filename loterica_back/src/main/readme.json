@@ -1,0 +1,109 @@
+POST_UsuarioAdministradorController
+http://localhost:1237/admin/create
+
+{
+"cpf":"121212121",
+"nome":"edson belem",
+"logradouro":"Rua Jose Carlos Nogueira Diniz",
+"bairro":"Recreio dos Bandeirantes",
+"cidade":"Rio de Janeiro",
+"estado":"RJ",
+"cep":"220800-9",
+"telefone1":"89898989",
+"telefone2":"87870405",
+"email":"profedsonbelem@gmail.com",
+"sexo":"MASCULINO",
+"isSms":1,
+"password":"123456",
+"perfil":"admin"
+}
+
+POST_ UsuarioUnidadeLoterica
+
+http://localhost:1237/api/create
+{
+ 	 "numeroUl":"UL",
+     "cnpj":"08980890",
+     "razaoSocial":"razao social tst",
+	 "nomeFantasia":"nome fantasia tst",
+	 "logradouro":"rua jose carlos nogueira diniz",
+	 "bairro":"recreio dos bandeirantes",
+	 "cidade":"Rio de Janeiro",
+	 "estado":"RJ",
+	 "cep":"2608000",
+ 	 "contato1":"981990108",
+	 "contato2":"2222-4444",
+  	 "contato3":"3333-3333",
+     "telefone1":"2222-2222",
+     "telefone2":"3333-4444",
+     "telefone3":"4444-9999",
+     "emailPrincipal":"jose@gmail.com",
+     "email1":"josecarlos@gmail.com",
+     "email2":"luis@gmail.com",
+ 	 "email3":"marcio@gmail.com",
+     "isSms":"1",
+     "senha":"123456"
+}
+
+# gravar
+
+
+
+http://localhost:1237/admin/create
+{
+ "uuid":"12121-0011",
+"cpf":"121212121",
+"nome":"edson belem",
+"logradouro":"Rua Jose Carlos Nogueira Diniz",
+"bairro":"Recreio dos Bandeirantes",
+"cidade":"Rio de Janeiro",
+"estado":"RJ",
+"cep":"220800-9",
+"telefone1":"89898989",
+"telefone2":"87870405",
+"email":"profedsonbelem@gmail.com",
+"sexo":"MASCULINO",
+"isSms":"1",
+"password":"123456",
+"perfil":"admininstrador"
+}
+
+
+UsuarioVendedor
+http://localhost:1237/vendedor/saved
+
+{
+ "cpf":"121212121",
+"nome":"edson belem",
+"logradouro":"Rua Jose Carlos Nogueira Diniz",
+"bairro":"Recreio dos Bandeirantes",
+"cidade":"Rio de Janeiro",
+"estado":"RJ",
+"cep":"220800-9",
+"telefone1":"89898989",
+"telefone2":"87870405",
+"email":"profedsonbelem@gmail.com",
+"sexo":"MASCULINO",
+"isSms":1,
+"password":"123456",
+"perfil":"vendedor"
+}
+ 	
+ 
+ =======================
+BolaoController
+
+http://localhost:1237/bolao/create
+ {
+ "modalidade":"MEGA",
+ "sorteio":1234,
+ "dataBolao":"2021-09-18 16:00:00",
+ "dataSorteio":"2021-09-18 16:00:00",
+  "horaLimite":"2021-09-18 16:00:00",
+  "quantidadeDezenas":10,
+  "valorCota":100,
+  "premioPrevisto":1000
+ }
+
+ 
+ ===============================

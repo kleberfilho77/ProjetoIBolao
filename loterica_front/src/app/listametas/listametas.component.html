@@ -1,0 +1,254 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<div *ngIf="mobile">
+
+    <app-top-bar></app-top-bar>
+
+</div>
+
+<div class="col-12 main-container">
+
+    <div *ngIf="!mobile" class="row col-12 submain-container">
+
+        <app-nav-bar></app-nav-bar>
+
+        <div class="cardcategoria col-md-12">
+            <div class="form-row">
+
+                <div class="col-md-12">
+                    <h4 class="card-title-categoria"><b>ÍNDICE</b></h4>
+                </div><br /><br />
+                <div>
+                    <div class="divopcao form-group col-md-12">
+                        <p><b>Escolha o tipo de meta:</b></p>
+
+                        <select id="modalidade" name="modalidade" class="form-control" [(ngModel)]="selectedValue">
+                            <option value="1">FIXA</option>
+                            <option value="2">VARIAVEL</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="selectedValue != '0'" class="col-md-12">
+            <div class="card">
+                <!-- <div class="card-header card-header-tabs card-header-primary">
+                    <h4 class="card-title">ÍNDICE - METAS</h4>
+                </div> -->
+
+                <br />
+                <form>
+
+                    <div *ngIf="selectedValue == '1'" class="divtabextrato cardinterno">
+
+                        <div class="card-header card-header-tabs card-header-primary">
+                            <h4 class="card-title">METAS</h4>
+                        </div>
+
+                        <br />
+
+                        <div class="form-row">
+
+                            <table class="table table-hover">
+                                <thead class="text-warning" style="text-align: center;">
+                                    <th>Ano</th>
+                                    <th>Mês</th>
+                                    <th>Valor da Meta</th>
+                                    <th>Vendedor</th>
+                                </thead>
+                                <tbody style="text-align: center;">
+                                    <tr *ngFor="let item of metas">
+                                        <td>{{item.ano}}</td>
+                                        <td>{{item.mes}}</td>
+                                        <td>{{preparaValor(item.valor)}}</td>
+                                        <td>{{item.vendedor.nome}}</td>
+                                    </tr>
+
+                                </tbody>
+
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <div *ngIf="selectedValue == '2'" class="divresp2 card">
+                        <div class="card-header card-header-tabs card-header-primary">
+                            <h4 class="card-title">META VARIAVEL</h4>
+                        </div>
+
+                        <br />
+
+
+                        <div class="divtabextrato cardinterno">
+                            <div class="form-row">
+
+                                <table class="table table-hover">
+                                    <thead class="text-warning" style="text-align: center;">
+                                        <th>Comissão</th>
+                                        <th>De</th>
+                                        <th>Até</th>
+                                    </thead>
+                                    <tbody style="text-align: center;">
+                                        <tr>
+                                            <td> {{converter(metavar[0].comissao)}}</td>
+                                            <td>R$ 1,00</td>
+                                            <td>{{visualizaValor(metavar[0].valor)}}</td>
+                                        </tr>
+                                        <tr *ngFor="let item of metavar; index as i">
+                                            <td *ngIf="i != 0"> {{converter(item.comissao)}}</td>
+                                            <td *ngIf="i != 0">{{visualizaValor(metavar[i-1].valor+100)}}</td>
+                                            <td *ngIf="i != 0">{{visualizaValor(item.valor)}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <br />
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="mobile" >
+
+        <div class="divtitulo">
+            <h4 class="card-title">ÍNDICE</h4>
+        </div>
+
+        <div class="row col-12 submain-container" >
+
+            <div *ngIf="(nave == 'true')">
+                <app-nav-bar></app-nav-bar>
+            </div>
+
+            <div class="cardcategoria col-md-12">
+                <div class="form-row">
+                    <div>
+                        <div class="divopcao form-group col-md-12">
+                            <p><b>Escolha o tipo de meta:</b></p>
+
+                            <select id="modalidade" name="modalidade" class="form-control" [(ngModel)]="selectedValue">
+                                <option value="1">FIXA</option>
+                                <option value="2">VARIAVEL</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectedValue != '0'" class="col-md-12">
+                <div class="card">
+                    <!-- <div class="card-header card-header-tabs card-header-primary">
+                        <h4 class="card-title">ÍNDICE - METAS</h4>
+                    </div> -->
+
+                    <br />
+                    <form>
+
+                        <div *ngIf="selectedValue == '1'" class="divtabextrato cardinterno">
+
+                            <div class="card-header card-header-tabs card-header-primary">
+                                <h4 class="card-title">METAS</h4>
+                            </div>
+
+                            <br />
+                            <div style="text-align: center;">
+                                <p style="color: red;">Arraste para o lado para poder ver toda a tabela</p>
+                              </div>
+                            <div class="form-row">
+
+                                <table class="table table-hover" style="display: block;max-width: auto; overflow: scroll;">
+                                    <thead class="text-warning" style="text-align: center;">
+                                        <th>Ano</th>
+                                        <th>Mês</th>
+                                        <th>Valor da Meta</th>
+                                        <th>Vendedor</th>
+                                    </thead>
+                                    <tbody style="text-align: center;">
+                                        <tr *ngFor="let item of metas">
+                                            <td>{{item.ano}}</td>
+                                            <td>{{item.mes}}</td>
+                                            <td>{{preparaValor(item.valor)}}</td>
+                                            <td>{{item.vendedor.nome}}</td>
+                                        </tr>
+
+                                    </tbody>
+
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="selectedValue == '2'" class="divresp2 card">
+                            <div class="card-header card-header-tabs card-header-primary">
+                                <h4 class="card-title">META VARIAVEL</h4>
+                            </div>
+
+                            <br />
+
+
+                            <div class="divtabextrato cardinterno">
+                                <div class="form-row">
+                                    <div style="text-align: center;">
+                                        <p style="color: red;">Arraste para o lado para poder ver toda a tabela</p>
+                                      </div>
+
+                                    <table class="table table-hover" style="max-width: auto; overflow: scroll;">
+                                        <thead class="text-warning" style="text-align: center;">
+                                            <th>Comissão</th>
+                                            <th>De</th>
+                                            <th>Até</th>
+                                        </thead>
+                                        <tbody style="text-align: center;">
+                                            <tr>
+                                                <td> {{converter(metavar[0].comissao)}}</td>
+                                                <td>R$ 1,00</td>
+                                                <td>{{visualizaValor(metavar[0].valor)}}</td>
+                                            </tr>
+                                            <tr *ngFor="let item of metavar; index as i">
+                                                <td *ngIf="i != 0"> {{converter(item.comissao)}}</td>
+                                                <td *ngIf="i != 0">{{visualizaValor(metavar[i-1].valor+100)}}</td>
+                                                <td *ngIf="i != 0">{{visualizaValor(item.valor)}}</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <br />
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+            <br /><br />
+
+            
+        </div>
+        
+
+</div>
+
+</div>
+<div *ngIf="this.mobile" style="
+                width: 100%;
+                background-color: gray;
+                color: white;
+                text-align: center;">
+            <app-tab-bar></app-tab-bar>
+        </div>

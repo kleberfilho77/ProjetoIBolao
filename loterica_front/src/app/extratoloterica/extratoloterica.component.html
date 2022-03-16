@@ -1,0 +1,193 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<div class="background-image"></div>
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>  
+
+<div class="col-12 main-container">
+
+    <div *ngIf="!mobile" class="row col-12 submain-container">
+
+        <div class="col-3 wrapper">
+
+            <nav id="sidebar" style="overflow-y: auto;">
+                <div class="sidebar-header">    
+                    <img src="../assets/logobolao.png" width="200" height="112">
+                </div>
+        
+                <ul class="list-unstyled components">
+                    <li>
+                        <!-- <a class="ahome" (click)="home();">Home</a> -->
+                        <label>Nome da Loterica: <b>{{nomeLoterica}}</b></label><br/>
+                        <label>CNPJ da Loterica: <b>{{cnpjLoterica}}</b></label><br/>
+                        <label>Logradouro: <b>{{logradouro}}</b></label>
+                    </li>
+                    <hr>
+                    <li>
+                      <a class="atransfcotas" (click)="prevenda();">Pré Venda</a>
+                  </li>
+                    
+                </ul>
+                <div style=" padding-top: -5px;">
+                    <a id="btlogout" (click)="logout();" class="btn btn-sm btn-outline-light mr-2">
+                        Logout <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+        
+            </nav>
+        
+        </div>
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <h4 class="card-title">EXTRATO FINANCEIRO</h4>
+          </div>
+    
+          <br/>
+          <form>
+            
+  
+          <div class="divtabextrato card">
+            <div class="form-row">
+                
+                <table class="table table-hover">
+                    <thead class="text-warning">
+                      <th>Descrição da compra</th>
+                      <th>Email do cliente</th>
+                      <th>Nome do cliente</th>
+                      <th>Valor</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of ordempagto">
+                        <td>{{item.descricao}}</td>
+                        <td>{{item.emailCliente}}</td>
+                        <td>{{item.nomeCliente}}</td>
+                        <td>{{visualizaValor(item.valor)}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="3"><b>TOTAL FINANCEIRO</b></td>
+                        <td>{{visualizaValor(valorTotal)}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+              
+          </div>
+
+            <br/>
+            
+            </form>
+
+
+        </div>
+      </div>      
+        
+    
+    </div>
+
+
+
+    <div *ngIf="mobile">
+
+      <div class="divtitulo">
+        <h4 class="card-title">EXTRATO FINANCEIRO</h4>
+      </div>
+
+    <div class="row col-12 submain-container">
+  
+        <div *ngIf="(nave == 'true')">
+            <div class="col-3 wrapper">
+  
+              <nav id="sidebar" style="overflow-y: auto;">
+                <div class="sidebar-header">    
+                    <img src="../assets/logobolao.png" width="200" height="112">
+                </div>
+        
+                <ul class="list-unstyled components">
+                    <li>
+                        <!-- <a class="ahome" (click)="home();">Home</a> -->
+                        <label>Nome da Loterica: <b>{{nomeLoterica}}</b></label><br/>
+                        <label>CNPJ da Loterica:<b> {{cnpjLoterica}}</b></label><br/>
+                        <label>Logradouro:<b> {{logradouro}}</b></label>
+                    </li>
+                    <hr>
+                    <li>
+                        <a class="atransfcotas" (click)="prevenda();">Pré Venda</a>
+                  </li>
+                    
+                </ul>
+                <div style=" padding-top: -5px;">
+                    <a id="btlogout" (click)="logout();" class="btn btn-sm btn-outline-light mr-2">
+                        Logout <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+        
+            </nav>
+          
+          </div>
+          </div>
+
+      <div class="col-md-12">
+          
+          <form>
+            
+  
+          <div class="divtabextrato card" style="margin-top: 0;">
+            <div class="form-row" style="display: flex; justify-content: center; align-self: center; padding-left:0px; width:250px;">
+                
+                <table class="table table-hover" style="display: block;max-width: auto; overflow: scroll;">
+                    <thead class="text-warning">
+                      <th>Descrição da compra</th>
+                      <th>Email do cliente</th>
+                      <th>Nome do cliente</th>
+                      <th>Valor</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of ordempagto">
+                        <td>{{item.descricao}}</td>
+                        <td>{{item.emailCliente}}</td>
+                        <td>{{item.nomeCliente}}</td>
+                        <td>{{visualizaValor(item.valor)}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="3"><b>TOTAL FINANCEIRO</b></td>
+                        <td>{{visualizaValor(valorTotal)}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+              
+          </div>
+
+
+              <br/>
+            </form>
+
+            <br/><br/>
+
+      </div>      
+        
+      <div style="
+                            left: 0;
+                            bottom: 0;
+                            width: 100%;
+                            background-color: gray;
+                            color: white;
+                            text-align: center;">
+            <div class="footer form-row col-xs-12">
+              <div id="sair" class="col-xs-6">
+                <a id="btlogout" (click)="logout();"><img src="../assets/icone3.jpg" height="40px;" width="45px" /><br /></a>
+                <label>Sair</label>
+              </div>
+            </div>
+          </div>
+    
+    </div>
+    </div>
+    
+    </div>

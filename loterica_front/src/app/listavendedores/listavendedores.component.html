@@ -1,0 +1,119 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<div *ngIf="mobile">
+
+  <app-top-bar></app-top-bar>
+
+</div>  
+
+<div class="col-12 main-container">
+
+    <div *ngIf="!mobile" class="row col-12 submain-container">
+
+      <app-nav-bar></app-nav-bar>
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <h4 class="card-title">ÍNDICE - VENDEDORES</h4>
+          </div>
+    
+          <br/>
+          <form>
+
+          <div class="divtabextrato cardinterno">
+            <div class="form-row">
+                
+                <table class="table table-hover">
+                    <thead class="text-warning" style="text-align: center;">
+                      <th>Nome</th>
+                      <th>CPF</th>
+                      <th>Email</th>
+                      <th>Telefone</th>
+                      <th>Telefone (2ª opção)</th>
+                    </thead>
+                    <tbody style="text-align: center;">
+                      <tr *ngFor="let item of vendedores" >
+                        <td>{{item.nome}}</td>
+                        <td>{{item.cpf}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.contato1}}</td>
+                        <td>{{item.contato2}}</td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+              </div>
+              
+          </div>
+
+            </form>
+
+        </div>
+      </div>      
+        
+    </div>
+
+    <div *ngIf="mobile">
+
+      <div class="divtitulo">
+        <h4 class="card-title">EXTRATO - VENDEDOR</h4>
+      </div>
+
+    <div class="row col-12 submain-container">
+  
+      <div *ngIf="(nave == 'true')"><app-nav-bar></app-nav-bar></div>
+
+      <div class="col-md-12">
+        <div class="card">
+          
+          <form>
+  
+          <div class="divtabextrato card" style="margin-top: 0;">
+            <div class="form-row" style="display: flex; justify-content: center; align-self: center; padding-left:0px; width:250px;">
+                
+                <table class="table table-hover">
+                    <thead class="text-warning" style="text-align: center;">
+                      <th>Nome</th>
+                      <th>CPF</th>
+                      <th>Email</th>
+                      <th>Telefone</th>
+                      <th>Telefone (2ª opção)</th>
+                    </thead>
+                    <tbody style="text-align: center;">
+                      <tr *ngFor="let item of vendedores" >
+                        <td>{{item.nome}}</td>
+                        <td>{{item.cpf}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.contato1}}</td>
+                        <td>{{item.contato2}}</td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+              </div>
+              
+          </div>
+            
+              <br/>
+              
+              <br/>
+            </form>
+
+            <br/><br/>
+
+        </div>
+      </div>      
+        
+      <div style="
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: gray;
+      color: white;
+      text-align: center;"><app-tab-bar></app-tab-bar> </div>  
+    
+    </div>
+    </div>
+    
+    </div>

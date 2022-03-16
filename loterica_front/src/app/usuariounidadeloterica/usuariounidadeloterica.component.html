@@ -1,0 +1,426 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+
+
+<div class="divprinc" *ngIf="!mobile">
+
+          <h4 class="card-title-dadoscadastro"><b>Dados do cadastro</b></h4><br/>
+          
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <label><b>UL</b></label>
+              <input type="text" class="form-control" name="ul" id="ul" onkeypress="$(this).mask('00.000000-0')"  [(ngModel)]="unidade.numeroUl">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label><b>CNPJ</b></label>
+              
+              <input type="text" class="form-control" name="cnpj" id="cnpj" onkeypress="$(this).mask('00.000.000/0000-00')" [(ngModel)]="unidade.cnpj">
+              
+            </div>
+            <div class="form-group col-md-5">
+              <label><b>Razão social</b></label>
+              <input type="text" class="form-control" name="razaosocial" id="razaosocial" [(ngModel)]="unidade.razaoSocial">
+            </div>
+            <div class="form-group col-md-3">
+              <label><b>Nome Fantasia </b></label>
+              <input type="text" class="form-control" name="nomefantasia"  id="nomefantasia"  [(ngModel)]="unidade.nomeFantasia">
+            </div>
+
+          </div>
+
+          <div class="form-row">
+              <div class="form-group col-md-2">
+                <label><b>CEP</b></label>
+                <input type="text" class="form-control" name="cep" id="cep" onkeypress="$(this).mask('00.000-000')" [(ngModel)]="unidade.cep">
+              </div>
+              <div class="form-group col-md-6">
+                <label><b>Endereço</b></label>
+                <input type="text" class="form-control" name="endereco" id="endereco" [(ngModel)]="unidade.logradouro">
+              </div>
+              <div class="form-group col-md-1">
+                <label><b>Nº</b></label>
+                <input type="text" class="form-control" name="numero" id="numero" [(ngModel)]="unidade.numero">
+              </div>
+              <div class="form-group col-md-2">
+                <label><b>Complemento </b></label>
+                <input type="text" class="form-control" name="complemento"  id="complemento" [(ngModel)]="unidade.complemento">
+              </div>
+
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-3">
+                <label><b>Bairro</b></label>
+                <input type="text" class="form-control" name="bairro" id="bairro"   [(ngModel)]="unidade.bairro">
+              </div>
+              <div class="form-group col-md-3">
+                <label><b>Cidade</b></label>
+                <input type="text" class="form-control" name="cidade" id="cidade"  [(ngModel)]="unidade.cidade">
+              </div>
+              <div class="form-group col-md-1">
+                <label><b>Estado</b></label>
+                <select id="estado" name="estado" class="form-control" [(ngModel)]="unidade.estado" style="padding-left: 0px;">
+                  <option disabled selected>...</option>
+                  <option>AC</option>
+                  <option>AL</option>
+                  <option>AP</option>
+                  <option>AM</option>
+                  <option>BA</option>
+                  <option>CE</option>
+                  <option>DF</option>
+                  <option>ES</option>
+                  <option>GO</option>
+                  <option>MA</option>
+                  <option>MT</option>
+                  <option>MS</option>
+                  <option>MG</option>
+                  <option>PB</option>
+                  <option>PR</option>
+                  <option>PE</option>
+                  <option>PI</option>
+                  <option>RJ</option>
+                  <option>RN</option>
+                  <option>RS</option>
+                  <option>RO</option>
+                  <option>RR</option>
+                  <option>SC</option>
+                  <option>SP</option>
+                  <option>SE</option>
+                  <option>TO</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label><b>Email principal </b></label>
+                <input type="text" class="form-control" name="emailprincipal"  id="emailprincipal"  [(ngModel)]="unidade.emailPrincipal">
+              </div>
+
+          </div>
+         
+          <div class="form-row">
+              <div class="form-group col-md-4">
+                <label><b>Contato 1</b></label>
+                <input type="text" class="form-control" name="contato1" id="contato1" placeholder="Insira o nome do contato" [(ngModel)]="unidade.contato1">
+              </div>
+              <div class="form-group col-md-3">
+                  <label><b>Telefone</b></label>
+                  <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="telefone1" id="telefone1" [(ngModel)]="unidade.telefone1">
+                </div>
+                <div class="form-group col-md-4">
+                  <label><b>Email</b></label>
+                  <input type="email" class="form-control" name="email1" id="email1" [(ngModel)]="unidade.email1">
+                </div>
+          </div>
+
+          <div class="form-row">
+              <div class="form-group col-md-4">
+                <label><b>Contato 2</b></label>
+                <input type="text" class="form-control" name="contato2" id="contato2" placeholder="Insira o nome do contato"  [(ngModel)]="unidade.contato2">
+              </div>
+              <div class="form-group col-md-3">
+                  <label><b>Telefone</b></label>
+                  <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="telefone2" id="telefone2" [(ngModel)]="unidade.telefone2">
+                </div>
+                <div class="form-group col-md-4">
+                  <label><b>Email</b></label>
+                  <input type="email" class="form-control" name="email2" id="email2" [(ngModel)]="unidade.email2">
+                </div>
+          </div>
+
+          <div class="form-row">
+              <div class="form-group col-md-4">
+                <label><b>Contato 3</b></label>
+                <input type="text" class="form-control" name="contato3" id="contato3" placeholder="Insira o nome do contato" [(ngModel)]="unidade.contato3">
+              </div>
+              <div class="form-group col-md-3">
+                  <label><b>Telefone</b></label>
+                  <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="telefone3" id="telefone3" [(ngModel)]="unidade.telefone3">
+                </div>
+                <div class="form-group col-md-4">
+                  <label><b>Email</b></label>
+                  <input type="email" class="form-control" name="email3" id="email3" [(ngModel)]="unidade.email3">
+                </div>
+          </div>
+          <br/>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked="true"
+               />
+            <label class="form-check-label">
+              Autorizo receber mensagens por SMS, WhatsApp, email ou qualquer outra forma de contato?
+            </label>
+          </div>
+          <!-- <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" checked="true"
+             />
+            <label class="form-check-label">
+              Declaro que li e concordo com os <a target="blank" href="https://api.ibolao.com.br/#/termosuso"> termos de uso</a> e <a target="blank" href="https://api.ibolao.com.br/#/politica">política de privacidade</a> do iBOLÃO.
+            </label>
+          </div> -->
+          <div id="divsuccess" class="fade-out col-md-12">
+            <h3>Dados gravados com sucesso</h3>
+          </div>
+          <div class="divbuttons3" >
+            <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Gravar</button>&nbsp;
+            <button  class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button>
+          </div>
+
+          <br/>
+             
+
+</div>
+
+<div class="divprinc" *ngIf="mobile">
+  
+
+<div class="divbar2"><h5 class="card-title-dadoscadastro" style="background-color: transparent; font-size: 23px; "><b>Dados do cadastro</b></h5></div><br/>
+<div class="form-row">
+<div class="form-group col-md-2">
+  <label><b>UL</b></label>
+  <input type="text" class="form-control" name="ul" id="ul" onkeypress="$(this).mask('00.000000-0')"  [(ngModel)]="unidade.numeroUl">
+</div>
+</div>
+<div class="form-row">
+<div class="form-group col-md-3">
+  <label><b>CNPJ</b></label>
+ 
+  <input type="text" class="form-control" name="cnpj" id="cnpj" onkeypress="$(this).mask('00.000.000/0000-00')" [(ngModel)]="unidade.cnpj">
+  
+</div>
+<div class="form-group col-md-5">
+  <label><b>Razão social</b></label>
+  <input type="text" class="form-control" name="razaosocial" id="razaosocial" [(ngModel)]="unidade.razaoSocial">
+</div>
+<div class="form-group col-md-3">
+  <label><b>Nome Fantasia </b></label>
+  <input type="text" class="form-control" name="nomefantasia"  id="nomefantasia"  [(ngModel)]="unidade.nomeFantasia">
+</div>
+
+</div>
+
+<div class="form-row">
+  <div class="form-group col-md-2">
+    <label><b>CEP</b></label>
+    <input type="text" class="form-control" name="cep" id="cep" onkeypress="$(this).mask('00.000-000')" [(ngModel)]="unidade.cep">
+  </div>
+  <div class="form-group col-md-6">
+    <label><b>Endereço</b></label>
+    <input type="text" class="form-control" name="endereco" id="endereco"  [(ngModel)]="unidade.logradouro">
+  </div>
+  <div class="form-group col-md-1">
+    <label><b>Nº</b></label>
+    <input type="text" class="form-control" name="numero" id="numero" [(ngModel)]="unidade.numero">
+  </div>
+  <div class="form-group col-md-2">
+    <label><b>Complemento </b></label>
+    <input type="text" class="form-control" name="complemento" id="complemento" [(ngModel)]="unidade.complemento">
+  </div>
+
+</div>
+<div class="form-row">
+  <div class="form-group col-md-3">
+    <label><b>Bairro</b></label>
+    <input type="text" class="form-control" name="bairro" id="bairro"   [(ngModel)]="unidade.bairro">
+  </div>
+  <div class="form-group col-md-3">
+    <label><b>Cidade</b></label>
+    <input type="text" class="form-control" name="cidade" id="cidade"  [(ngModel)]="unidade.cidade">
+  </div>
+  <div class="form-group col-md-1">
+    <label><b>Estado</b></label>
+    <select id="estado" name="estado" class="form-control" [(ngModel)]="unidade.estado" style="padding-left: 0px;">
+      <option disabled selected>...</option>
+      <option>AC</option>
+      <option>AL</option>
+      <option>AP</option>
+      <option>AM</option>
+      <option>BA</option>
+      <option>CE</option>
+      <option>DF</option>
+      <option>ES</option>
+      <option>GO</option>
+      <option>MA</option>
+      <option>MT</option>
+      <option>MS</option>
+      <option>MG</option>
+      <option>PB</option>
+      <option>PR</option>
+      <option>PE</option>
+      <option>PI</option>
+      <option>RJ</option>
+      <option>RN</option>
+      <option>RS</option>
+      <option>RO</option>
+      <option>RR</option>
+      <option>SC</option>
+      <option>SP</option>
+      <option>SE</option>
+      <option>TO</option>
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+    <label><b>Email principal </b></label>
+    <input type="text" class="form-control" name="emailprincipal" id="emailprincipal"  [(ngModel)]="unidade.emailPrincipal">
+  </div>
+
+</div>
+
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <label><b>Contato 1</b></label>
+    <input type="text" class="form-control" name="contato1" id="contato1" [(ngModel)]="unidade.contato1" placeholder="Insira o nome do contato">
+  </div>
+  <div class="form-group col-md-3">
+      <label><b>Telefone</b></label>
+      <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="telefone1" id="telefone1" [(ngModel)]="unidade.telefone1">
+    </div>
+    <div class="form-group col-md-4">
+      <label><b>Email</b></label>
+      <input type="email" class="form-control" name="email1" id="email1" [(ngModel)]="unidade.email1">
+    </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <label><b>Contato 2</b></label>
+    <input type="text" class="form-control" name="contato2" id="contato2" placeholder="Insira o nome do contato" [(ngModel)]="unidade.contato2">
+  </div>
+  <div class="form-group col-md-3">
+      <label><b>Telefone</b></label>
+      <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="telefone2" id="telefone2" [(ngModel)]="unidade.telefone2">
+    </div>
+    <div class="form-group col-md-4">
+      <label><b>Email</b></label>
+      <input type="email" class="form-control" name="email2" id="email2" [(ngModel)]="unidade.email2">
+    </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <label><b>Contato 3</b></label>
+    <input type="text" class="form-control" name="contato3" id="contato3" placeholder="Insira o nome do contato" [(ngModel)]="unidade.contato3">
+  </div>
+  <div class="form-group col-md-3">
+      <label><b>Telefone</b></label>
+      <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="telefone3" id="telefon3" [(ngModel)]="unidade.telefone3">
+    </div>
+    <div class="form-group col-md-4">
+      <label><b>Email</b></label>
+      <input type="email" class="form-control" name="email3" id="email3" [(ngModel)]="unidade.email3">
+    </div>
+</div>
+<br/>
+
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked="true"
+     />
+  <label class="form-check-label">
+    Autorizo receber mensagens por SMS, WhatsApp, email ou qualquer outra forma de contato?
+  </label>
+</div>
+<!-- <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" checked="true"
+   />
+  <label class="form-check-label">
+    Declaro que li e concordo com os <a target="blank" href="https://api.ibolao.com.br/#/termosuso"> termos de uso</a> e <a target="blank" href="https://api.ibolao.com.br/#/politica">política de privacidade</a> do iBOLÃO.
+  </label>
+</div> -->
+
+<br/>
+
+<label><b>Meios de Pagamento</b></label>
+
+
+<div class="form-check">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    value=""
+    id="flexCheckDefault"
+    checked="true"
+  />
+  <label class="form-check-label" for="flexCheckDefault">
+      Cartão de Crédito
+  </label>
+</div>
+<div class="form-check">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    value=""
+    id="flexCheckDefault"
+    checked="true"
+  />
+  <label class="form-check-label" for="flexCheckDefault">
+      Cartão de Débito
+  </label>
+</div>
+<div class="form-check">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    value=""
+    id="flexCheckDefault"
+    checked="true"
+  />
+  <label class="form-check-label" for="flexCheckDefault">
+      PIX (Informar chave ou QRcode)
+  </label>
+</div>
+<div class="form-check">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    value=""
+    id="flexCheckDefault"
+    checked="true"
+  />
+  <label class="form-check-label" for="flexCheckDefault">
+      Boleto Bancário
+  </label>
+</div>
+
+<div class="form-check">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    value=""
+    id="flexCheckDefault"
+    checked="true"
+  />
+  <label class="form-check-label" for="flexCheckDefault">
+      Transferência Bancária
+  </label>
+</div>
+
+<div class="form-check">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    value=""
+    id="flexCheckDefault"
+    checked="true"
+  />
+  <label class="form-check-label" for="flexCheckDefault">
+      PIC PAY
+  </label>
+</div>
+<div id="divsuccess" class="fade-out col-md-12">
+  <h3>Dados gravados com sucesso</h3>
+</div>
+
+<br/>
+        
+          <div class="divbuttons3" >
+            <button (click)="gravar();" class="btn btn-primary"><i class="fas fa-save"></i> Gravar</button>&nbsp;
+            <button  class="btn btn-primary"><i class="fas fa-eraser"></i> Limpar</button>
+          </div>
+
+          <br/>
+ 
+
+
+</div>
+
+
